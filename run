@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Compiling File..."
+ 
+# Compile the Java file
+"/c/Program Files/Eclipse Adoptium/jdk-17.0.14.7-hotspot/bin/javac.exe" test.java
+
+
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    # Run the Java program
+   echo "Runnig Program..."
+   echo ""
+   "/c/Program Files/Eclipse Adoptium/jdk-17.0.14.7-hotspot/bin/java.exe" test.java
+else
+    echo "Compilation failed."
+fi
