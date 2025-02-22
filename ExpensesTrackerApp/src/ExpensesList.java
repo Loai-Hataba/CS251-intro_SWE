@@ -151,7 +151,6 @@ public class ExpensesList {
         return date; // return the modified date
     }
 
-    //! method for sorting by amount :
     //Method for adding a new expense to the list :
     public void addExpense() {
         // Todo : add option to add  from file 
@@ -213,19 +212,89 @@ public class ExpensesList {
         System.out.println("3- Category ");
         //read the user choice  :
         int choice = getValidInt("Your Choice ( 1 -> 3 )", "Error : choice must be between ( 1 / 3 ) as Integer", 1, 3);
+        //make the user choose between ascending and descending order
+        System.out.println("Do you want to sort in : ");
+        System.out.println("1- Ascending order ");
+        System.out.println("2- Descending order ");
+        int option = getValidInt("Your choice (1 -> 2 )", "Error : choice must be between ( 1 / 2 ) as Integer", 1, 2);
         switch (choice) {
             case 1 -> {
                 // sort by amount
+                sortByAmount(option == 1);
             }
             case 2 -> {
-                // sort by date
-            }
-            case 3 -> {
-                // sort by category
+                // sort by date 
+                sortByDate(option == 1);
             }
             default ->
                 throw new AssertionError();
         }
     }
 
+    //! method for sorting by amount :
+    private void sortByAmount(final boolean ascending) {
+        // we will use the insertion sort algorithm:
+        double key;
+        int j;
+
+        for (int i = 1; i < expenses.size(); i++) {
+            // if the user choose to sort in ascending order
+            if (ascending) {
+                // 
+                key = expenses.get(i).getAmount();
+                Expense tmp = expenses.get(i);
+                j = i - 1;
+                while (j >= 0 && key < expenses.get(j).getAmount()) {
+                    expenses.set(j + 1, expenses.get(j));
+                    --j;
+                }
+                expenses.set(j + 1, tmp);
+            } // if the user choose to sort in descending order
+            else {
+                // 
+                key = expenses.get(i).getAmount();
+                Expense tmp = expenses.get(i);
+                j = i - 1;
+                while (j >= 0 && key > expenses.get(j).getAmount()) {
+                    expenses.set(j + 1, expenses.get(j));
+                    --j;
+                }
+                expenses.set(j + 1, tmp);
+            }
+        }
+        if (ascending) {
+            System.out.println("The list has been sorted in ascending order by amount ! "); 
+        }else {
+            System.out.println("The list has been sorted in descending order by amount ! ");
+        }
+    }
+
+    //Method for sorting the expenses list by date  :
+    private void sortByDate(boolean ascending) {
+        // we will use the selection sort algorithm : 
+        int minIdx;
+        for (int i = 0; i < expenses.size() - 1; i++) {
+            minIdx = i;
+            for (int j = i; j < expenses.size(); j++) {
+                if (ascending) {
+                    if (expenses.get(j).getDate().isBefore(expenses.get(minIdx).getDate())) {
+                        minIdx = j;
+                    }
+                } else {
+                    if (expenses.get(j).getDate().isAfter(expenses.get(minIdx).getDate())) {
+                        minIdx = j;
+                    }
+                }
+            }
+            Expense temp = expenses.get(minIdx);
+            expenses.set(minIdx, expenses.get(i));
+            expenses.set(i, temp);
+        }
+        if (ascending) {
+            System.out.println("The list has been sorted in ascending order by date ! ");
+        } else {
+            System.out.println("The list has been sorted in descending order by date ! ");
+        }
+
+    }
 }

@@ -58,7 +58,9 @@ public class App {
                     myExpenses.removeExpense();
                 case 3 ->
                     myExpenses.displayExpenses();
-                case 4 -> {
+                case 4 ->
+                    myExpenses.sortExpenses();
+                case 6 -> {
                     System.out.println("Terminating the program :(");
                     return;
                 }

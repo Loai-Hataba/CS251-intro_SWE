@@ -46,4 +46,9 @@ public class Expense {
         return this.date.format(formatter);
     }
 
+    // getter for the date as LocalDate object
+    public LocalDate getDate() {
+        return this.date;
+    }
+
 }
