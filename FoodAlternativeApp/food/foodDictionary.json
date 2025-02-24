@@ -1,0 +1,356 @@
+[
+  {
+    "name": "Chicken Breast",
+    "unit": "grams",
+    "calories": 165,
+    "alternatives": {
+      "Turkey Breast": 1.0,
+      "Tofu": 1.2,
+      "Lentils": 1.5,
+      "koko": 1.7,
+      "kokssss": 2
+    }
+  },
+  {
+    "name": "Salmon",
+    "unit": "grams",
+    "calories": 206,
+    "alternatives": {
+      "Tuna": 1.0,
+      "Trout": 1.0,
+      "Mackerel": 1.1
+    }
+  },
+  {
+    "name": "Eggs",
+    "unit": "grams",
+    "calories": 155,
+    "alternatives": {
+      "Tofu": 1.1,
+      "Chickpeas": 1.3,
+      "Greek Yogurt": 0.8
+    }
+  },
+  {
+    "name": "Tofu",
+    "unit": "grams",
+    "calories": 76,
+    "alternatives": {
+      "Tempeh": 1.2,
+      "Seitan": 1.3,
+      "Chickpeas": 1.1
+    }
+  },
+  {
+    "name": "Lentils",
+    "unit": "grams",
+    "calories": 116,
+    "alternatives": {
+      "Chickpeas": 1.0,
+      "Black Beans": 1.0,
+      "Kidney Beans": 1.0
+    }
+  },
+  {
+    "name": "Greek Yogurt",
+    "unit": "grams",
+    "calories": 97,
+    "alternatives": {
+      "Cottage Cheese": 1.0,
+      "Regular Yogurt": 1.1,
+      "Skyr": 0.9
+    }
+  },
+  {
+    "name": "Almonds",
+    "unit": "grams",
+    "calories": 579,
+    "alternatives": {
+      "Walnuts": 1.0,
+      "Cashews": 1.1,
+      "Pistachios": 1.0
+    }
+  },
+  {
+    "name": "Black Beans",
+    "unit": "grams",
+    "calories": 132,
+    "alternatives": {
+      "Kidney Beans": 1.0,
+      "Pinto Beans": 1.0,
+      "Navy Beans": 1.0
+    }
+  },
+  {
+    "name": "Cottage Cheese",
+    "unit": "grams",
+    "calories": 98,
+    "alternatives": {
+      "Greek Yogurt": 1.0,
+      "Ricotta Cheese": 1.1,
+      "Skyr": 0.9
+    }
+  },
+  {
+    "name": "Quinoa",
+    "unit": "grams",
+    "calories": 120,
+    "alternatives": {
+      "Brown Rice": 1.1,
+      "Couscous": 1.0,
+      "Barley": 1.0
+    }
+  },
+
+  {
+    "name": "Brown Rice",
+    "unit": "grams",
+    "calories": 123,
+    "alternatives": {
+      "White Rice": 1.0,
+      "Quinoa": 0.9,
+      "Barley": 1.0
+    }
+  },
+  {
+    "name": "Oats",
+    "unit": "grams",
+    "calories": 389,
+    "alternatives": {
+      "Quinoa": 0.8,
+      "Barley": 1.0,
+      "Buckwheat": 1.0
+    }
+  },
+  {
+    "name": "Whole Wheat Bread",
+    "unit": "grams",
+    "calories": 247,
+    "alternatives": {
+      "Rye Bread": 1.0,
+      "Multigrain Bread": 1.0,
+      "Sourdough Bread": 1.1
+    }
+  },
+  {
+    "name": "Pasta",
+    "unit": "grams",
+    "calories": 131,
+    "alternatives": {
+      "Spaghetti": 1.0,
+      "Fettuccine": 1.0,
+      "Macaroni": 1.0
+    }
+  },
+  {
+    "name": "Sweet Potatoes",
+    "unit": "grams",
+    "calories": 86,
+    "alternatives": {
+      "Yams": 1.0,
+      "Butternut Squash": 1.1,
+      "Pumpkin": 1.2
+    }
+  },
+  {
+    "name": "Bananas",
+    "unit": "grams",
+    "calories": 89,
+    "alternatives": {
+      "Apples": 1.0,
+      "Pears": 1.0,
+      "Mangoes": 1.1
+    }
+  },
+  {
+    "name": "Chickpeas",
+    "unit": "grams",
+    "calories": 164,
+    "alternatives": {
+      "Lentils": 1.0,
+      "Black Beans": 1.0,
+      "Kidney Beans": 1.0
+    }
+  },
+  {
+    "name": "Potatoes",
+    "unit": "grams",
+    "calories": 77,
+    "alternatives": {
+      "Sweet Potatoes": 1.1,
+      "Yams": 1.1,
+      "Turnips": 1.2
+    }
+  },
+  {
+    "name": "Apples",
+    "unit": "grams",
+    "calories": 52,
+    "alternatives": {
+      "Pears": 1.0,
+      "Bananas": 1.0,
+      "Oranges": 1.0
+    }
+  },
+  {
+    "name": "Lentils",
+    "unit": "grams",
+    "calories": 116,
+    "alternatives": {
+      "Chickpeas": 1.0,
+      "Black Beans": 1.0,
+      "Kidney Beans": 1.0
+    }
+  },
+  {
+    "name": "Spinach",
+    "unit": "grams",
+    "calories": 23,
+    "alternatives": {
+      "Kale": 1.0,
+      "Lettuce": 1.1,
+      "Swiss Chard": 1.0
+    }
+  },
+  {
+    "name": "Carrots",
+    "unit": "grams",
+    "calories": 41,
+    "alternatives": {
+      "Sweet Potatoes": 1.0,
+      "Pumpkin": 1.0,
+      "Beets": 1.1
+    }
+  },
+  {
+    "name": "Broccoli",
+    "unit": "grams",
+    "calories": 55,
+    "alternatives": {
+      "Cauliflower": 1.0,
+      "Brussels Sprouts": 1.0,
+      "Cabbage": 1.0
+    }
+  },
+  {
+    "name": "Tomatoes",
+    "unit": "grams",
+    "calories": 18,
+    "alternatives": {
+      "Bell Peppers": 1.0,
+      "Cucumbers": 1.1,
+      "Zucchini": 1.1
+    }
+  },
+  {
+    "name": "Oranges",
+    "unit": "grams",
+    "calories": 47,
+    "alternatives": {
+      "Tangerines": 1.0,
+      "Grapefruit": 1.0,
+      "Lemons": 1.1
+    }
+  },
+  {
+    "name": "Berries",
+    "unit": "grams",
+    "calories": 57,
+    "alternatives": {
+      "Cherries": 1.0,
+      "Grapes": 1.0,
+      "Plums": 1.1
+    }
+  },
+  {
+    "name": "Mushrooms",
+    "unit": "grams",
+    "calories": 22,
+    "alternatives": {
+      "Eggplant": 1.1,
+      "Zucchini": 1.0,
+      "Cauliflower": 1.0
+    }
+  },
+  {
+    "name": "Bell Peppers",
+    "unit": "grams",
+    "calories": 31,
+    "alternatives": {
+      "Tomatoes": 1.0,
+      "Cucumbers": 1.0,
+      "Carrots": 1.1
+    }
+  },
+  {
+    "name": "Grapes",
+    "unit": "grams",
+    "calories": 69,
+    "alternatives": {
+      "Cherries": 1.0,
+      "Plums": 1.1,
+      "Berries": 1.0
+    }
+  },
+  {
+    "name": "Pineapple",
+    "unit": "grams",
+    "calories": 50,
+    "alternatives": {
+      "Mangoes": 1.0,
+      "Papaya": 1.1,
+      "Oranges": 1.0
+    }
+  },
+  {
+    "name": "Olive Oil",
+    "unit": "grams",
+    "calories": 884,
+    "alternatives": {
+      "Canola Oil": 1.0,
+      "Sunflower Oil": 1.0,
+      "Avocado Oil": 1.0,
+      "Coconut Oil": 1.0
+    }
+  },
+  {
+    "name": "Butter",
+    "unit": "grams",
+    "calories": 717,
+    "alternatives": {
+      "Margarine": 1.0,
+      "Ghee": 1.1,
+      "Lard": 1.0
+    }
+  },
+  {
+    "name": "Coconut Oil",
+    "unit": "grams",
+    "calories": 862,
+    "alternatives": {
+      "Olive Oil": 1.0,
+      "Avocado Oil": 1.0,
+      "Sunflower Oil": 1.0
+    }
+  },
+  {
+    "name": "Avocados",
+    "unit": "grams",
+    "calories": 160,
+    "alternatives": {
+      "Olives": 1.1,
+      "Almonds": 1.2,
+      "Walnuts": 1.2
+    }
+  },
+  {
+    "name": "Walnuts",
+    "unit": "grams",
+    "calories": 654,
+    "alternatives": {
+      "Almonds": 1.0,
+      "Cashews": 1.1,
+      "Pistachios": 1.1
+    }
+  }
+]

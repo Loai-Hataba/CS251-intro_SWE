@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Compiling Files..."
+
+# Compile all Java files, specifying the correct classpath
+"/c/Program Files/Eclipse Adoptium/jdk-17.0.14.7-hotspot/bin/javac.exe" -cp "libs/gson-2.10.1.jar;." -d bin tool/*.java food/*.java
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    echo "Running Program..."
+    echo ""
+
+    # Run the Java program with the correct classpath
+    "/c/Program Files/Eclipse Adoptium/jdk-17.0.14.7-hotspot/bin/java.exe" -cp "libs/gson-2.10.1.jar;bin" food.FoodApp
+else
+    echo "Compilation failed."
+fi

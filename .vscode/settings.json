@@ -1,0 +1,7 @@
+{
+  "java.format.settings.url": "eclipse-formatter.xml",
+  "java.project.sourcePaths": ["FoodAlternativeApp"],
+  "java.project.referencedLibraries": [
+    "e:\\Loai\\School\\Programming\\Java\\CS251\\FoodAlternativeApp\\libs\\gson-2.10.1.jar"
+  ]
+}
