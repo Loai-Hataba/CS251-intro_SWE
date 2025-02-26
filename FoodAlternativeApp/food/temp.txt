@@ -360,22 +360,5 @@
       "koki": 1.6,
       "cake": 1.5
     }
-  },
-  {
-    "name": "Tuna",
-    "unit": "grams",
-    "calories": 150,
-    "alternatives": {
-      "salmon": 1.1
-    }
-  },
-  {
-    "name": "ma7shy wara2 3enab",
-    "unit": "grams",
-    "calories": 351,
-    "alternatives": {
-      "ma7shy kosa": 1.2,
-      "ma7shy kromb": 1.0
-    }
   }
 ]

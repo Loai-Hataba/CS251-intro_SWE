@@ -10,11 +10,12 @@ public class FoodItem {
 
     public FoodItem(){}
 
-    public FoodItem(String name, String unit, int calories)
+    public FoodItem(String name, String unit, int calories, HashMap<String, Double> alternatives)
     {
         this.name = name;
         this.unit = unit;
         this.calories = calories;
+        this.alternatives = alternatives;
     }
 
     public String getName(){ return name;}
