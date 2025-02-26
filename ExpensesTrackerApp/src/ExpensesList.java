@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 //! This class represents the list of expenses that we will use 
@@ -6,8 +7,10 @@ import java.util.*;
 public class ExpensesList {
 
     //Attributes:
-    private final Scanner input = new Scanner(System.in);
     private final ArrayList<Expense> expenses = new ArrayList<>();
+    // valid input class is static because it is a utility function and not storing any states
+    private final static ValidInput validInput = new ValidInput();
+    private final ExportExpenses exportExpenses = new ExportExpenses();
 
     //!Methods :
     //Method for displaying the list of expenses : 
@@ -33,67 +36,6 @@ public class ExpensesList {
         }
     }
 
-    //Method for getting a valid int input 
-    private int getValidInt(final String msg, final String errorMsg) {
-        int valid = 0;
-        while (true) {
-            try {
-                System.out.println(msg);
-                valid = input.nextInt();
-                if (valid >= 0) {
-                    break;
-                } else {
-                    System.out.println(errorMsg);
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error : Invalid Integer input please enter a valid one \n");
-                input.next();
-            }
-        }
-        return valid;
-    }
-
-    //Method for getting a valid int input 
-    private int getValidInt(final String msg, final String errorMsg, final int start, final int end) {
-        int valid = 0;
-        while (true) {
-            try {
-                System.out.println(msg);
-                valid = input.nextInt();
-                if (valid >= start && valid <= end) {
-                    break;
-                } else {
-                    System.out.println(errorMsg);
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error : Invalid Integer input please enter a valid one \n");
-                input.next();
-            }
-        }
-        return valid;
-    }
-
-    //! Method overLoading for getting a valid double input 
-    private double getValidDouble(final String inputMsg, final String errorMsg) {
-        double valid = 0;
-        while (true) {
-            try {
-                System.out.println(inputMsg);
-                valid = input.nextDouble();
-                if (valid >= 0) {
-                    break;
-                } else {
-                    System.out.println(errorMsg);
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Error : Invalid Double input please enter a valid one \n");
-                input.next();
-            }
-        }
-        return valid;
-
-    }
-
     // Method for reading the category from user : 
     private Categories readCategories() {
         // var to store the category 
@@ -107,7 +49,7 @@ public class ExpensesList {
         // Read the user input
         int index = 0;
         while (true) {
-            index = getValidInt("Choose a category ( Write the index ) :", "Error : Invalid Index ! \n");
+            index = validInput.getValidInt("Choose a category ( Write the index ) :", "Error : Invalid Index ! \n");
             if (index >= 1 && index <= Categories.values().length) {
                 break;
             }
@@ -125,17 +67,17 @@ public class ExpensesList {
         while (true) {
             // make the user choose between the current date and a specific date 
             System.out.println("Do you want to add a specific date or use the current date  ?  ");
-            int choice = getValidInt("1 - current date \n2 - specific date ", "Error : Invalid choice ! \n", 1, 2);
+            int choice = validInput.getValidInt("1 - current date \n2 - specific date ", "Error : Invalid choice ! \n", 1, 2);
             if (choice == 2) {
                 // read the year : 
-                int year = getValidInt("Enter the year : ", "Error : It is a Year that have not came yet ! \n", 1970, date.getYear());
+                int year = validInput.getValidInt("Enter the year : ", "Error : It is a Year that have not came yet ! \n", 1970, date.getYear());
                 // read the month : 
-                int month = getValidInt("Enter the month ( 1 -> 12 ): ", "Error : Invalid month ( 1 -> 12 ) ! \n", 1, 12);
+                int month = validInput.getValidInt("Enter the month ( 1 -> 12 ): ", "Error : Invalid month ( 1 -> 12 ) ! \n", 1, 12);
                 // read the day                 
                 LocalDate tmp = LocalDate.of(year, month, 1);
                 // get the max days of the month for verification
                 final int maxMonthDays = tmp.lengthOfMonth();
-                int day = getValidInt("Enter the day ( 1 -> " + maxMonthDays + " ) ", "Error : Invalid day ( 1 - 31 ) ! \n", 1, maxMonthDays);
+                int day = validInput.getValidInt("Enter the day ( 1 -> " + maxMonthDays + " ) ", "Error : Invalid day ( 1 - 31 ) ! \n", 1, maxMonthDays);
                 date = LocalDate.of(year, month, day);
                 // Validate the date : 
                 if (date.isAfter(LocalDate.now())) {
@@ -156,11 +98,9 @@ public class ExpensesList {
         // Todo : add option to add  from file 
         //creating a Scanner object to read the user input
         System.out.println("            ( Adding a new expense )   ");
-        System.out.println("\nEnter the title of the expense: ");
-        input.nextLine();  // Clear the buffer
-        final String currTitle = input.nextLine();
+        final String currTitle = validInput.getValidString("\nEnter the title of the expense: ");
         //read the amount :
-        final double currAmount = getValidDouble("Enter the amount of the expense : ", "Error : The amount should be positive ! \n");
+        final double currAmount = validInput.getValidDouble("Enter the amount of the expense : ", "Error : The amount should be positive ! \n");
 
         final Categories currCategory = readCategories();
 
@@ -187,7 +127,7 @@ public class ExpensesList {
         // Ask the user to choose an expense to remove
         int index = 0;
         while (true) {
-            index = getValidInt("Choose an expense to remove ( Write the index ) : ", "Error : Invalid Index ! \n");
+            index = validInput.getValidInt("Choose an expense to remove ( Write the index ) : ", "Error : Invalid Index ! \n");
             if (index >= 1 && index <= expenses.size()) {
                 break;
             }
@@ -205,18 +145,22 @@ public class ExpensesList {
             System.out.println("\n\n          The list of expenses is empty ! \n\n");
             return;
         }
+        // if the list has only one element
+        if (expenses.size() == 1) {
+            System.out.println("\n\n          The List is already sorted ! \n\n");
+            return;
+        }
         // Sorting the list of expenses : 
         System.out.println("Do you want to sort the list by : ");
         System.out.println("1- Amount ");
         System.out.println("2- Date ");
-        System.out.println("3- Category ");
         //read the user choice  :
-        int choice = getValidInt("Your Choice ( 1 -> 3 )", "Error : choice must be between ( 1 / 3 ) as Integer", 1, 3);
+        int choice = validInput.getValidInt("Your Choice ( 1 -> 2 )", "Error : choice must be between ( 1 / 2 ) as Integer", 1, 2);
         //make the user choose between ascending and descending order
         System.out.println("Do you want to sort in : ");
         System.out.println("1- Ascending order ");
         System.out.println("2- Descending order ");
-        int option = getValidInt("Your choice (1 -> 2 )", "Error : choice must be between ( 1 / 2 ) as Integer", 1, 2);
+        int option = validInput.getValidInt("Your choice (1 -> 2 )", "Error : choice must be between ( 1 / 2 ) as Integer", 1, 2);
         switch (choice) {
             case 1 -> {
                 // sort by amount
@@ -263,8 +207,8 @@ public class ExpensesList {
             }
         }
         if (ascending) {
-            System.out.println("The list has been sorted in ascending order by amount ! "); 
-        }else {
+            System.out.println("The list has been sorted in ascending order by amount ! ");
+        } else {
             System.out.println("The list has been sorted in descending order by amount ! ");
         }
     }
@@ -296,5 +240,21 @@ public class ExpensesList {
             System.out.println("The list has been sorted in descending order by date ! ");
         }
 
+    }
+
+    // Method for exporting data to a file :
+    public void exportExpenses() throws IOException {
+        int index = 0;
+        // Adding the content 
+        for (final Expense e : expenses) {
+            exportExpenses.addContent(" --------------------------------------------------------------------------\n");
+            exportExpenses.addContent(String.format("| %-20s: %-50s |", "Expense number", ++index) + "\n");
+            exportExpenses.addContent(String.format("| %-20s: %-50s |", "Title", e.getTitle()) + "\n");
+            exportExpenses.addContent(String.format("| %-20s: %-50s |", "Category", e.getCategoryAsString()) + "\n");
+            exportExpenses.addContent(String.format("| %-20s: %-50.2f |", "Amount", e.getAmount()) + "\n");
+            exportExpenses.addContent(String.format("| %-20s: %-50s |", "Date", e.getDateAsString()) + "\n");
+            exportExpenses.addContent(" \n--------------------------------------------------------------------------");
+        }
+        exportExpenses.export();
     }
 }
