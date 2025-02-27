@@ -8,7 +8,8 @@ public class Main {
         parkingLot.displayGrid();
 
         while (true) {
-            System.out.println("\n1. Park Vehicle\n2. Remove Vehicle\n3. Show Parking Status\n4. Reserve Slot\n5. View Parking History\n6. Admin Mode\n7. Exit");
+            // Main menu options
+            System.out.println("\n1. Park Vehicle\n2. Remove Vehicle\n3. Show Parking Status\n4. Reserve Slot\n5. View Parking History\n6. Admin Mode\n7. Search Vehicle\n8. Change Parking Rates\n9. Extend Parking\n10. Find Empty Slot\n11. View Statistics\n12. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -18,7 +19,9 @@ public class Main {
                     String plate = scanner.nextLine();
                     System.out.print("VIP Slot? (yes/no): ");
                     boolean isVIP = scanner.nextLine().equalsIgnoreCase("yes");
-                    parkingLot.parkVehicle(plate, isVIP);
+                    System.out.print("Vehicle type (car/motorcycle/truck): ");
+                    String vehicleType = scanner.nextLine().toLowerCase();
+                    parkingLot.parkVehicle(plate, isVIP, vehicleType);
                     parkingLot.displayGrid();
                     break;
                 case 2:
@@ -33,15 +36,61 @@ public class Main {
                 case 4:
                     System.out.print("Enter slot number to reserve: ");
                     int slotNum = scanner.nextInt();
-                    parkingLot.reserveSlot(slotNum);
+                    scanner.nextLine();
+                    System.out.print("Enter reservation duration (hours): ");
+                    int hours = scanner.nextInt();
+                    scanner.nextLine();
+                    parkingLot.reserveSlot(slotNum, hours);
                     break;
                 case 5:
                     parkingLot.displayParkingHistory();
                     break;
                 case 6:
-                    parkingLot.adminMode();
+                    // Simple password protection for admin mode
+                    System.out.print("Enter admin password: ");
+                    String password = scanner.nextLine();
+                    if (password.equals("admin123")) {
+                        parkingLot.adminMode();
+                    } else {
+                        System.out.println("Incorrect password!");
+                    }
                     break;
                 case 7:
+                    System.out.print("Enter license plate to search: ");
+                    plate = scanner.nextLine();
+                    parkingLot.searchVehicle(plate);
+                    break;
+                case 8:
+                    // Password protection for changing rates
+                    System.out.print("Enter admin password: ");
+                    password = scanner.nextLine();
+                    if (password.equals("admin123")) {
+                        System.out.print("Enter new regular rate: ");
+                        double regularRate = scanner.nextDouble();
+                        System.out.print("Enter new VIP rate: ");
+                        double vipRate = scanner.nextDouble();
+                        scanner.nextLine();
+                        ParkingFeeCalc.updateRates(regularRate, vipRate);
+                        System.out.println("Rates updated successfully!");
+                    } else {
+                        System.out.println("Incorrect password!");
+                    }
+                    break;
+                case 9:
+                    System.out.print("Enter license plate: ");
+                    plate = scanner.nextLine();
+                    System.out.print("Enter additional hours: ");
+                    hours = scanner.nextInt();
+                    scanner.nextLine();
+                    parkingLot.extendParking(plate, hours);
+                    break;
+                case 10:
+                    parkingLot.findEmptySlot();
+                    break;
+                case 11:
+                    parkingLot.displayStatistics();
+                    break;
+                case 12:
                     System.out.println("Exiting...");
                     return;
                 default:
