@@ -10,10 +10,6 @@ class ParkingLot {
     private int totalVehiclesParked;                // Total vehicles that have parked
     private double totalRevenue;                    // Total revenue collected
 
-    /**
-     * Creates a new parking lot with the specified capacity
-     * @param capacity Number of parking slots
-     */
     public ParkingLot(int capacity) {
         slots = new ArrayList<>();
         parkingHistory = new ArrayList<>();
@@ -30,13 +26,7 @@ class ParkingLot {
         }
     }
 
-    /**
-     * Parks a vehicle in an available slot
-     * @param licensePlate Vehicle license plate
-     * @param isVIP Whether to use a VIP slot
-     * @param vehicleType Type of vehicle (car, motorcycle, truck)
-     * @return true if parking successful, false otherwise
-     */
+    //Parks a vehicle in an available slot
     public boolean parkVehicle(String licensePlate, boolean isVIP, String vehicleType) {
         // Validate vehicle type
         if (!vehicleType.equals("car") && !vehicleType.equals("motorcycle") && !vehicleType.equals("truck")) {
@@ -64,7 +54,7 @@ class ParkingLot {
             availableSlot.get().parkVehicle(new Vehicle(licensePlate, isVIP, vehicleType));
             System.out.println("Vehicle parked in slot " + availableSlot.get().getSlotNumber());
 
-            // Update statistics
+            //Update statistics
             totalVehiclesParked++;
             vehicleTypeCount.put(vehicleType, vehicleTypeCount.get(vehicleType) + 1);
 
@@ -95,11 +85,7 @@ class ParkingLot {
         }
     }
 
-    /**
-     * Removes a vehicle from the parking lot
-     * @param licensePlate License plate of the vehicle to remove
-     * @return true if removal successful, false if vehicle not found
-     */
+    //tRemoves a vehicle from the parking lot
     public boolean removeVehicle(String licensePlate) {
         // Find the slot containing the vehicle with the given license plate
         Optional<ParkingSlot> occupiedSlot = slots.stream()
@@ -114,13 +100,13 @@ class ParkingLot {
             long secsParked = Duration.between(vehicle.getEntryTime(), LocalDateTime.now()).toSeconds();
             double fee = ParkingFeeCalc.calculateFee(vehicle.getEntryTime(), vehicle.isVIP(), vehicle.getType());
 
-            // Update total revenue
+            //Update total revenue
             totalRevenue += fee;
 
             // Remove vehicle from slot
             slot.removeVehicle();
 
-            // Create and store record in parking history
+            //Create and store record in parking history
             String record = "Vehicle " + licensePlate + " (" + vehicle.getType() + ") removed. " +
                     "Parked for: " + formatDuration(secsParked) + ". Fee: $" + String.format("%.2f", fee);
 
@@ -133,10 +119,7 @@ class ParkingLot {
             return false;
         }
     }
-
-    /**
-     * Displays a visual representation of the parking lot
-     */
+    // Visual representation of the lot
     public void displayGrid() {
         // Count available slots of each type
         long availableSlots = slots.stream().filter(slot -> !slot.isOccupied() && !slot.isReserved()).count();
@@ -153,22 +136,25 @@ class ParkingLot {
                 Vehicle v = slot.getVehicle();
                 if (v.getType().equals("car")) {
                     System.out.print("C");
-                } else if (v.getType().equals("motorcycle")) {
+                }
+                else if (v.getType().equals("motorcycle")) {
                     System.out.print("M");
-                } else if (v.getType().equals("truck")) {
+                }
+                else if (v.getType().equals("truck")) {
                     System.out.print("T");
                 }
-            } else if (slot.isVIP()) {
-                System.out.print("V");
             } else if (slot.isReserved()) {
                 System.out.print("R");
-            } else {
+            }
+            else if (slot.isVIP()) {
+                System.out.print("V");
+            }
+            else {
                 System.out.print(" ");
             }
 
             System.out.print("] ");
 
-            // Create new line after every 5 slots
             if ((i + 1) % 5 == 0) {
                 System.out.println();
             }
@@ -180,11 +166,7 @@ class ParkingLot {
         System.out.println("Legend: [C]=Car [M]=Motorcycle [T]=Truck [V]=VIP Available [R]=Reserved [ ]=Regular Available");
     }
 
-    /**
-     * Reserves a parking slot for a specific duration
-     * @param slotNumber The slot number to reserve
-     * @param hours Duration of reservation in hours
-     */
+    //Reserves a parking slot for a specific duration
     public void reserveSlot(int slotNumber, int hours) {
         if (slotNumber > 0 && slotNumber <= slots.size()) {
             ParkingSlot slot = slots.get(slotNumber - 1);
@@ -203,9 +185,7 @@ class ParkingLot {
         }
     }
 
-    /**
-     * Displays the history of all parking transactions
-     */
+     //Displays the history of all parking transactions
     public void displayParkingHistory() {
         if (parkingHistory.isEmpty()) {
             System.out.println("\nNo parking history available.");
@@ -218,9 +198,7 @@ class ParkingLot {
         }
     }
 
-    /**
-     * Admin mode showing detailed information about all slots
-     */
+    //Admin mode showing detailed info about all slots
     public void adminMode() {
         System.out.println("\nAdmin mode activated: Displaying all slots");
         for (ParkingSlot slot : slots) {
@@ -250,10 +228,7 @@ class ParkingLot {
         System.out.println("NOTE: For testing purposes, 1 hour = 10 seconds.");
     }
 
-    /**
-     * Searches for a vehicle by license plate and displays information
-     * @param licensePlate License plate to search for
-     */
+     // Searches for a vehicle by license plate and displays info
     public void searchVehicle(String licensePlate) {
         // Find the slot containing the vehicle with the given license plate
         Optional<ParkingSlot> occupiedSlot = slots.stream()
@@ -268,7 +243,7 @@ class ParkingLot {
             long secsParked = Duration.between(vehicle.getEntryTime(), LocalDateTime.now()).toSeconds();
             double currentFee = ParkingFeeCalc.calculateFee(vehicle.getEntryTime(), vehicle.isVIP(), vehicle.getType());
 
-            // Display vehicle information
+            //Display vehicle information
             System.out.println("\nVehicle found:");
             System.out.println("License plate: " + vehicle.getLicensePlate());
             System.out.println("Vehicle type: " + vehicle.getType());
@@ -281,9 +256,9 @@ class ParkingLot {
         }
     }
 
-    /**
-     * Displays statistics about the parking lot
-     */
+
+     //Displays statistics about the parking lot
+
     public void displayStatistics() {
         System.out.println("\nParking Lot Statistics:");
         System.out.println("Total vehicles parked: " + totalVehiclesParked);
@@ -306,12 +281,8 @@ class ParkingLot {
         System.out.println("Available slots: " + (slots.size() - occupiedCount - reservedCount));
     }
 
-    /**
-     * Helper method to format seconds into HH:MM:SS format
-     * For testing mode, we show the actual seconds
-     * @param seconds Duration in seconds
-     * @return Formatted string in HH:MM:SS format with note about accelerated time
-     */
+
+     //Helper method to format seconds into HH:MM:SS format
     private String formatDuration(long seconds) {
         // Show both the accelerated time and the actual seconds
         long normalHours = seconds / 3600;
@@ -325,9 +296,7 @@ class ParkingLot {
                 normalHours, normalMinutes, normalSecs, acceleratedHours);
     }
 
-    /**
-     * Checks and updates expired reservations
-     */
+    //Expired Reservations
     public void checkReservations() {
         LocalDateTime now = LocalDateTime.now();
         for (ParkingSlot slot : slots) {

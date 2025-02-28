@@ -34,11 +34,7 @@ class ParkingFeeCalc {
         return (secs / 10.0) * baseRate;
     }
 
-    /**
-     * Updates the parking rates
-     * @param regularRate New rate for regular parking
-     * @param vipRate New rate for VIP parking
-     */
+     //Updates the parking rates
     public static void updateRates(double regularRate, double vipRate) {
         REGULAR_RATE = regularRate;
         VIP_RATE = vipRate;

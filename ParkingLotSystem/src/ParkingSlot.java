@@ -8,11 +8,6 @@ class ParkingSlot {
     private Vehicle vehicle;
     private LocalDateTime reservationExpiry;  // When the reservation expires
 
-    /**
-     * Creates a new parking slot
-     * @param slotNumber The slot number
-     * @param isVIP Whether this is a VIP slot
-     */
     public ParkingSlot(int slotNumber, boolean isVIP) {
         this.slotNumber = slotNumber;
         this.isVIP = isVIP;
@@ -25,37 +20,23 @@ class ParkingSlot {
     public boolean isVIP() { return isVIP; }
     public boolean isReserved() { return reserved; }
 
-    /**
-     * Parks a vehicle in this slot
-     * @param vehicle The vehicle to park
-     */
     public void parkVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
         this.occupied = true;
-        this.reserved = false;  // Clear any reservation when a vehicle parks
+        this.reserved = false;  //Clear any reservation when a vehicle parks
     }
 
-    /**
-     * Removes a vehicle from this slot
-     */
+    //Removes a vehicle form this slot
     public void removeVehicle() {
         this.vehicle = null;
         this.occupied = false;
     }
-
-    /**
-     * Reserves this slot for a specified duration
-     * @param hours Duration of reservation in hours
-     */
+    //Reserves a slot for a specified duration
     public void reserveSlot(int hours) {
         this.reserved = true;
-        // Modified: 1 hour = 10 seconds (use seconds instead of hours)
+        //1 hour = 10 seconds
         this.reservationExpiry = LocalDateTime.now().plusSeconds(hours * 10);
-    }  // Fixed: Added missing closing brace here
-
-    /**
-     * Clears the reservation on this slot
-     */
+    }
     public void clearReservation() {
         this.reserved = false;
         this.reservationExpiry = null;

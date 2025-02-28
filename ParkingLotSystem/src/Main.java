@@ -56,10 +56,9 @@ public class Main {
                     parkingLot.displayParkingHistory();
                     break;
                 case 6:
-                    // Simple password protection for admin mode
                     System.out.print("Enter admin password: ");
                     String password = scanner.nextLine();
-                    if (password.equals("admin123")) {
+                    if (password.equals("hoss123")) {
                         parkingLot.adminMode();
                     } else {
                         System.out.println("Incorrect password!");
@@ -71,10 +70,9 @@ public class Main {
                     parkingLot.searchVehicle(plate);
                     break;
                 case 8:
-                    // Password protection for changing rates
                     System.out.print("Enter admin password: ");
                     password = scanner.nextLine();
-                    if (password.equals("admin123")) {
+                    if (password.equals("hoss123")) {
                         System.out.print("Enter new regular rate: ");
                         double regularRate = scanner.nextDouble();
                         System.out.print("Enter new VIP rate: ");
