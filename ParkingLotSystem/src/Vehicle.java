@@ -6,7 +6,6 @@ class Vehicle {
     private LocalDateTime entryTime;
     private boolean isVIP;
     private String type;             // car, motorcycle, or truck
-    private int extendedHours;       // Additional hours purchased
 
     /**
      * Creates a new vehicle
@@ -19,7 +18,6 @@ class Vehicle {
         this.entryTime = LocalDateTime.now();
         this.isVIP = isVIP;
         this.type = type;
-        this.extendedHours = 0;
     }
 
     // Getter methods
@@ -27,21 +25,4 @@ class Vehicle {
     public LocalDateTime getEntryTime() { return entryTime; }
     public boolean isVIP() { return isVIP; }
     public String getType() { return type; }
-
-    /**
-     * Extends the parking time for this vehicle
-     * @param hours Additional hours to extend
-     */
-    public void extendParking(int hours) {
-        this.extendedHours += hours;
-    }
-
-    /**
-     * Calculates the estimated exit time based on extended hours
-     * @return Estimated exit time
-     */
-    public LocalDateTime getEstimatedExitTime() {
-        // Modified: 1 hour = 10 seconds
-        return entryTime.plusSeconds(extendedHours * 10);
-    }
 }

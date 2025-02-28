@@ -35,27 +35,6 @@ class ParkingFeeCalc {
     }
 
     /**
-     * Calculates fee for extending parking time
-     * @param hours Number of hours to extend
-     * @param isVIP Whether the vehicle is in a VIP slot
-     * @param vehicleType Type of vehicle (car, motorcycle, truck)
-     * @return Calculated fee for the extension
-     */
-    public static double calculateExtendedFee(int hours, boolean isVIP, String vehicleType) {
-        double baseRate = isVIP ? VIP_RATE : REGULAR_RATE;
-
-        // Apply vehicle type modifiers
-        if (vehicleType.equals("motorcycle")) {
-            baseRate *= MOTORCYCLE_DISCOUNT;
-        } else if (vehicleType.equals("truck")) {
-            baseRate *= TRUCK_SURCHARGE;
-        }
-
-        // Calculate fee for extended hours (1 hour = 10 seconds)
-        return hours * baseRate;
-    }
-
-    /**
      * Updates the parking rates
      * @param regularRate New rate for regular parking
      * @param vipRate New rate for VIP parking

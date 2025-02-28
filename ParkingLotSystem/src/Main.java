@@ -9,7 +9,17 @@ public class Main {
 
         while (true) {
             // Main menu options
-            System.out.println("\n1. Park Vehicle\n2. Remove Vehicle\n3. Show Parking Status\n4. Reserve Slot\n5. View Parking History\n6. Admin Mode\n7. Search Vehicle\n8. Change Parking Rates\n9. Extend Parking\n10. Find Empty Slot\n11. View Statistics\n12. Exit");
+            System.out.println("" +
+                    "\n1. Park Vehicle" +
+                    "\n2. Remove Vehicle" +
+                    "\n3. Show Parking Status" +
+                    "\n4. Reserve Slot" +
+                    "\n5. View Parking History" +
+                    "\n6. Admin Mode" +
+                    "\n7. Search Vehicle" +
+                    "\n8. Change Parking Rates" +
+                    "\n9. View Statistics" +
+                    "\n10. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -77,20 +87,9 @@ public class Main {
                     }
                     break;
                 case 9:
-                    System.out.print("Enter license plate: ");
-                    plate = scanner.nextLine();
-                    System.out.print("Enter additional hours: ");
-                    hours = scanner.nextInt();
-                    scanner.nextLine();
-                    parkingLot.extendParking(plate, hours);
-                    break;
-                case 10:
-                    parkingLot.findEmptySlot();
-                    break;
-                case 11:
                     parkingLot.displayStatistics();
                     break;
-                case 12:
+                case 10:
                     System.out.println("Exiting...");
                     return;
                 default:
