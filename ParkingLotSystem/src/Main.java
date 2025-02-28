@@ -7,7 +7,17 @@ public class Main {
 
         parkingLot.displayGrid();
 
+        // Track the last time we checked for expired reservations
+        long lastReservationCheck = System.currentTimeMillis();
+
         while (true) {
+            // Check for expired reservations every 5 seconds
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastReservationCheck > 5000) { // 5 seconds
+                parkingLot.checkReservations();
+                lastReservationCheck = currentTime;
+            }
+
             // Main menu options
             System.out.println("" +
                     "\n1. Park Vehicle" +
@@ -22,6 +32,9 @@ public class Main {
                     "\n10. Exit");
             int choice = scanner.nextInt();
             scanner.nextLine();
+
+            // Check for expired reservations after any user action
+            parkingLot.checkReservations();
 
             switch (choice) {
                 case 1:
@@ -56,6 +69,7 @@ public class Main {
                     parkingLot.displayParkingHistory();
                     break;
                 case 6:
+                    // Simple password protection for admin mode
                     System.out.print("Enter admin password: ");
                     String password = scanner.nextLine();
                     if (password.equals("hoss123")) {
@@ -70,6 +84,7 @@ public class Main {
                     parkingLot.searchVehicle(plate);
                     break;
                 case 8:
+                    // Password protection for changing rates
                     System.out.print("Enter admin password: ");
                     password = scanner.nextLine();
                     if (password.equals("hoss123")) {

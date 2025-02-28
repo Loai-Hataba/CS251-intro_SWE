@@ -85,7 +85,7 @@ class ParkingLot {
         }
     }
 
-    //tRemoves a vehicle from the parking lot
+    //Removes a vehicle from the parking lot
     public boolean removeVehicle(String licensePlate) {
         // Find the slot containing the vehicle with the given license plate
         Optional<ParkingSlot> occupiedSlot = slots.stream()
@@ -112,7 +112,6 @@ class ParkingLot {
 
             parkingHistory.add(record);
             System.out.println(record);
-            displayGrid();
             return true;
         } else {
             System.out.println("Vehicle not found!");
@@ -178,7 +177,7 @@ class ParkingLot {
                 System.out.println("Slot " + slotNumber + " reserved for " + hours + " hours.");
                 System.out.println("Reservation will expire at: " +
                         slot.getReservationExpiry().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-                System.out.println("NOTE: For testing purposes, 1 hour = 10 seconds.");
+                System.out.println("NOTE: 1 hour = 10 seconds.");
             }
         } else {
             System.out.println("Invalid slot number!");
@@ -225,7 +224,7 @@ class ParkingLot {
         System.out.println("Regular rate: $" + ParkingFeeCalc.getRegularRate() + " per hour");
         System.out.println("VIP rate: $" + ParkingFeeCalc.getVIPRate() + " per hour");
         System.out.println("Vehicle modifiers: Motorcycle (-30%), Truck (+50%)");
-        System.out.println("NOTE: For testing purposes, 1 hour = 10 seconds.");
+        System.out.println("NOTE: 1 hour = 10 seconds.");
     }
 
      // Searches for a vehicle by license plate and displays info

@@ -10,13 +10,7 @@ class ParkingFeeCalc {
     private static final double MOTORCYCLE_DISCOUNT = 0.7;  // 30% discount for motorcycles
     private static final double TRUCK_SURCHARGE = 1.5;      // 50% surcharge for trucks
 
-    /**
-     * Calculates parking fee based on time parked and vehicle information
-     * @param entryTime When the vehicle entered the parking lot
-     * @param isVIP Whether the vehicle is in a VIP slot
-     * @param vehicleType Type of vehicle (car, motorcycle, truck)
-     * @return Calculated fee
-     */
+    //Calculates parking fee based on time parked and vehicle information
     public static double calculateFee(LocalDateTime entryTime, boolean isVIP, String vehicleType) {
         // Calculate duration in seconds
         long secs = Duration.between(entryTime, LocalDateTime.now()).toSeconds();
@@ -30,7 +24,6 @@ class ParkingFeeCalc {
         }
 
         // Calculate fee based on seconds (1 hour = 10 seconds)
-        // We charge per second instead of per 10-second interval for accurate testing
         return (secs / 10.0) * baseRate;
     }
 

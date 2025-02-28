@@ -5,7 +5,7 @@ class Vehicle {
     private String licensePlate;
     private LocalDateTime entryTime;
     private boolean isVIP;
-    private String type;             // car, motorcycle, or truck
+    private String type;             //could be a car motorcycle or truck
 
     public Vehicle(String licensePlate, boolean isVIP, String type) {
         this.licensePlate = licensePlate;
