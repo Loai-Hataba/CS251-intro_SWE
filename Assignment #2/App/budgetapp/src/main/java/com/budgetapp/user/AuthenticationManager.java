@@ -74,5 +74,15 @@ public class AuthenticationManager {
         System.out.println("User " + username + " has not been updated");
         return false ;
     }
+    public boolean sendOTP (String phoneNumber ){
+        if (phoneNumber.length()<11 || phoneNumber.length()>15) {
+            System.out.println("The phone number is not valid");
+            return false;
+        }
+        System.out.println("Simulating sending an OTP msg ");
+        String otp = "123456" ;
+        System.out.println("The OTP msg has been sent");
+        return true;
+    }
 
 }

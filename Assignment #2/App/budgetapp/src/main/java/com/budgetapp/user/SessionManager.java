@@ -98,7 +98,7 @@ public class SessionManager {
     }
 
     //!
-    public void endOutDatedSession() {
+    public void endOutDatedSessions() {
         for (Session session : sessions) {
             if (session.isActive()) {
                session.checkSessionIfExpired();
