@@ -3,25 +3,25 @@ package com.budgetapp.user;
 import java.util.Date;
 
 public class Session {
-    private int sessionId;
-    private int userId ;
+    private String sessionId;
+    private String userId ;
     private Date startTime ;
     private Date endTime ;
     private boolean isActive ;
 
     // The Constructor
-    public Session(int sessionId, int userId, Date startTime, Date endTime, boolean isActive) {
+    public Session(String sessionId, String userId, Date startTime, Date endTime ) {
         this.sessionId = sessionId;
         this.userId = userId;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isActive = isActive;
+        this.isActive = true ;
     }
     // The getter functions
-    public int getSessionId() {
+    public String getSessionId() {
         return sessionId;
     }
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
     public Date getStartTime() {
@@ -34,10 +34,10 @@ public class Session {
         return isActive;
     }
     // The setter functions :
-    public void setSessionId(int sessionId) {
+    public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
     public void setStartTime(Date startTime) {
@@ -46,19 +46,16 @@ public class Session {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
+    public void endSession() {
+        this.isActive = false ;
     }
-    public boolean checkSession() {
+    public void checkSessionIfExpired() {
         Date now = new Date(); // gets current time
         if (now.after(startTime) && now.before(endTime)) {
             isActive = false;
             // The session is invalid
-            return false;
         } else {
             isActive = true;
-            return true;
         }
     }
-
 }
