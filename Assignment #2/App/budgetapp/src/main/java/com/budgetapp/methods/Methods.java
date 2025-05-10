@@ -3,8 +3,8 @@ package com.budgetapp.methods;
 import java.util.Scanner;
 
 public class Methods {
+    private static final Scanner scanner = new Scanner(System.in);
     public static int numInput(char begin, char end){
-        Scanner scanner = new Scanner(System.in);
         char choice;
 
         while (true){
@@ -22,7 +22,6 @@ public class Methods {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
         }
-        scanner.close();
         return choice - '0';
     }
 
@@ -33,5 +32,14 @@ public class Methods {
         String pattern = "^(?=.*[A-Z])(?=.*\\d).{6,}$";
 
         return password.matches(pattern);
+    }
+
+    public static String stringInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
+    }
+
+    public static void closeScanner(){
+        scanner.close();
     }
 }
