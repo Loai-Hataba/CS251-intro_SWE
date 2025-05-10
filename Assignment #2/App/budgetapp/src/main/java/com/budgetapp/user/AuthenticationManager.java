@@ -1,5 +1,7 @@
 package com.budgetapp.user;
 
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
 import com.google.gson.Gson;
 
 import java.io.FileWriter;
@@ -22,14 +24,7 @@ public class AuthenticationManager {
         return instance;
     }
 
-    // private function to validate the entered password
-    private boolean isValidPassword(String password) {
-
-        // Regex to check for at least one digit, one uppercase letter, and a minimum length of 6 characters
-        String pattern = "^(?=.*[A-Z])(?=.*\\d).{6,}$";
-
-        return password.matches(pattern);
-    }
+   
 
 
 
@@ -47,7 +42,8 @@ public class AuthenticationManager {
         // creating the user object
         User user = new User (userId , username , password , email ,country , phone );
         //! insert using the user manager
-       boolean isDone =  UserManager.getInstance().insertUser(user);
+        Records rec = new Records(user);
+       boolean isDone =  UserManager.getInstance().insertRecord(rec);
        if (isDone) {
            System.out.println("User " + username + " has been registered and has a UUID: " + userId);
            return true;
@@ -57,21 +53,21 @@ public class AuthenticationManager {
     }
 
     //! I think it's need to be in the user manager
-    public boolean updateUserPassword(String  username, String newPassword) {
+    public boolean updateUserPassword(String  id, String newPassword) {
 
         // now validate the password
-        if(!isValidPassword(newPassword)) {
+        if(!Methods.isValidPassword(newPassword)) {
             System.out.println("The password is not valid");
             System.out.println("check if you have at least one character & one digit in the password");
             return false ;
         }
         // the password if valid then set it using the user.setPassword
-       boolean isDone =  UserManager.getInstance().updateUserPassword(username,newPassword);
+        boolean isDone =  UserManager.getInstance().updateRecordField(id, "password", newPassword);
         if (isDone) {
-            System.out.println("User " + username + " has been updated");
+            System.out.println("User " + id + " has been updated");
             return true;
         }
-        System.out.println("User " + username + " has not been updated");
+        System.out.println("User " + id + " has not been updated");
         return false ;
     }
     public boolean sendOTP (String phoneNumber ){

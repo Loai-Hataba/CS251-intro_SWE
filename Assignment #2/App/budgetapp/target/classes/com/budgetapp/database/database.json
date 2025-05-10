@@ -1,1 +1,18 @@
-[{"userId":"3f92af2e-811f-4767-8d79-8e51d30b075a","userName":"LoaiHataba","password":"123","country":"zimbabwe","email":"ramla@spacetoon.com","phoneNumber":"911","bankAccounts":[]}]
+[
+  {
+    "id": "7cff614c-e76c-4a1a-ad76-29c6ec82c99d",
+    "username": "Loai Hataba",
+    "password": "123",
+    "email": "lolooo@spacetoon.com",
+    "phoneNumber": "+01275397858",
+    "country": "koko"
+  },
+  {
+    "id": "913da831-3e02-4f28-af0d-2fcc5fa5954b",
+    "username": "Abdullah Mohammed",
+    "password": "112",
+    "email": "abdoooo@spacetoon.com",
+    "phoneNumber": "+56568",
+    "country": "zimbabwe"
+  }
+]

@@ -2,8 +2,9 @@ package com.budgetapp.database;
 
 import java.util.List;
 import java.util.Objects;
+import com.budgetapp.user.User;
 
-public class records {
+public class Records {
     public static class Income {
         public String source;
         public double amount;
@@ -12,17 +13,6 @@ public class records {
         public Income(String source, double amount) {
             this.source = source;
             this.amount = amount;
-        }
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Income income = (Income) o;
-            return Double.compare(income.amount, amount) == 0 && Objects.equals(source, income.source);
-        }
-        @Override
-        public int hashCode() {
-            return Objects.hash(source, amount);
         }
     }
 
@@ -34,17 +24,6 @@ public class records {
         public Budget(String category, double amount) {
             this.category = category;
             this.amount = amount;
-        }
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Budget budget = (Budget) o;
-            return Double.compare(budget.amount, amount) == 0 && Objects.equals(category, budget.category);
-        }
-        @Override
-        public int hashCode() {
-            return Objects.hash(category, amount);
         }
     }
 
@@ -59,17 +38,6 @@ public class records {
             this.date = date;
             this.time = time;
         }
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Reminder reminder = (Reminder) o;
-            return Objects.equals(reminderName, reminder.reminderName) && Objects.equals(date, reminder.date) && Objects.equals(time, reminder.time);
-        }
-        @Override
-        public int hashCode() {
-            return Objects.hash(reminderName, date, time);
-        }
     }
 
     public static class Expense {
@@ -82,17 +50,6 @@ public class records {
             this.category = category;
             this.amount = amount;
             this.date = date;
-        }
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Expense expense = (Expense) o;
-            return Double.compare(expense.amount, amount) == 0 && Objects.equals(category, expense.category) && Objects.equals(date, expense.date);
-        }
-        @Override
-        public int hashCode() {
-            return Objects.hash(category, amount, date);
         }
     }
 
@@ -107,17 +64,24 @@ public class records {
     public List<Reminder> reminder;
     public List<Expense> expense;
 
-    public records() {}
+    public Records() {}
+
+    public Records(User user) {
+        this.id = user.getUserId();
+        this.username = user.getUserName();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.phoneNumber = user.getPhoneNumber();
+        this.country = user.getCountry();
+        // The rest (income, budget, reminder, expense) can be set later
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        records that = (records) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(username, that.username) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(phoneNumber, that.phoneNumber);
+        Records that = (Records) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override

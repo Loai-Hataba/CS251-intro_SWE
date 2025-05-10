@@ -25,4 +25,13 @@ public class Methods {
         scanner.close();
         return choice - '0';
     }
+
+     // private function to validate the entered password
+    public static boolean isValidPassword(String password) {
+
+        // Regex to check for at least one digit, one uppercase letter, and a minimum length of 6 characters
+        String pattern = "^(?=.*[A-Z])(?=.*\\d).{6,}$";
+
+        return password.matches(pattern);
+    }
 }

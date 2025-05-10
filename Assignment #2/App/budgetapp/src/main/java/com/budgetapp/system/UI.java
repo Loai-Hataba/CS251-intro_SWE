@@ -67,11 +67,11 @@ public class UI {
     //FIXME: pass to display function user Object
     public void displaySignup(){
         System.out.println("sign up pleaseooo");
-        String username = "LoaiHataba";
+        String username = "Loai Hataba";
         String password = "123";
-        String phoneNum = "911";
-        String email = "ramla@spacetoon.com";
-        String country = "zimbabwe";
+        String phoneNum = "+01275397858";
+        String email = "lolooo@spacetoon.com";
+        String country = "koko";
         mySystem.register(username, password, phoneNum, email, country);
 
 
