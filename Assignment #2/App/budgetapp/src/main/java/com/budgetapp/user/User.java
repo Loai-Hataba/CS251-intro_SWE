@@ -8,16 +8,16 @@ public class User {
     private String userId ;
     private String userName ;
     private String password  ;
-    private String Country ;
+    private String country ;
     private String email  ;
     private String phoneNumber ;
     private ArrayList<BankAccount> bankAccounts ;
 
-    public User(String userId, String userName, String password, String email ,String Country, String phoneNumber  ) {
+    public User(String userId, String userName, String password, String email ,String Country, String phoneNumber) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
-        this.Country = Country;
+        this.country = Country;
         this.phoneNumber = phoneNumber;
         this.email = email;
         bankAccounts = new ArrayList();
@@ -39,10 +39,10 @@ public class User {
         this.password = password;
     }
     public String getCountry() {
-        return Country;
+        return country;
     }
     public void setCountry(String country) {
-        Country = country;
+        this.country = country;
     }
     public String getPhoneNumber() {
         return phoneNumber;

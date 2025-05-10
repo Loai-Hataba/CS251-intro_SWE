@@ -3,17 +3,30 @@ package com.budgetapp.system;
 import com.budgetapp.methods.Methods;
 
 public class UI {
-
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
     public static final String YELLOW = "\u001B[33m";
     public static final String BLUE = "\u001B[34m";
-    public static final String BOLD = "\u001B[1m";
 
+    BudgetSystem mySystem = new BudgetSystem();
 
     public UI() {
         System.out.println("UI object has been created!");
+    }
+
+    public void UImanager(){
+        int start = startMenu();
+        switch (start) {
+            // sign up
+            case 1:
+                displaySignup();
+                break;
+            // login
+            case 2:
+                displayLogin();
+                break;
+        }
     }
 
     public int startMenu(){
@@ -51,7 +64,17 @@ public class UI {
 
     }
 
+    //FIXME: pass to display function user Object
     public void displaySignup(){
+        System.out.println("sign up pleaseooo");
+        String username = "LoaiHataba";
+        String password = "123";
+        String phoneNum = "911";
+        String email = "ramla@spacetoon.com";
+        String country = "zimbabwe";
+        mySystem.register(username, password, phoneNum, email, country);
+
+
         // print menu
         // ask for crednetials
         // send credentials to auth manager

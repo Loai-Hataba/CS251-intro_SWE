@@ -1,5 +1,6 @@
 package com.budgetapp.user;
 import com.google.gson.Gson;
+import com.budgetapp.database.records;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -11,21 +12,22 @@ public class UserManager {
     private static UserManager instance;
 
     private final Gson gson;
-    private final ArrayList<User> users;
+    private final ArrayList<records> records = new ArrayList<>();
 
-    private static final String USERS_FILE = "users.json";
-
+    private static final String USERS_FILE = "Assignment #2\\App\\budgetapp\\src\\main\\java\\com\\budgetapp\\database\\database.json";
+    
     // Private constructor
     private UserManager() {
         gson = new Gson();
-        users = new ArrayList<>();
-
-        // Create the file if it doesn't exist
+        // Load all database rows into an array of record objects
         File file = new File(USERS_FILE);
-        if (!file.exists()) {
-            try (FileWriter writer = new FileWriter(file)) {
-                gson.toJson(users, writer); // Write empty array
-                System.out.println("Created users.json");
+        if (file.exists() && file.length() > 0) {
+            try (Reader reader = new FileReader(file)) {
+                records[] recordsArray = gson.fromJson(reader, records[].class);
+                if (recordsArray != null) {
+                    records.clear();
+                    records.addAll(java.util.Arrays.asList(recordsArray));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -34,7 +36,7 @@ public class UserManager {
 
     private void saveUsersToFile() {
         try (Writer writer = new FileWriter(USERS_FILE)) {
-            gson.toJson(users, writer);
+            gson.toJson(records, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,39 +51,35 @@ public class UserManager {
         return instance;
     }
 
-    // Insert user into memory list (and you can extend this to save to file)
-    public boolean insertUser(User user) {
+    // Insert record into memory list (and you can extend this to save to file)
+    public boolean insertRecord(records rec) {
 
-        if (users.contains(user)) {
+        if (records.contains(rec)) {
             return false;
         }
-        users.add(user);
+        records.add(rec);
         saveUsersToFile();
-        System.out.println("The user file has been updated ");
+        System.out.println("The records file has been updated ");
         return true;
     }
 
-    public boolean deleteUser(User user) {
+    public boolean deleteRecord(records rec) {
 
-        if (users.contains(user)) {
-            users.remove(user);
+        if (records.contains(rec)) {
+            records.remove(rec);
             saveUsersToFile();
             return true;
         }
-        System.out.println("user not found");
+        System.out.println("record not found");
         return false;
     }
-    //! function to update the user password
-    public boolean updateUserPassword(String username, String newPassword) {
-        for (User user : users) {
-            if (user.getUserName().equals(username)) {
-                // we have found the correct user
-                user.setPassword(newPassword);
-                saveUsersToFile();
-                return true ;
-            }
+    //! function to update a field in the record
+    public boolean updateRecordField(String fieldName, Object oldValue, Object newValue) {
+        for (records rec : records) {
+            // Implement your logic to update a field in records
+            // Example: if (rec.getField().equals(oldValue)) { rec.setField(newValue); ... }
         }
-        System.out.println("user not found");
+        System.out.println("record not found or update logic not implemented");
         return false;
     }
 }

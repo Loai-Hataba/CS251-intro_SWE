@@ -49,7 +49,7 @@ public class AuthenticationManager {
         //! insert using the user manager
        boolean isDone =  UserManager.getInstance().insertUser(user);
        if (isDone) {
-           System.out.println("User " + username + " has been registered");
+           System.out.println("User " + username + " has been registered and has a UUID: " + userId);
            return true;
        }
         System.out.println("User " + username + " has not been registered");

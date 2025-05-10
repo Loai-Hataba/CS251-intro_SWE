@@ -1,9 +1,3 @@
-savings ass
-7+
-JavaDoc
-
-
-
 ----------------------------------------------IMPLement---------------------------------
 
 
@@ -68,19 +62,54 @@ JavaDoc
 
 
 
+responsibilities of classes:
+
+1- Authentication manager
+
+	* (in case of log in) authenticate user -> send credentials for user manager to check
+
+	* (in case of sign up) send credentials to user manager to insert in json database 
 
 
 
 
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Userid		| user name		| password	|	email	|	phone number	|	country		| income []		| budget [] 	| reminder []	| expenses []  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+json format:
 
-
-
-
-
+[
+	{
+		id,
+		username,
+		password,
+		email,
+		phone number,
+		country
+		income {
+			source,
+			amount
+		},
+		budget {
+			category,
+			amount
+		},
+		reminder {
+			reminder name,
+			date,
+			time
+		},
+		expnese {
+			category,
+			amount,
+			date
+		}
+	}
+]
 
 
 
