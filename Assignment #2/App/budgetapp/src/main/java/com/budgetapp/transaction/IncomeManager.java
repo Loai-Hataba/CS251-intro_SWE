@@ -60,7 +60,7 @@ public class IncomeManager implements  ITransactionManager{
             System.out.println("Invalid amount");
             return false;
         }
-        
+        return true;
     }
 
     @Override
