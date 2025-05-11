@@ -1,6 +1,9 @@
 package com.budgetapp.system;
 
 import com.budgetapp.user.AuthenticationManager;
+import com.budgetapp.transaction.*;
+import java.util.List;
+import com.budgetapp.database.Records;
 
 
 public class BudgetSystem {
@@ -28,6 +31,11 @@ public class BudgetSystem {
             return false;
         }
         return true;
+    }
+
+    public List<String> fetchIncome(){
+        List<String> incomesList = IncomeManager.getInstance().summary();
+        return incomesList;
     }
 
     public boolean addIncome(String source, float amount){

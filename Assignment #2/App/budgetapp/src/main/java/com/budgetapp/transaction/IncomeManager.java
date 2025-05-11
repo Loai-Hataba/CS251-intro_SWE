@@ -63,6 +63,11 @@ public class IncomeManager implements  ITransactionManager{
         return true;
     }
 
+    // @Override
+    // public List<Income> fetch(){
+    //     return 
+    // }
+
     @Override
     public boolean remove(int id ) {
         return false;
@@ -74,13 +79,14 @@ public class IncomeManager implements  ITransactionManager{
     }
 
     @Override
-    public void display() {
-
-    }
-
-    @Override
     public List<String> summary() {
-        return List.of();
+        List<String> summaries = new ArrayList<>();
+        if (incomes != null) {
+            for (Income income : incomes) {
+                summaries.add(income.getSummary());
+            }
+        }
+        return summaries;
     }
 
     @Override

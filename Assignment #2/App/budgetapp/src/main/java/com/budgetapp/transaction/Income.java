@@ -11,7 +11,7 @@ import java.util.Date;
  * @version 2.0
  * @since 2025-05-10
  */
-class Income implements ITransaction {
+public class Income implements ITransaction {
 
     private int id;
     private String userId;

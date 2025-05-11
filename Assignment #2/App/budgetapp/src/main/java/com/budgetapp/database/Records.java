@@ -3,19 +3,9 @@ package com.budgetapp.database;
 import java.util.List;
 import java.util.Objects;
 import com.budgetapp.user.User;
+import com.budgetapp.transaction.*;
 
 public class Records {
-    public static class Income {
-        public String source;
-        public double amount;
-
-        public Income() {}
-        public Income(String source, double amount) {
-            this.source = source;
-            this.amount = amount;
-        }
-    }
-
     public static class Budget {
         public String category;
         public double amount;
@@ -37,19 +27,6 @@ public class Records {
             this.reminderName = reminderName;
             this.date = date;
             this.time = time;
-        }
-    }
-
-    public static class Expense {
-        public String category;
-        public double amount;
-        public String date;
-
-        public Expense() {}
-        public Expense(String category, double amount, String date) {
-            this.category = category;
-            this.amount = amount;
-            this.date = date;
         }
     }
 

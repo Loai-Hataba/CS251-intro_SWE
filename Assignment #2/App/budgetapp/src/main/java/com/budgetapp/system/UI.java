@@ -1,5 +1,6 @@
 package com.budgetapp.system;
 
+import java.util.logging.MemoryHandler;
 import com.budgetapp.methods.Methods;
 
 public class UI {
@@ -61,6 +62,20 @@ public class UI {
     }
 
     public void displayDashboard(){
+        System.out.println("            Dina Dashboard hahaha");
+        System.out.println("\n\n1)Income" + //
+        "2)Expense");
+        int choice = Methods.numInput('1', '2');
+        switch (choice) {
+            case 1:
+                displayIncome();
+                break;
+            case 2:
+                displayExpense();
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -123,9 +138,11 @@ public class UI {
                 displayDashboard();
                 System.out.println("logged in");
                 // display dashboard
+                break;
             }
     }
     public void displayIncome(){
+        List
         
     }
 
