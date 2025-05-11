@@ -64,29 +64,66 @@ public class UI {
 
     }
 
-    //FIXME: pass to display function user Object
     public void displaySignup(){
-        System.out.println("sign up pleaseooo");
-        String username = "Loai Hataba";
-        String password = "123";
-        String phoneNum = "+01275397858";
-        String email = "lolooo@spacetoon.com";
-        String country = "koko";
-        mySystem.register(username, password, phoneNum, email, country);
-
-
-        // print menu
-        // ask for crednetials
-        // send credentials to auth manager
-        // auth man sends otp
-        // ui verify otp function
-        // send otp boolean to auth manager
-        // auth manager send to user manager to create user
-        // user manager creates user
+        while (true){
+            System.out.println("                            ===================================");
+            System.out.println("                            |           SIGN UP MENU          |");
+            System.out.println("                            ===================================");
+            System.out.println("                            |                                 |");
+            System.out.println("                            |  Please enter your credentials  |");
+            System.out.println("                             ----------------------------------\n");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ //
+                            "\n   * Start with a letter\r\n" + //
+                            "   * No spaces\r\n" + //
+                            "   * No backslashes (\\)\r\n" + //
+                            "   * No forward slashes (/)\r\n" + //
+                            "   * Maximum 10 characters");
+            String password, confirmPassword;
+            while (true) {
+                password = Methods.passwordInput("Password: ");
+                confirmPassword = Methods.passwordInput("Confirm Password: ");
+                if (password.equals(confirmPassword)) {
+                    break;
+                } else {
+                    System.out.println("Passwords do not match. Please try again.");
+                }
+            }
+            String email = Methods.stringInput("Email Address : ", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "Email shall be in the form \"name@domain.com\"");
+            String phoneNum = Methods.stringInput("Phone Number (01...): ", "^01\\d{9}$", "PhoneNumber should start with 01 and be 11 digits long");
+            String country = Methods.stringInput("Country: ");
+            System.out.println("credentials: " + userName + " " + password + " " + phoneNum + " " + email + " " + country);
+            boolean register = mySystem.register(userName, password, phoneNum, email, country);
+            if (register)
+            {
+                System.out.println("signed in...");
+                displayDashboard();
+                // show dashboard
+                break;
+            }
+        }
     }
 
     public void displayLogin(){
-        
+        while (true){
+            System.out.println("                            ===================================");
+            System.out.println("                            |           LOG IN MENU           |");
+            System.out.println("                            ===================================");
+            System.out.println("                            |                                 |");
+            System.out.println("                            |  Please enter your credentials  |");
+            System.out.println("                             ----------------------------------\n");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ //
+                            "\n   * Start with a letter\r\n" + //
+                            "   * No spaces\r\n" + //
+                            "   * No backslashes (\\)\r\n" + //
+                            "   * No forward slashes (/)\r\n" + //
+                            "   * Maximum 10 characters");
+            String password = Methods.passwordInput("Password: ");
+            boolean login = mySystem.authenticate(userName, password);
+            if(login)
+                displayDashboard();
+                System.out.println("logged in");
+                // display dashboard
+            }
     }
     public void displayIncome(){
         

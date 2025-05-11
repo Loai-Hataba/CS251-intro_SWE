@@ -4,18 +4,29 @@ import com.budgetapp.user.AuthenticationManager;
 
 
 public class BudgetSystem {
+    private String currentUUID = "";
+
     public BudgetSystem(){
         System.out.println("System has been created!");
     }
 
     public boolean authenticate(String userName, String password){
+        currentUUID = AuthenticationManager.getInstance().authenticateUser(userName, password);
+        if (currentUUID != "")
+        {
+            return false;
+        }
         return true;
     }
 
     public boolean register(String userName, String password, String phoneNum, String email, String country)
     {
-        AuthenticationManager.getInstance().registerUser(userName, password, email, phoneNum, country);
         // send to auth manager -> auth manager send otp -> otp tmam -> auth manager send to user manager -> user manager create user in database
+        currentUUID = AuthenticationManager.getInstance().registerUser(userName, password, email, phoneNum, country);
+        if (currentUUID != "")
+        {
+            return false;
+        }
         return true;
     }
 

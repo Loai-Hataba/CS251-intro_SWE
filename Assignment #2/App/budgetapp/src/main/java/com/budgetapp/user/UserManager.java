@@ -5,6 +5,7 @@ import com.budgetapp.methods.GsonTool;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.lang.reflect.Field;
 
 /**
@@ -17,12 +18,12 @@ public class UserManager {
     private final Gson gson = GsonTool.getGson();
     private final HashMap<String, Records> records = new HashMap<>();
 
-    private static final String USERS_FILE = "Assignment #2\\App\\budgetapp\\src\\main\\java\\com\\budgetapp\\database\\database.json";
+    private static final String RECORDS_FILE = "Assignment #2\\App\\budgetapp\\src\\main\\java\\com\\budgetapp\\database\\database.json";
     
     // Private constructor
     private UserManager() {
         // Load all database rows into an array of record objects
-        File file = new File(USERS_FILE);
+        File file = new File(RECORDS_FILE);
         if (file.exists() && file.length() > 0) {
             try (Reader reader = new FileReader(file)) {
                 Records[] recordsArray = gson.fromJson(reader, Records[].class);
@@ -40,8 +41,26 @@ public class UserManager {
         }
     }
 
-    private void saveUsersToFile() {
-        try (Writer writer = new FileWriter(USERS_FILE)) {
+    public boolean checkUserExists(String userName){
+        for (Records rec : records.values()) {
+            if (rec.username != null && rec.username.equals(userName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String checkUserCredentials(String userName, String password){
+        for (Records rec : records.values()) {
+            if ((rec.username != null && rec.password != null) && (rec.username.equals(userName) && rec.password.equals(password))) {
+                return rec.id;
+            }
+        }
+        return "";
+    }
+
+    private void saveRecordsToFile() {
+        try (Writer writer = new FileWriter(RECORDS_FILE)) {
             gson.toJson(records.values(), writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,7 +82,7 @@ public class UserManager {
             return false;
         }
         records.put(rec.id, rec);
-        saveUsersToFile();
+        saveRecordsToFile();
         System.out.println("The records file has been updated ");
         return true;
     }
@@ -71,7 +90,7 @@ public class UserManager {
     public boolean deleteRecord(String id) {
         if (records.containsKey(id)) {
             records.remove(id);
-            saveUsersToFile();
+            saveRecordsToFile();
             return true;
         }
         System.out.println("record not found");
@@ -93,7 +112,7 @@ public class UserManager {
             Field field = rec.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
             field.set(rec, newValue);
-            saveUsersToFile();
+            saveRecordsToFile();
             System.out.println("Field '" + fieldName + "' updated for record with id: " + id);
             return true;
         } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -102,4 +121,6 @@ public class UserManager {
             return false;
         }
     }
+
+    
 }
