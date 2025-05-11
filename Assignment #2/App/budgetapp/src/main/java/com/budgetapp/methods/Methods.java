@@ -22,6 +22,7 @@ public class Methods {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
         }
+        //converting the char into number
         return choice - '0';
     }
 
