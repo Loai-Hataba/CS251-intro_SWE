@@ -24,25 +24,54 @@
     "country": "koko",
     "income": [
       {
-        "id": 0,
+        "id": 1,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "ui",
-        "date": "20/10/2025",
-        "amount": 120.0,
-        "isRecurring": false,
-        "category": "ji"
+        "source": "lo",
+        "date": "12/12/2004",
+        "amount": 13.0,
+        "isRecurring": true,
+        "category": "pl"
       },
+      {
+        "id": 2,
+        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
+        "source": "qw",
+        "date": "12/12/2004",
+        "amount": 55.0,
+        "isRecurring": true,
+        "category": "po"
+      }
+    ],
+    "budget": [
+      {
+        "UUID": "e06cb40f-9987-426c-ae8d-2fe07979a516",
+        "id": 1,
+        "title": "1",
+        "startDate": "12/12/2025",
+        "endDate": "12/12/2025",
+        "amount": 12.0,
+        "category": "oop"
+      },
+      {
+        "UUID": "e06cb40f-9987-426c-ae8d-2fe07979a516",
+        "id": 2,
+        "title": "2",
+        "startDate": "12/12/1212",
+        "endDate": "12/12/1212",
+        "amount": 121.0,
+        "category": "po"
+      }
+    ],
+    "expense": [
       {
         "id": 1,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "op",
-        "date": "20/10/2025",
-        "amount": 1090.0,
-        "isRecurring": true,
-        "category": "ko"
+        "title": "op",
+        "amount": 12.0,
+        "category": "ki",
+        "date": "12/12/1999",
+        "isRecurring": false
       }
-    ],
-    "budget": [],
-    "expense": []
+    ]
   }
 ]

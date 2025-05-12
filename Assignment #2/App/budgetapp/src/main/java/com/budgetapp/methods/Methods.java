@@ -224,4 +224,20 @@ public class Methods {
     public static void closeScanner() {
         scanner.close();
     }
+
+    public static Records getUserRecord(String UUID, boolean requiresBudget) {
+        Records userRecord = Methods.getRecordById(UUID);
+        if (userRecord == null) {
+            System.out.println("User record not found for UUID: " + UUID);
+            return null;
+        }
+
+        if (requiresBudget) {
+            if (userRecord.budget == null || userRecord.budget.isEmpty()) {
+                System.out.println("Budget list for UUID: " + UUID + " is empty");
+                return null;
+            }
+        }
+        return userRecord;
+    }
 }

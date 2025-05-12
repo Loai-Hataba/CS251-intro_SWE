@@ -1,98 +1,69 @@
 package com.budgetapp.budget;
 
-import com.budgetapp.database.Records;
-import com.budgetapp.methods.Methods;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BudgetManager {
-    private  static BudgetManager instance ;
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
 
-    private BudgetManager(){
+public class BudgetManager {
+
+    private static BudgetManager instance;
+    private List<Budget> currentBudgets;
+
+    private BudgetManager() {
+        currentBudgets = new ArrayList<>();
     }
-    public static BudgetManager getInstance(){
-        if(instance == null){
+
+    public static BudgetManager getInstance() {
+        if (instance == null) {
             instance = new BudgetManager();
         }
         return instance;
     }
 
-    public boolean add(String UUID, String title, double amount, String category, String startDate, String endDate){
-
-        // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+    public boolean add(String UUID, String title, double amount, String category, String startDate, String endDate) {
+        Records userRecord = Methods.getUserRecord(UUID, false);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        // Prepare a list to add
-        List<Budget> newBudgets = new ArrayList<>();
-        int size;
-        if (userRecord.budget == null){
-            size = 1;
-        } else size = userRecord.budget.size() + 1;
-        Budget budget = new Budget(UUID, size ,title, startDate, endDate, amount, category);
-        newBudgets.add(budget);
-
-        // If the user already has a Budget list, merge it
-        if (userRecord.budget != null) {
-            newBudgets.addAll(0, userRecord.budget); // add existing Budgets at the start
-        }
-
-        // Now update the field with the new list
-        return Methods.updateRecordField(UUID, "budget", newBudgets);
+        currentBudgets = userRecord.budget;
+        int size = (userRecord.budget == null) ? 1 : userRecord.budget.size() + 1;
+        Budget budget = new Budget(UUID, size, title, startDate, endDate, amount, category);
+        currentBudgets.add(budget);
+        return Methods.updateRecordField(UUID, "budget", currentBudgets);
     }
 
-
-    public boolean remove(String UUID , int id ) {
-        // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+    public boolean remove(String UUID, int id) {
+        Records userRecord = Methods.getUserRecord(UUID, true);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Budget> currenBudgets = userRecord.budget;
-        // Validate the user record
-        if (currenBudgets.isEmpty()) {
-            System.out.println("Budget list for UUID: " + UUID + " is empty");
-            return false;
-        }
-        if(id > currenBudgets.size()){
+
+        currentBudgets = userRecord.budget;
+        if (id > currentBudgets.size()) {
             System.out.println("The entered id is greater than the number of records in the Budget list");
             return false;
         }
 
-        // The main logic of deleting :
-        for (Budget Budget : currenBudgets) {
-            if (Budget.getId() == id) {
-                currenBudgets.remove(Budget);
-                break;
-            }
-        }
-        // After removing the budget, we need to update the IDs of the remaining budgets
-        for (int i = 0; i < currenBudgets.size(); i++) {
-            currenBudgets.get(i).setId(i + 1); // Set new ID starting from 1
+        currentBudgets.removeIf(budget -> budget.getId() == id);
+
+        // Update remaining IDs
+        for (int i = 0; i < currentBudgets.size(); i++) {
+            currentBudgets.get(i).setId(i + 1);
         }
 
-        // insert the new list into the user record
-        return Methods.updateRecordField(UUID, "budget", currenBudgets);
+        return Methods.updateRecordField(UUID, "budget", currentBudgets);
     }
 
-
-    public boolean edit(String UUID, int id  ,String title, double amount, String category, String startDate, String endDate){
+    public boolean edit(String UUID, int id, String title, double amount, String category, String startDate, String endDate) {
         // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+        Records userRecord = Methods.getUserRecord(UUID, true);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Budget> currentBudgets = userRecord.budget;
-        // Validate the user record
-        if (currentBudgets.isEmpty()) {
-            System.out.println("Budget list for UUID: " + UUID + " is empty");
-            return false;
-        }
-        if(id > currentBudgets.size()){
+        currentBudgets = userRecord.budget;
+        if (id > currentBudgets.size()) {
             System.out.println("The entered id is greater than the number of records in the Budget list");
             return false;
         }
@@ -110,15 +81,13 @@ public class BudgetManager {
         return Methods.updateRecordField(UUID, "budget", currentBudgets);
     }
 
-    public List<String> summary(String UUID){
-        Records userRecord = Methods.getRecordById(UUID);
+    public List<String> summary(String UUID) {
+        Records userRecord = Methods.getUserRecord(UUID, false);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return null;
         }
-        List<Budget> currentBudgets = userRecord.budget;
-        if (currentBudgets == null)
-        {
+        currentBudgets = userRecord.budget;
+        if (currentBudgets == null) {
             List<String> emptyList = new ArrayList<>();
             return emptyList;
         }

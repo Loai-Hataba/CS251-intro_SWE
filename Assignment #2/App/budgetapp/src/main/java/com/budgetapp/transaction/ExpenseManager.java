@@ -10,11 +10,12 @@ public class ExpenseManager implements ITransactionManager {
 
     private static ExpenseManager instance;
 
-    // Make the constructor private 
+    private List<Expense> currentExpenses;
+
     private ExpenseManager() {
+        currentExpenses = new ArrayList<>();
     }
 
-    // The function to access the instance object 
     public static ExpenseManager getInstance() {
         if (instance == null) {
             instance = new ExpenseManager();
@@ -24,88 +25,53 @@ public class ExpenseManager implements ITransactionManager {
 
     @Override
     public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
-        // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+        Records userRecord = Methods.getUserRecord(UUID, false);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-
-        // Prepare a list to add
-        List<Expense> newExpneseList = new ArrayList<>();
-        int size;
-        if (userRecord.expense == null) {
-            size = 1;
-        } else {
-            size = userRecord.expense.size() + 1;
-        }
+        currentExpenses = userRecord.expense;
+        int size = (currentExpenses == null) ? 1 : userRecord.expense.size() + 1;
         Expense expense = new Expense(UUID, size, source, amount, category, date, isRecurring);
-        newExpneseList.add(expense);
-
-        // If the user already has an expense list, merge it
-        if (userRecord.expense != null) {
-            newExpneseList.addAll(0, userRecord.expense); // add existing expenses at the start
-        }
-
-        // Now update the field with the new list
-        return Methods.updateRecordField(UUID, "expense", newExpneseList);
+        currentExpenses.add(expense);
+        return Methods.updateRecordField(UUID, "expense", currentExpenses);
     }
 
     @Override
     public boolean remove(String UUID, int id) {
-        // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+        Records userRecord = Methods.getUserRecord(UUID, true);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Expense> currentExpense = userRecord.expense;
-        // Validate the user record
-        if (currentExpense.isEmpty()) {
-            System.out.println("expense list for UUID: " + UUID + " is empty");
-            return false;
-        }
-        if (id > currentExpense.size()) {
+
+        currentExpenses = userRecord.expense;
+        if (id > currentExpenses.size()) {
             System.out.println("The entered id is greater than the number of records in the expense list");
             return false;
         }
 
-        // The main logic of deleting :
-        for (Expense expense : currentExpense) {
-            if (expense.getId() == id) {
-                currentExpense.remove(expense);
-                System.out.println("deleted ya basha");
-                break;
-            }
+        currentExpenses.removeIf(expense -> expense.getId() == id);
+
+        for (int i = 0; i < currentExpenses.size(); i++) {
+            currentExpenses.get(i).setId(i + 1);
         }
-        // After deleting modify the
-        for (int i = 0; i < currentExpense.size(); i++) {
-            currentExpense.get(i).setId(i + 1);
-        }
-        // insert the new list into the user record
-        return Methods.updateRecordField(UUID, "expense", currentExpense);
+
+        return Methods.updateRecordField(UUID, "expense", currentExpenses);
     }
 
     @Override
     public boolean edit(String UUID, int id, String source, double amount, String category, String date, boolean isRecurring) {
-        // Get the user record
-        Records userRecord = Methods.getRecordById(UUID);
+        Records userRecord = Methods.getUserRecord(UUID, true);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Expense> currentExpense = userRecord.expense;
-        // Validate the user record
-        if (currentExpense.isEmpty()) {
-            System.out.println("expense list for UUID: " + UUID + " is empty");
-            return false;
-        }
-        if (id > currentExpense.size()) {
+
+        currentExpenses = userRecord.expense;
+        if (id > currentExpenses.size()) {
             System.out.println("The entered id is greater than the number of records in the expense list");
             return false;
         }
-        // The main logic of editing :
-        for (Expense expense : currentExpense) {
+
+        for (Expense expense : currentExpenses) {
             if (expense.getId() == id) {
                 expense.setTitle(source);
                 expense.setAmount(amount);
@@ -115,23 +81,22 @@ public class ExpenseManager implements ITransactionManager {
                 break;
             }
         }
-        // insert the new list into the user record
-        return Methods.updateRecordField(UUID, "expense", currentExpense);
+
+        return Methods.updateRecordField(UUID, "expense", currentExpenses);
     }
 
     @Override
     public List<String> summary(String UUID) {
-
-        Records userRecord = Methods.getRecordById(UUID);
+        Records userRecord = Methods.getUserRecord(UUID, false);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return null;
         }
-        List<Expense> currentExpenses = userRecord.expense;
+
+        currentExpenses = userRecord.expense;
         if (currentExpenses == null) {
-            List<String> emptyList = new ArrayList<>();
-            return emptyList;
+            return new ArrayList<>();
         }
+
         List<String> summaries = new ArrayList<>();
         for (Expense expense : currentExpenses) {
             summaries.add(expense.getSummary());
