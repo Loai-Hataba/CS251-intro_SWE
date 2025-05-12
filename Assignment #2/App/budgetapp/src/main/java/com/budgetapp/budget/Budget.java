@@ -104,4 +104,7 @@ public class Budget {
     public void setCategory(String category) {
         this.category = category;
     }
+    public String getSummary() {
+        return  "id : " + this.id ;
+    }
 }

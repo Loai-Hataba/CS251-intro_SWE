@@ -12,6 +12,7 @@ import java.util.Date;
 public class Reminder {
 
     private String UUID;
+    private int id ;
     private String title;
     private Date date;
     private String description;
@@ -21,14 +22,16 @@ public class Reminder {
      * Constructs a new Reminder with the specified attributes.
      *
      * @param UUID        the unique identifier of the user
+     * @param  id
      * @param title       the title of the reminder
      * @param date        the date the reminder is scheduled for
      * @param description the description or notes about the reminder
      * @param time        the time the reminder is scheduled for
      */
-    public Reminder(String UUID, String title, Date date, String description, Time time) {
+    public Reminder(String UUID, int id  ,String title, Date date, String description, Time time) {
         this.UUID = UUID;
         this.title = title;
+        this.id = id;
         this.date = date;
         this.description = description;
         this.time = time;
@@ -79,5 +82,12 @@ public class Reminder {
     /** @param time the time to set */
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public String getSummary() {
+        return  "id : " + this.id + " title : " + this.title + " Time : " + this.time + " date : " + this.date;
     }
 }

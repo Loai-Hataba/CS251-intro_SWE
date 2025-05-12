@@ -50,10 +50,7 @@ public class IncomeManager implements  ITransactionManager{
         return added;
     }
 
-    // @Override
-    // public List<Income> fetch(){
-    //     return 
-    // }
+
 
     @Override
     public boolean remove( String UUID , int id ) {

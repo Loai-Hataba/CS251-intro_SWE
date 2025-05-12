@@ -4,31 +4,11 @@ import java.util.List;
 import java.util.Objects;
 import com.budgetapp.user.User;
 import com.budgetapp.transaction.*;
+import com.budgetapp.reminder.Reminder ;
+import com.budgetapp.budget.Budget;
 
 public class Records {
-    public static class Budget {
-        public String category;
-        public double amount;
 
-        public Budget() {}
-        public Budget(String category, double amount) {
-            this.category = category;
-            this.amount = amount;
-        }
-    }
-
-    public static class Reminder {
-        public String reminderName;
-        public String date;
-        public String time;
-
-        public Reminder() {}
-        public Reminder(String reminderName, String date, String time) {
-            this.reminderName = reminderName;
-            this.date = date;
-            this.time = time;
-        }
-    }
 
     public String id;
     public String username;
