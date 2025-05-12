@@ -33,7 +33,7 @@ public class Expense  implements  ITransaction{
      * @param isRecurring {@code true} if the expense is recurring
      */
     // The Constructor :
-    Expense(int id, String userId, String title,  double amount , String category,String date,boolean isRecurring) {
+    Expense( String userId, int id, String title,  double amount , String category,String date,boolean isRecurring) {
         this.id = id;
         this.date = date;
         this.amount = amount;

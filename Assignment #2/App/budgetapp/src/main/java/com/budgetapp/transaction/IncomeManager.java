@@ -82,8 +82,8 @@ public class IncomeManager implements  ITransactionManager{
             }
         }
         // insert the new list into the user record
-        boolean added = Methods.updateRecordField(UUID, "income", currentIncomes);
-        return added;
+        boolean removed = Methods.updateRecordField(UUID, "income", currentIncomes);
+        return removed;
 
     }
 
@@ -116,8 +116,8 @@ public class IncomeManager implements  ITransactionManager{
                 break;
             }
         }
-        boolean added = Methods.updateRecordField(UUID, "income", currentIncomes);
-        return added;
+        boolean edited = Methods.updateRecordField(UUID, "income", currentIncomes);
+        return edited;
 
     }
 
