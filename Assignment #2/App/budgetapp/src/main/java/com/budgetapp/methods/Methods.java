@@ -129,7 +129,7 @@ public class Methods {
         return stringInput("Enter date (DD/MM/YYYY): ", datePattern, errorMsg);
     }
 
-    public static String timeInput(){
+    public static String timeInput() {
         String timePattern = "^([01]\\d|2[0-3]):[0-5]\\d$";
         String errorMsg = "Invalid Time Format, 24 hour(HH-MM)";
         return stringInput("Enter Time (Hour:Minute): ", timePattern, errorMsg);
@@ -350,5 +350,22 @@ public class Methods {
             }
         }
         return userRecord;
+    }
+
+    /**
+     * Performs a simple password hashing by shifting each character by 10
+     * positions.
+     *
+     * @param password The plain text password to be hashed
+     * @return A hashed version of the password where each character is shifted
+     * by 10 positions
+     */
+    public static String hashPassword(String password) {
+        StringBuilder hashedPassword = new StringBuilder();
+        for (int i = 0; i < password.length(); i++) {
+            char c = (char) (password.charAt(i) + 10);
+            hashedPassword.append(c);
+        }
+        return hashedPassword.toString();
     }
 }
