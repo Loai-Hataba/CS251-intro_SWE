@@ -2,6 +2,7 @@ package com.budgetapp.system;
 
 import com.budgetapp.methods.Methods;
 import java.util.List;
+import java.util.ArrayList;
 
 public class UI {
     public static final String RESET = "\u001B[0m";
@@ -158,7 +159,6 @@ public class UI {
                     System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
                     int isRecurring = Methods.numInput('0', '1');
                     mySystem.addIncome(source, amount, category, date, isRecurring);
-                    System.out.println("Added income kkk");
                     break;
                 case 2:
 
@@ -214,6 +214,28 @@ public class UI {
 
     public boolean verifyOTP(int OTP){
         return true;
+    }
+
+    @Override
+    public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
+        Income income = new Income(UUID, source, amount, category, date, isRecurring);
+
+        // Get the user record
+        Records userRecord = Methods.getRecordById(UUID);
+        if (userRecord == null) {
+            System.out.println("User record not found for UUID: " + UUID);
+            return false;
+        }
+
+        // Work only with this user's income list
+        if (userRecord.income == null) {
+            userRecord.income = new ArrayList<>();
+        }
+        userRecord.income.add(income);
+
+        // Now update the field with the new list
+        boolean added = Methods.updateRecordField(UUID, "income", userRecord.income);
+        return added;
     }
     
 }

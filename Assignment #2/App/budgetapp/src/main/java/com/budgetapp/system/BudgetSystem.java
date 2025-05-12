@@ -3,8 +3,9 @@ package com.budgetapp.system;
 import com.budgetapp.user.AuthenticationManager;
 import com.budgetapp.transaction.*;
 import java.util.List;
-// import com.budgetapp.database.Records;
-
+import java.util.ArrayList;
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
 
 public class BudgetSystem {
     private String currentUUID = "";
