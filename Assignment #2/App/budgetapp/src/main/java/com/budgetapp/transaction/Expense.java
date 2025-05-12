@@ -1,6 +1,5 @@
 package com.budgetapp.transaction;
 
-import java.util.Date;
 
 /**
  * Represents an expense transaction in the BudgetApp.
@@ -18,7 +17,7 @@ public class Expense  implements  ITransaction{
     private String title ;
     private double amount;
     private String category ;
-    private Date date;
+    private String date;
     private boolean isRecurring ;
 
 
@@ -34,7 +33,7 @@ public class Expense  implements  ITransaction{
      * @param isRecurring {@code true} if the expense is recurring
      */
     // The Constructor :
-    Expense(int id, String userId, String title,  double amount , String category,Date date,boolean isRecurring) {
+    Expense(int id, String userId, String title,  double amount , String category,String date,boolean isRecurring) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -78,11 +77,7 @@ public class Expense  implements  ITransaction{
      * @param date the new date
      */
     @Override
-    public void setDate(Date date) {
-        if (date == null || date.after(new Date())) {
-            System.out.println("Invalid date");
-            return ;
-        }
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -149,7 +144,7 @@ public class Expense  implements  ITransaction{
      * @return the expense date
      */
     @Override
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 

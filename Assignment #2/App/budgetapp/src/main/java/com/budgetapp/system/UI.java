@@ -1,7 +1,7 @@
 package com.budgetapp.system;
 
-import java.util.logging.MemoryHandler;
 import com.budgetapp.methods.Methods;
+import java.util.List;
 
 public class UI {
     public static final String RESET = "\u001B[0m";
@@ -62,19 +62,21 @@ public class UI {
     }
 
     public void displayDashboard(){
-        System.out.println("            Dina Dashboard hahaha");
-        System.out.println("\n\n1)Income" + //
-        "2)Expense");
-        int choice = Methods.numInput('1', '2');
-        switch (choice) {
-            case 1:
-                displayIncome();
-                break;
-            case 2:
-                displayExpense();
-                break;
-            default:
-                break;
+        while(true){
+            System.out.println("            Dina Dash board hahaha");
+            System.out.println("\n\n1)Income\n" + //
+                                    "2)Expense");
+            int choice = Methods.numInput('1', '2');
+            switch (choice) {
+                case 1:
+                    displayIncome();
+                    break;
+                case 2:
+                    displayExpense();
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
@@ -87,12 +89,7 @@ public class UI {
             System.out.println("                            |                                 |");
             System.out.println("                            |  Please enter your credentials  |");
             System.out.println("                             ----------------------------------\n");
-            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ //
-                            "\n   * Start with a letter\r\n" + //
-                            "   * No spaces\r\n" + //
-                            "   * No backslashes (\\)\r\n" + //
-                            "   * No forward slashes (/)\r\n" + //
-                            "   * Maximum 10 characters");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ "\n   * Start with a letter\r\n" +  "   * No spaces\r\n" +  "   * No backslashes (\\)\r\n" +  "   * No forward slashes (/)\r\n" +  "   * Maximum 10 characters");
             String password, confirmPassword;
             while (true) {
                 password = Methods.passwordInput("Password: ");
@@ -126,24 +123,53 @@ public class UI {
             System.out.println("                            |                                 |");
             System.out.println("                            |  Please enter your credentials  |");
             System.out.println("                             ----------------------------------\n");
-            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ //
-                            "\n   * Start with a letter\r\n" + //
-                            "   * No spaces\r\n" + //
-                            "   * No backslashes (\\)\r\n" + //
-                            "   * No forward slashes (/)\r\n" + //
-                            "   * Maximum 10 characters");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+"\n   * Start with a letter\r\n" + "   * No spaces\r\n" + "   * No backslashes (\\)\r\n" + "   * No forward slashes (/)\r\n" + "   * Maximum 10 characters");
             String password = Methods.passwordInput("Password: ");
             boolean login = mySystem.authenticate(userName, password);
-            if(login)
-                displayDashboard();
-                System.out.println("logged in");
-                // display dashboard
-                break;
+            System.out.println("Login status " + login);
+            if(login){
+                    displayDashboard();
+                    break;
+                }
             }
     }
     public void displayIncome(){
-        List
-        
+        while (true){
+            List<String> incomeRecords = mySystem.fetchIncome();
+            if (!incomeRecords.isEmpty())
+            {
+                System.out.println("Income Records: ");
+                for (String record : incomeRecords){
+                    System.out.println(record);
+                } 
+            }
+            else {
+                System.err.println("No Income Data yet.\n\n");
+            }
+
+            System.out.println("What do you want to do: \n\n1)Add Income\n2)Edit Income\n3)Delete Income\n4)Dashboard\nChoice: ");
+            int choice = Methods.numInput('1', '4');
+            switch (choice) {
+                case 1:
+                    String source = Methods.stringInput("Enter Income Source: ");
+                    double amount = Methods.doubleInput("Enter Income amount: ");
+                    String category = Methods.stringInput("Enter Income Category: ");
+                    String date = Methods.dateInput();
+                    System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                    int isRecurring = Methods.numInput('0', '1');
+                    mySystem.addIncome(source, amount, category, date, isRecurring);
+                    System.out.println("Added income kkk");
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    return;
+            }   
+        }
     }
 
     public void displayBudget(){

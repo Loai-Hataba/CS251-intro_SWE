@@ -57,7 +57,7 @@ public class AuthenticationManager {
             User user = new User (userId , username , password , email ,country , phone );
             //! insert using the user manager
             Records rec = new Records(user);
-            boolean isDone =  UserManager.getInstance().insertRecord(rec);
+            boolean isDone =  Methods.insertRecord(rec);
             if (isDone) {
                System.out.println("User " + username + " has been registered and has a UUID: " + userId);
                return userId;
@@ -72,23 +72,23 @@ public class AuthenticationManager {
     }
 
     //! I think it's need to be in the user manager
-    public boolean updateUserPassword(String  id, String newPassword) {
+    // public boolean updateUserPassword(String  id, String newPassword) {
 
-        // now validate the password
-        if(!Methods.isValidPassword(newPassword)) {
-            System.out.println("The password is not valid");
-            System.out.println("check if you have at least one character & one digit in the password");
-            return false ;
-        }
-        // the password if valid then set it using the user.setPassword
-        boolean isDone =  UserManager.getInstance().updateRecordField(id, "password", newPassword);
-        if (isDone) {
-            System.out.println("User " + id + " has been updated");
-            return true;
-        }
-        System.out.println("User " + id + " has not been updated");
-        return false ;
-    }
+    //     // now validate the password
+    //     if(!Methods.isValidPassword(newPassword)) {
+    //         System.out.println("The password is not valid");
+    //         System.out.println("check if you have at least one character & one digit in the password");
+    //         return false ;
+    //     }
+    //     // the password if valid then set it using the user.setPassword
+    //     boolean isDone =  UserManager.getInstance().updateRecordField(id, "password", newPassword);
+    //     if (isDone) {
+    //         System.out.println("User " + id + " has been updated");
+    //         return true;
+    //     }
+    //     System.out.println("User " + id + " has not been updated");
+    //     return false ;
+    // }
     public String sendOTP (String phoneNumber){
         System.out.println("The Otp has been Sent to your device...");
         String otp = String.valueOf(new Random().nextInt(900000) + 100000);

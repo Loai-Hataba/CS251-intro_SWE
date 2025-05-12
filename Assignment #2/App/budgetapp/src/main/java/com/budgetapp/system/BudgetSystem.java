@@ -3,7 +3,7 @@ package com.budgetapp.system;
 import com.budgetapp.user.AuthenticationManager;
 import com.budgetapp.transaction.*;
 import java.util.List;
-import com.budgetapp.database.Records;
+// import com.budgetapp.database.Records;
 
 
 public class BudgetSystem {
@@ -15,7 +15,8 @@ public class BudgetSystem {
 
     public boolean authenticate(String userName, String password){
         currentUUID = AuthenticationManager.getInstance().authenticateUser(userName, password);
-        if (currentUUID != "")
+        System.out.println("testing: " + currentUUID);
+        if (currentUUID == "")
         {
             return false;
         }
@@ -38,9 +39,11 @@ public class BudgetSystem {
         return incomesList;
     }
 
-    public boolean addIncome(String source, float amount){
+    public boolean addIncome(String source, double amount, String category, String date, int isRecurring){
         // call income manager to add income transaction in database
-        return true;
+        boolean recurring = (isRecurring != 0);
+        boolean addedIncome = IncomeManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
+        return addedIncome;
     }
 
     public boolean addBudget(String category, float amount){

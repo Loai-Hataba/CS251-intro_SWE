@@ -1,19 +1,21 @@
 package com.budgetapp.transaction;
 
+import com.budgetapp.methods.Methods;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+// import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import com.budgetapp.database.Records;
 
 public class IncomeManager implements  ITransactionManager{
 
     // The Attributes :
-    private IncomeManager instance ;
+    private static IncomeManager instance ;
     private static final String INCOMES_FILE = "incomes.json";
     private final Gson gson;
     private ArrayList <Income> incomes ;
@@ -34,7 +36,7 @@ public class IncomeManager implements  ITransactionManager{
     }
 
     // Function to access the instance :
-    public IncomeManager getInstance() {
+    public static IncomeManager getInstance() {
         if (instance == null) {
             instance = new IncomeManager();
         }
@@ -43,24 +45,28 @@ public class IncomeManager implements  ITransactionManager{
 
     // The interface functions :
     @Override
-    public boolean add (String  title , Date date , String category , double amount , boolean isRecurring ){
-        if (title == null || title == ""){
-            System.out.println("Title is null or empty");
+    public boolean add (String UUID, String source ,double amount, String category, String date, boolean isRecurring ){
+        Income income = new Income(UUID, source, amount, category, date, isRecurring);
+
+        // Get the user record
+        Records userRecord = Methods.getRecordById(UUID);
+        if (userRecord == null) {
+            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        if (date == null || date.after(new Date())){
-            System.out.println("Date is null or empty");
-            return false;
+
+        // Prepare a list to add
+        List<Income> newIncomeList = new ArrayList<>();
+        newIncomeList.add(income);
+
+        // If the user already has an income list, merge it
+        if (userRecord.income != null) {
+            newIncomeList.addAll(0, userRecord.income); // add existing incomes at the start
         }
-        if (category == null || category == ""){
-            System.out.println("Category is null or empty");
-            return false;
-        }
-        if (amount < 0 || amount > Double.MAX_VALUE){
-            System.out.println("Invalid amount");
-            return false;
-        }
-        return true;
+
+        // Now update the field with the new list
+        boolean added = Methods.updateRecordField(UUID, "income", newIncomeList);
+        return added;
     }
 
     // @Override

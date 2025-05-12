@@ -1,6 +1,5 @@
 package com.budgetapp.transaction;
 
-import java.util.Date;
 
 /**
  * Represents an income transaction in the BudgetApp.
@@ -16,7 +15,7 @@ public class Income implements ITransaction {
     private int id;
     private String userId;
     private String source;
-    private Date date;
+    private String date;
     private double amount;
     private boolean isRecurring;
     private String category;
@@ -33,8 +32,8 @@ public class Income implements ITransaction {
      * @param isRecurring {@code true} if the income is recurring
 
      */
-    Income(int id, String userId, String source,double amount,String category,Date date ,  boolean isRecurring) {
-        this.id = id;
+    Income(String userId, String source,double amount,String category,String date ,  boolean isRecurring) {
+        // this.id = id;
         this.source = source;
         this.date = date;
         this.amount = amount;
@@ -77,11 +76,7 @@ public class Income implements ITransaction {
      * @param date the new date
      */
     @Override
-    public void setDate(Date date) {
-        if (date == null || date.after(new Date())) {
-            System.out.println("Invalid date");
-            return;
-        }
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -145,7 +140,7 @@ public class Income implements ITransaction {
      * @return the income date
      */
     @Override
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 

@@ -6,7 +6,6 @@
  */
 package com.budgetapp.transaction;
 
-import java.util.Date;
 
 public interface ITransaction {
 
@@ -29,7 +28,7 @@ public interface ITransaction {
      *
      * @param date the date of the transaction
      */
-    void setDate(Date date);
+    void setDate(String date);
 
     /**
      * Marks whether the transaction is recurring.
@@ -71,7 +70,7 @@ public interface ITransaction {
      *
      * @return the transaction date
      */
-    Date getDate();
+    String getDate();
 
     /**
      * Checks whether the transaction is marked as recurring.

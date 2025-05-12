@@ -21,6 +21,17 @@
     "password": "12345B",
     "email": "loai@hoss.abdo",
     "phoneNumber": "01275397858",
-    "country": "koko"
+    "country": "koko",
+    "income": [
+      {
+        "id": 0,
+        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
+        "source": "drugs",
+        "date": "05/05/2025",
+        "amount": 1.50000005E7,
+        "isRecurring": true,
+        "category": "passive income"
+      }
+    ]
   }
 ]
