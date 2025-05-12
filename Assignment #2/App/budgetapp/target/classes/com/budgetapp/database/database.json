@@ -24,25 +24,16 @@
     "country": "koko",
     "income": [
       {
-        "id": 3,
+        "id": 1,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "mac",
-        "date": "05/05/1346",
-        "amount": 698.0,
-        "isRecurring": false,
-        "category": "burgers"
+        "source": "koko",
+        "date": "05/05/2005",
+        "amount": 123.0,
+        "isRecurring": true,
+        "category": "sksk"
       }
     ],
-    "expense": [
-      {
-        "id": 3,
-        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "title": "lolo",
-        "amount": 123.0,
-        "category": "iuf",
-        "date": "07/07/0707",
-        "isRecurring": false
-      }
-    ]
+    "budget": [],
+    "expense": []
   }
 ]

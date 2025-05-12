@@ -65,15 +65,24 @@ public class UI {
     public void displayDashboard(){
         while(true){
             System.out.println("            Dina Dash board hahaha");
-            System.out.println("\n\n1)Income\n" + //
-                                    "2)Expense");
-            int choice = Methods.numInput('1', '2');
+            System.out.println("\n\n1)Income\n2)Expense\n3)Budget\n4)Reminder\n5)Exit");
+            int choice = Methods.numInput('1', '5');
             switch (choice) {
                 case 1:
                     displayIncome();
                     break;
                 case 2:
                     displayExpense();
+                    break;
+                case 3:
+                    displayBudget();
+                    break;
+                case 4:
+                    displayReminder();
+                    break;
+                case 5:
+                System.out.println("Goodbye!!");
+                    System.exit(0);
                     break;
                 default:
                     break;
@@ -145,7 +154,7 @@ public class UI {
                 } 
             }
             else {
-                System.err.println("No Income Data yet.\n\n");
+                System.out.println("No Income Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Income\n2)Edit Income\n3)Delete Income\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
@@ -196,7 +205,7 @@ public class UI {
                 } 
             }
             else {
-                System.err.println("No expense Data yet.\n\n");
+                System.out.println("No expense Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Expense\n2)Edit Expense\n3)Delete Expense\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
@@ -235,15 +244,60 @@ public class UI {
         }
     }
     
+
     public void displayBudget(){
-        
+        while (true){
+            List<String> budgetRecords = mySystem.fetchBudget();
+            if (!budgetRecords.isEmpty())
+            {
+                System.out.println("Budget Records: ");
+                for (String record : budgetRecords){
+                    System.out.println(record);
+                } 
+            }
+            else {
+                System.out.println("No Budget Data yet.\n\n");
+            }
+            System.out.println("What do you want to do: \n\n1)Add Budget\n2)Edit Budget\n3)Delete Budget\n4)Dashboard\nChoice: ");
+            int choice = Methods.numInput('1', '4');
+            switch (choice) {
+                case 1:
+                    System.out.println("Add Budget:\n");
+                    String source = Methods.stringInput("Enter Budget Source: ");
+                    double amount = Methods.doubleInput("Enter Budget amount: ");
+                    String category = Methods.stringInput("Enter Budget Category: ");
+                    System.out.print("Start Date\n");
+                    String startDate = Methods.dateInput();
+                    System.out.print("End Date\n");
+                    String endDate = Methods.dateInput();
+                    mySystem.addBudget(source, amount, category, startDate, endDate);
+                    break;
+                case 2:
+                    System.out.println("Edit Budget:\n");
+                    System.out.println("Enter Budget ID: ");
+                    int editBudgetId = Methods.numInput();
+                    String editSource = Methods.stringInput("Enter Budget Source: ");
+                    double editAmount = Methods.doubleInput("Enter Budget amount: ");
+                    String editCategory = Methods.stringInput("Enter Budget Category: ");
+                    System.out.print("Start Date\n");
+                    String editStartDate = Methods.dateInput();
+                    System.out.print("End Date\n");
+                    String editEndDate = Methods.dateInput();
+                    mySystem.editBudget(editSource, editBudgetId, editAmount, editCategory, editStartDate, editEndDate);
+                    break;
+                case 3:
+                    System.out.println("Delete Budget:\n");
+                    System.out.println("Enter Budget ID: ");
+                    int deleteBudgetId = Methods.numInput();
+                    mySystem.deleteBudget(deleteBudgetId);
+                    break;
+                case 4:
+                    return;
+            }   
+        }
     }
     public void displayReminder(){
         
-    }
-
-    public boolean authenticate(String username, String password){
-        return true;
     }
 
     public void showMessage(String message){

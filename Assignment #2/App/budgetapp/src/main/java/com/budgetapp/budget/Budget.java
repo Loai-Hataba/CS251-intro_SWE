@@ -1,6 +1,5 @@
 package com.budgetapp.budget;
 
-import java.util.Date;
 
 /**
  * Represents a budget entry in the Budget App.
@@ -13,8 +12,8 @@ public class Budget {
     private String UUID;
     private int id;
     private String title;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private double amount;
     private String category;
 
@@ -29,7 +28,7 @@ public class Budget {
      * @param amount    the total amount allocated to the budget
      * @param category  the category of the budget (e.g., Food, Transport)
      */
-    public Budget(String UUID, int id, String title, Date startDate, Date endDate, double amount, String category) {
+    public Budget(String UUID, int id, String title, String startDate, String endDate, double amount, String category) {
         this.UUID = UUID;
         this.id = id;
         this.title = title;
@@ -66,22 +65,22 @@ public class Budget {
     }
 
     /** @return the start date of the budget */
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
     /** @param startDate the start date to set */
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
     /** @return the end date of the budget */
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
     /** @param endDate the end date to set */
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -105,6 +104,6 @@ public class Budget {
         this.category = category;
     }
     public String getSummary() {
-        return  "id : " + this.id ;
+        return  "id : " + this.id + " source : " + this.title + " amount : " + this.amount + "begin date : " + this.startDate + "End Date: " + this.endDate;
     }
 }

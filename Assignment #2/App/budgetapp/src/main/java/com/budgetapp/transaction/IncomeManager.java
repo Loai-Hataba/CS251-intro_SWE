@@ -26,19 +26,17 @@ public class IncomeManager implements  ITransactionManager{
     @Override
     public boolean add (String UUID, String source ,double amount, String category, String date, boolean isRecurring ){
 
-
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-
         // Prepare a list to add
         List<Income> newIncomeList = new ArrayList<>();
         int size;
         if (userRecord.income == null){
-            size = 0;
+            size = 1;
         } else size = userRecord.income.size() + 1;
         Income income = new Income(UUID, size ,source, amount, category, date, isRecurring);
         newIncomeList.add(income);
@@ -81,8 +79,8 @@ public class IncomeManager implements  ITransactionManager{
             }
         }
         // insert the new list into the user record
-        boolean removed = Methods.updateRecordField(UUID, "income", currentIncomes);
-        return removed;
+        return Methods.updateRecordField(UUID, "income", currentIncomes);
+        
 
     }
 
@@ -115,14 +113,11 @@ public class IncomeManager implements  ITransactionManager{
                 break;
             }
         }
-        boolean edited = Methods.updateRecordField(UUID, "income", currentIncomes);
-        return edited;
-
+        return Methods.updateRecordField(UUID, "income", currentIncomes);
     }
 
     @Override
     public List<String> summary(String UUID) {
-
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             System.out.println("User record not found for UUID: " + UUID);

@@ -3,7 +3,6 @@ package com.budgetapp.budget;
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BudgetManager {
@@ -18,7 +17,7 @@ public class BudgetManager {
         return instance;
     }
 
-    public boolean add(String UUID, String title, Date startDate, Date endDate, double amount, String category){
+    public boolean add(String UUID, String title, double amount, String category, String startDate, String endDate){
 
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
@@ -28,7 +27,11 @@ public class BudgetManager {
         }
         // Prepare a list to add
         List<Budget> newBudgets = new ArrayList<>();
-        Budget budget = new Budget(UUID, userRecord.budget.size() + 1 ,title, startDate, endDate, amount, category);
+        int size;
+        if (userRecord.budget == null){
+            size = 1;
+        } else size = userRecord.budget.size() + 1;
+        Budget budget = new Budget(UUID, size ,title, startDate, endDate, amount, category);
         newBudgets.add(budget);
 
         // If the user already has a Budget list, merge it
@@ -40,7 +43,8 @@ public class BudgetManager {
         return Methods.updateRecordField(UUID, "budget", newBudgets);
     }
 
-    public boolean delete(String UUID , int id ) {
+
+    public boolean remove(String UUID , int id ) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
@@ -66,9 +70,11 @@ public class BudgetManager {
             }
         }
         // insert the new list into the user record
-        return Methods.updateRecordField(UUID, "Budget", currenBudgets);
+        return Methods.updateRecordField(UUID, "budget", currenBudgets);
     }
-    public boolean update(String UUID, int id  ,String title, Date startDate, Date endDate, double amount, String category){
+
+
+    public boolean edit(String UUID, int id  ,String title, double amount, String category, String startDate, String endDate){
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
@@ -106,11 +112,15 @@ public class BudgetManager {
             return null;
         }
         List<Budget> currentBudgets = userRecord.budget;
+        if (currentBudgets == null)
+        {
+            List<String> emptyList = new ArrayList<>();
+            return emptyList;
+        }
         List<String> summaries = new ArrayList<>();
         for (Budget Budget : currentBudgets) {
             summaries.add(Budget.getSummary());
         }
         return summaries;
     }
-
 }

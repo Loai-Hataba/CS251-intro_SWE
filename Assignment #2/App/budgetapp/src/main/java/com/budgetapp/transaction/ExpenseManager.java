@@ -33,7 +33,7 @@ public class ExpenseManager  implements  ITransactionManager{
         List<Expense> newExpneseList = new ArrayList<>();
         int size;
         if (userRecord.expense == null){
-            size = 0;
+            size = 1;
         } else size = userRecord.expense.size() + 1;
         Expense expense = new Expense(UUID, size ,source, amount, category, date, isRecurring);
         newExpneseList.add(expense);

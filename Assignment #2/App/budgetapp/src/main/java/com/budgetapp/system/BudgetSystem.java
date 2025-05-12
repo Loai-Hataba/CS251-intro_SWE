@@ -2,6 +2,7 @@ package com.budgetapp.system;
 
 import java.util.List;
 
+import com.budgetapp.budget.BudgetManager;
 import com.budgetapp.transaction.ExpenseManager;
 import com.budgetapp.transaction.IncomeManager;
 import com.budgetapp.user.AuthenticationManager;
@@ -37,55 +38,58 @@ public class BudgetSystem {
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Income
     public List<String> fetchIncome(){
-        List<String> incomesList = IncomeManager.getInstance().summary(currentUUID);
-        return incomesList;
+        return IncomeManager.getInstance().summary(currentUUID);
     }
 
     public boolean addIncome(String source, double amount, String category, String date, int isRecurring){
         // call income manager to add income transaction in database
         boolean recurring = (isRecurring != 0);
-        boolean addedIncome = IncomeManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
-        return addedIncome;
+        return IncomeManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
     }
 
     public boolean editIncome(String source, int incomeId, double amount, String category, String date, int isRecurring){
         boolean recurring = (isRecurring != 0);
-        boolean editedIncome = IncomeManager.getInstance().edit(currentUUID, incomeId, source, amount, category, date, recurring);
-        return editedIncome;
+        return IncomeManager.getInstance().edit(currentUUID, incomeId, source, amount, category, date, recurring);
     }
 
     public boolean deleteIncome(int incomeId){
-        boolean deletedIncome = IncomeManager.getInstance().remove(currentUUID, incomeId);
-        return deletedIncome;
+        return IncomeManager.getInstance().remove(currentUUID, incomeId);
     }
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Expense
     public List<String> fetchExpense(){
-        List<String> expenseList = ExpenseManager.getInstance().summary(currentUUID);
-        return expenseList;
+        return ExpenseManager.getInstance().summary(currentUUID);
     }
 
      public boolean addExpense(String source, double amount, String category, String date, int isRecurring){
         boolean recurring = (isRecurring != 0);
-        boolean addedIncome = ExpenseManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
-        return addedIncome;
+        return ExpenseManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
     }
 
     public boolean editExpense(String source, int expenseId, double amount, String category, String date, int isRecurring){
         boolean recurring = (isRecurring != 0);
-        boolean editedIncome = ExpenseManager.getInstance().edit(currentUUID, expenseId, source, amount, category, date, recurring);
-        return editedIncome;
+        return ExpenseManager.getInstance().edit(currentUUID, expenseId, source, amount, category, date, recurring);
     }
 
     public boolean deleteExpense(int expenseId){
-        boolean deletedExpense = ExpenseManager.getInstance().remove(currentUUID, expenseId);
-        return deletedExpense;
+        return ExpenseManager.getInstance().remove(currentUUID, expenseId);
     }
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Budget
-    public boolean addBudget(String category, float amount){
-        // call income manager to add budget in database
-        return true;
+    public List<String> fetchBudget(){
+        return BudgetManager.getInstance().summary(currentUUID);
+    }
+
+     public boolean addBudget(String source, double amount, String category, String startDate, String endDate){
+        return BudgetManager.getInstance().add(currentUUID, source, amount, category, startDate, endDate);
+    }
+
+    public boolean editBudget(String source, int budgetId, double amount, String category, String startDate, String endDate){
+        return BudgetManager.getInstance().edit(currentUUID, budgetId, source, amount, category, startDate, endDate);
+    }
+
+    public boolean deleteBudget(int budgetId){
+        return BudgetManager.getInstance().remove(currentUUID, budgetId);
     }
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
