@@ -128,13 +128,23 @@ public class ReminderManager implements Subject {
         }
         return summaries;
     }
-    public void registerObserver(Observer observer){
-        
+    @Override
+    public void registerObserver(Observer observer) {
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
-    public void removeObserver(Observer observer){
 
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
     }
-    public void notifyObservers(){
 
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(msg); // Send the current message
+        }
     }
+
 }
