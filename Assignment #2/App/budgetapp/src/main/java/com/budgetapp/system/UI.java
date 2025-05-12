@@ -147,7 +147,6 @@ public class UI {
             else {
                 System.err.println("No Income Data yet.\n\n");
             }
-
             System.out.println("What do you want to do: \n\n1)Add Income\n2)Edit Income\n3)Delete Income\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
@@ -178,7 +177,6 @@ public class UI {
                     System.out.println("Enter Income ID: ");
                     int deleteIncomeId = Methods.numInput();
                     mySystem.deleteIncome(deleteIncomeId);
-
                     break;
                 case 4:
                     return;
@@ -186,50 +184,69 @@ public class UI {
         }
     }
 
+    
+    public void displayExpense(){
+        while (true){
+            List<String> expenseRecords = mySystem.fetchExpense();
+            if (!expenseRecords.isEmpty())
+            {
+                System.out.println("Expense Records: ");
+                for (String record : expenseRecords){
+                    System.out.println(record);
+                } 
+            }
+            else {
+                System.err.println("No expense Data yet.\n\n");
+            }
+            System.out.println("What do you want to do: \n\n1)Add Expense\n2)Edit Expense\n3)Delete Expense\n4)Dashboard\nChoice: ");
+            int choice = Methods.numInput('1', '4');
+            switch (choice) {
+                case 1:
+                System.out.println("Add Expense:\n");
+                String source = Methods.stringInput("Enter Expense Source: ");
+                double amount = Methods.doubleInput("Enter Expense amount: ");
+                String category = Methods.stringInput("Enter Expense Category: ");
+                String date = Methods.dateInput();
+                System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                int isRecurring = Methods.numInput('0', '1');
+                mySystem.addExpense(source, amount, category, date, isRecurring);
+                break;
+                case 2:
+                System.out.println("Edit Expense:\n");
+                System.out.println("Enter Expense ID: ");
+                int editExpenseId = Methods.numInput();
+                String editSource = Methods.stringInput("Enter Expense Source: ");
+                double editAmount = Methods.doubleInput("Enter Expense amount: ");
+                String editCategory = Methods.stringInput("Enter Expense Category: ");
+                String editDate = Methods.dateInput();
+                System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                int editIsRecurring = Methods.numInput('0', '1');
+                mySystem.editExpense(editSource, editExpenseId, editAmount, editCategory, editDate, editIsRecurring);
+                break;
+                case 3:
+                System.out.println("Delete Expense:\n");
+                System.out.println("Enter Expense ID: ");
+                int deleteExpenseId = Methods.numInput();
+                mySystem.deleteExpense(deleteExpenseId);
+                break;
+                case 4:
+                return;
+            }   
+        }
+    }
+    
     public void displayBudget(){
         
     }
-    
-    public void displayExpense(){
-        
-    }
-
     public void displayReminder(){
         
-    }
-
-    public boolean verifyEmail(String email){
-        return true;
     }
 
     public boolean authenticate(String username, String password){
         return true;
     }
 
-    public boolean addIncome(String incomeSource, float amount){
-        return true;
-    }    
-
-    public boolean addBudget(String category, float amount){
-        return true;
-    }
-
-    public boolean addReminder(String reminderName,String time){
-        return true;
-    }
-
-    public boolean addExpense(String category, float amount, String date){
-        return true;
-    }
-
     public void showMessage(String message){
 
     }
-
-    public boolean verifyOTP(int OTP){
-        return true;
-    }
-
-    
-    
 }

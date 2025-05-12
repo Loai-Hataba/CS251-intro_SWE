@@ -1,11 +1,10 @@
 package com.budgetapp.system;
 
-import com.budgetapp.user.AuthenticationManager;
-import com.budgetapp.transaction.*;
 import java.util.List;
-import java.util.ArrayList;
-import com.budgetapp.database.Records;
-import com.budgetapp.methods.Methods;
+
+import com.budgetapp.transaction.ExpenseManager;
+import com.budgetapp.transaction.IncomeManager;
+import com.budgetapp.user.AuthenticationManager;
 
 public class BudgetSystem {
     private String currentUUID = "";
@@ -35,6 +34,8 @@ public class BudgetSystem {
         return true;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Income
     public List<String> fetchIncome(){
         List<String> incomesList = IncomeManager.getInstance().summary(currentUUID);
         return incomesList;
@@ -57,17 +58,40 @@ public class BudgetSystem {
         boolean deletedIncome = IncomeManager.getInstance().remove(currentUUID, incomeId);
         return deletedIncome;
     }
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Expense
+    public List<String> fetchExpense(){
+        List<String> expenseList = ExpenseManager.getInstance().summary(currentUUID);
+        return expenseList;
+    }
 
+     public boolean addExpense(String source, double amount, String category, String date, int isRecurring){
+        boolean recurring = (isRecurring != 0);
+        boolean addedIncome = ExpenseManager.getInstance().add(currentUUID, source, amount, category, date, recurring);
+        return addedIncome;
+    }
+
+    public boolean editExpense(String source, int expenseId, double amount, String category, String date, int isRecurring){
+        boolean recurring = (isRecurring != 0);
+        boolean editedIncome = ExpenseManager.getInstance().edit(currentUUID, expenseId, source, amount, category, date, recurring);
+        return editedIncome;
+    }
+
+    public boolean deleteExpense(int expenseId){
+        boolean deletedExpense = ExpenseManager.getInstance().remove(currentUUID, expenseId);
+        return deletedExpense;
+    }
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Budget
     public boolean addBudget(String category, float amount){
         // call income manager to add budget in database
         return true;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Reminder
     public boolean addReminder(String reminderName, String date, String time){
         return true; 
     }
 
-    public boolean addExpense(String category, float amount, String date){
-        return true; 
-    }
 }

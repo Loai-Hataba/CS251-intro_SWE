@@ -29,10 +29,13 @@ public class ExpenseManager  implements  ITransactionManager{
             return false;
         }
 
-
         // Prepare a list to add
         List<Expense> newExpneseList = new ArrayList<>();
-        Expense expense = new Expense(UUID, userRecord.expense.size() + 1 ,source, amount, category, date, isRecurring);
+        int size;
+        if (userRecord.expense == null){
+            size = 0;
+        } else size = userRecord.expense.size() + 1;
+        Expense expense = new Expense(UUID, size ,source, amount, category, date, isRecurring);
         newExpneseList.add(expense);
 
         // If the user already has an expense list, merge it
@@ -67,6 +70,7 @@ public class ExpenseManager  implements  ITransactionManager{
         for (Expense expense : currentExpense) {
             if (expense.getId() == id) {
                 currentExpense.remove(expense);
+                System.out.println("deleted ya basha");
                 break;
             }
         }
@@ -116,6 +120,10 @@ public class ExpenseManager  implements  ITransactionManager{
             return null;
         }
         List<Expense> currentExpenses = userRecord.expense;
+        if (currentExpenses == null){
+            List<String> emptyList = new ArrayList<>();
+            return emptyList;
+        }
         List<String> summaries = new ArrayList<>();
         for (Expense expense : currentExpenses) {
             summaries.add(expense.getSummary());

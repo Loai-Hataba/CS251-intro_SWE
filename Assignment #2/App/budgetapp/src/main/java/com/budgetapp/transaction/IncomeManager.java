@@ -34,7 +34,6 @@ public class IncomeManager implements  ITransactionManager{
             return false;
         }
 
-
         // Prepare a list to add
         List<Income> newIncomeList = new ArrayList<>();
         int size;
@@ -50,8 +49,7 @@ public class IncomeManager implements  ITransactionManager{
         }
 
         // Now update the field with the new list
-        boolean added = Methods.updateRecordField(UUID, "income", newIncomeList);
-        return added;
+        return Methods.updateRecordField(UUID, "income", newIncomeList);
     }
 
 
@@ -133,7 +131,6 @@ public class IncomeManager implements  ITransactionManager{
         List<Income> currentIncomes = userRecord.income;
         if (currentIncomes == null)
         {
-            System.out.println("test yarab ya abdallah");
             List<String> emptyList = new ArrayList<>();
             return emptyList;
         }
