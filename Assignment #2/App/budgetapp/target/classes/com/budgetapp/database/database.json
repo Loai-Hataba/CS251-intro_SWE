@@ -88,5 +88,46 @@
         "isRecurring": false
       }
     ]
+  },
+  {
+    "id": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
+    "username": "loaih",
+    "password": "ABC\u003e?@K",
+    "email": "lol@koko.com",
+    "phoneNumber": "01275397858",
+    "country": "zimbabwe",
+    "income": [],
+    "budget": [
+      {
+        "UUID": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
+        "id": 1,
+        "title": "jij",
+        "startDate": "08/08/0808",
+        "endDate": "08/08/0808",
+        "amount": 123.0,
+        "category": "456"
+      }
+    ],
+    "reminder": [
+      {
+        "UUID": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
+        "id": 1,
+        "title": "123",
+        "date": "08/08/0808",
+        "description": "123",
+        "time": "12:12"
+      }
+    ],
+    "expense": [
+      {
+        "id": 1,
+        "userId": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
+        "title": "huihiujh",
+        "amount": 456.0,
+        "category": "kok",
+        "date": "08/08/0008",
+        "isRecurring": true
+      }
+    ]
   }
 ]

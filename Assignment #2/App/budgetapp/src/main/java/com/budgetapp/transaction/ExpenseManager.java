@@ -58,10 +58,15 @@ public class ExpenseManager implements ITransactionManager {
     public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
         Records userRecord = Methods.getUserRecord(UUID, false);
         if (userRecord == null) {
+            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        currentExpenses = userRecord.expense;
-        int size = (currentExpenses == null) ? 1 : userRecord.expense.size() + 1;
+        if (userRecord.expense != null){
+            currentExpenses = userRecord.expense;
+        }else {
+            currentExpenses = new ArrayList<>();
+        }
+        int size = (currentExpenses == null) ? 1 : currentExpenses.size() + 1;
         Expense expense = new Expense(UUID, size, source, amount, category, date, isRecurring);
         currentExpenses.add(expense);
         return Methods.updateRecordField(UUID, "expense", currentExpenses);

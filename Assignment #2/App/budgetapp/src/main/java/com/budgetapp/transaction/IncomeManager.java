@@ -60,9 +60,12 @@ public class IncomeManager implements ITransactionManager {
         if (userRecord == null) {
             return false;
         }
-
-        currentIncomes = userRecord.income;
-        int size = (currentIncomes == null) ? 1 : userRecord.income.size() + 1;
+        if (userRecord.income != null){
+            currentIncomes = userRecord.income;
+        }else {
+            currentIncomes = new ArrayList<>();
+        }
+        int size = (currentIncomes == null) ? 1 : currentIncomes.size() + 1;
 
         Income income = new Income(UUID, size, source, amount, category, date, isRecurring);
         currentIncomes.add(income);

@@ -59,8 +59,12 @@ public class BudgetManager {
         if (userRecord == null) {
             return false;
         }
-        currentBudgets = userRecord.budget;
-        int size = (userRecord.budget == null) ? 1 : userRecord.budget.size() + 1;
+        if (userRecord.budget != null){
+            currentBudgets = userRecord.budget;
+        }else {
+            currentBudgets = new ArrayList<>();
+        }
+        int size = (currentBudgets == null) ? 1 : currentBudgets.size() + 1;
         Budget budget = new Budget(UUID, size, title, startDate, endDate, amount, category);
         currentBudgets.add(budget);
         return Methods.updateRecordField(UUID, "budget", currentBudgets);

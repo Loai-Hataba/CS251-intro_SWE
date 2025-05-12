@@ -4,7 +4,6 @@ import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
 import com.budgetapp.notification.Observer;
 import com.budgetapp.reminder.Subject;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +36,9 @@ public class ReminderManager implements Subject {
         if(userRecord.reminder != null)
         {
             newReminders = userRecord.reminder;
+        }
+        else {
+            newReminders = new ArrayList<>();
         }
         int size = (newReminders == null) ? 1 : newReminders.size() + 1;
 
