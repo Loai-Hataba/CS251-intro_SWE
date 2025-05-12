@@ -1,25 +1,27 @@
 package com.budgetapp.transaction;
 
-import com.budgetapp.database.Records;
-import com.budgetapp.methods.Methods;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpenseManager  implements  ITransactionManager{
-    
-    private static ExpenseManager instance  ;
-    
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
+
+public class ExpenseManager implements ITransactionManager {
+
+    private static ExpenseManager instance;
+
     // Make the constructor private 
-    private ExpenseManager(){}
+    private ExpenseManager() {
+    }
+
     // The function to access the instance object 
-    public static ExpenseManager getInstance(){
-        if(instance == null){
+    public static ExpenseManager getInstance() {
+        if (instance == null) {
             instance = new ExpenseManager();
         }
         return instance;
     }
-    
+
     @Override
     public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
         // Get the user record
@@ -32,10 +34,12 @@ public class ExpenseManager  implements  ITransactionManager{
         // Prepare a list to add
         List<Expense> newExpneseList = new ArrayList<>();
         int size;
-        if (userRecord.expense == null){
+        if (userRecord.expense == null) {
             size = 1;
-        } else size = userRecord.expense.size() + 1;
-        Expense expense = new Expense(UUID, size ,source, amount, category, date, isRecurring);
+        } else {
+            size = userRecord.expense.size() + 1;
+        }
+        Expense expense = new Expense(UUID, size, source, amount, category, date, isRecurring);
         newExpneseList.add(expense);
 
         // If the user already has an expense list, merge it
@@ -61,7 +65,7 @@ public class ExpenseManager  implements  ITransactionManager{
             System.out.println("expense list for UUID: " + UUID + " is empty");
             return false;
         }
-        if(id > currentExpense.size()){
+        if (id > currentExpense.size()) {
             System.out.println("The entered id is greater than the number of records in the expense list");
             return false;
         }
@@ -73,6 +77,10 @@ public class ExpenseManager  implements  ITransactionManager{
                 System.out.println("deleted ya basha");
                 break;
             }
+        }
+        // After deleting modify the
+        for (int i = 0; i < currentExpense.size(); i++) {
+            currentExpense.get(i).setId(i + 1);
         }
         // insert the new list into the user record
         return Methods.updateRecordField(UUID, "expense", currentExpense);
@@ -92,7 +100,7 @@ public class ExpenseManager  implements  ITransactionManager{
             System.out.println("expense list for UUID: " + UUID + " is empty");
             return false;
         }
-        if(id > currentExpense.size()){
+        if (id > currentExpense.size()) {
             System.out.println("The entered id is greater than the number of records in the expense list");
             return false;
         }
@@ -120,7 +128,7 @@ public class ExpenseManager  implements  ITransactionManager{
             return null;
         }
         List<Expense> currentExpenses = userRecord.expense;
-        if (currentExpenses == null){
+        if (currentExpenses == null) {
             List<String> emptyList = new ArrayList<>();
             return emptyList;
         }

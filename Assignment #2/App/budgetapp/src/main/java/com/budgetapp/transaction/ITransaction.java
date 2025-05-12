@@ -6,8 +6,14 @@
  */
 package com.budgetapp.transaction;
 
-
 public interface ITransaction {
+
+    /**
+     * Sets the ID of the transaction.
+     *
+     * @param id the transaction ID
+     */
+    void setId(int id);
 
     /**
      * Sets the amount of the transaction.
@@ -19,7 +25,7 @@ public interface ITransaction {
     /**
      * Sets the title of the transaction.
      *
-     * @param title  the title of the transaction
+     * @param title the title of the transaction
      */
     void setTitle(String title);
 
@@ -33,7 +39,8 @@ public interface ITransaction {
     /**
      * Marks whether the transaction is recurring.
      *
-     * @param recurring {@code true} if the transaction is recurring, {@code false} otherwise
+     * @param recurring {@code true} if the transaction is recurring,
+     * {@code false} otherwise
      */
     void markAsRecurring(boolean recurring);
 
@@ -100,4 +107,3 @@ public interface ITransaction {
      */
     String getCategory();
 }
-

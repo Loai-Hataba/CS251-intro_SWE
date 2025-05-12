@@ -24,13 +24,22 @@
     "country": "koko",
     "income": [
       {
+        "id": 0,
+        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
+        "source": "ui",
+        "date": "20/10/2025",
+        "amount": 120.0,
+        "isRecurring": false,
+        "category": "ji"
+      },
+      {
         "id": 1,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "koko",
-        "date": "05/05/2005",
-        "amount": 123.0,
+        "source": "op",
+        "date": "20/10/2025",
+        "amount": 1090.0,
         "isRecurring": true,
-        "category": "sksk"
+        "category": "ko"
       }
     ],
     "budget": [],

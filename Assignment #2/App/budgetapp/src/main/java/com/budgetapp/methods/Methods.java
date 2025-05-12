@@ -15,6 +15,7 @@ import com.budgetapp.database.Records;
 import com.google.gson.Gson;
 
 public class Methods {
+
     private static final Scanner scanner = new Scanner(System.in);
     private static final Console console = System.console();
 
@@ -52,23 +53,24 @@ public class Methods {
         }
     }
 
-    public static int numInput(){
+    public static int numInput() {
         char choice = ' ';
-        while (true){
+        while (true) {
             String input = scanner.nextLine();
             if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
                 choice = input.charAt(0);
             } else {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
-        //converting the char into number
-        return choice - '0';
+            //converting the char into number
+            return choice - '0';
         }
     }
-    public static int numInput(char begin, char end){
+
+    public static int numInput(char begin, char end) {
         char choice;
 
-        while (true){
+        while (true) {
             String input = scanner.nextLine();
             if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
                 choice = input.charAt(0);
@@ -93,8 +95,7 @@ public class Methods {
         return stringInput("Enter date (DD/MM/YYYY): ", datePattern, errorMsg);
     }
 
-
-     // private function to validate the entered password
+    // private function to validate the entered password
     public static boolean isValidPassword(String password) {
 
         // Regex to check for at least one digit, one uppercase letter, and a minimum length of 6 characters
@@ -119,33 +120,33 @@ public class Methods {
         }
     }
 
-    public static String passwordInput(String prompt){
+    public static String passwordInput(String prompt) {
         /* console only */
         // if (console == null) {
         //     throw new IllegalStateException("Console not available. Please run from a supported terminal.");
         // }
         String psswrd;
-        while (true){
+        while (true) {
             System.out.print(prompt);
             psswrd = scanner.nextLine();
             // console only
             // char[] password = console.readPassword(prompt);
             // psswrd = new String(password); 
-            if (!isValidPassword(psswrd)){
+            if (!isValidPassword(psswrd)) {
                 System.out.println("Password shall contain at least one digit, one uppercase letter, and a minimum length of 6 characters");
+            } else {
+                break;
             }
-            else break;
         }
         return new String(psswrd);
     }
-
 
     private static final String RECORDS_FILE = "Assignment #2\\App\\budgetapp\\src\\main\\java\\com\\budgetapp\\database\\database.json";
     private static final HashMap<String, Records> records = new HashMap<>();
     private static final Gson gson = GsonTool.getGson();
 
-    public static HashMap<String, Records> loadRecords(){
-         // Load all database rows into an array of record objects
+    public static HashMap<String, Records> loadRecords() {
+        // Load all database rows into an array of record objects
         File file = new File(RECORDS_FILE);
         if (file.exists() && file.length() > 0) {
             try (Reader reader = new FileReader(file)) {
@@ -195,7 +196,7 @@ public class Methods {
         }
     }
 
-     // Insert record into memory list (and you can extend this to save to file)
+    // Insert record into memory list (and you can extend this to save to file)
     public static boolean insertRecord(Records rec) {
         if (rec.id == null || records.containsKey(rec.id)) {
             return false;
@@ -206,8 +207,7 @@ public class Methods {
         return true;
     }
 
-
-    public static  boolean deleteRecord(String id) {
+    public static boolean deleteRecord(String id) {
         if (records.containsKey(id)) {
             records.remove(id);
             saveRecordsToFile();
@@ -221,7 +221,7 @@ public class Methods {
         return records.get(id);
     }
 
-    public static void closeScanner(){
+    public static void closeScanner() {
         scanner.close();
     }
 }

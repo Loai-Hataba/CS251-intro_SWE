@@ -1,38 +1,36 @@
 package com.budgetapp.transaction;
 
-
 /**
- * Represents an expense transaction in the BudgetApp.
- * Implements the {@link ITransaction} interface and defines properties specific to expense..
+ * Represents an expense transaction in the BudgetApp. Implements the
+ * {@link ITransaction} interface and defines properties specific to expense..
  *
  * @author Abdallah Mohamed
  * @version 2.0
  * @since 2025-05-10
  */
-public class Expense  implements  ITransaction{
+public class Expense implements ITransaction {
 
-    private int id ;
-    private String userId ;
-    private String title ;
+    private int id;
+    private String userId;
+    private String title;
     private double amount;
-    private String category ;
+    private String category;
     private String date;
-    private boolean isRecurring ;
-
+    private boolean isRecurring;
 
     /**
      * Constructs a new {@code expense} object.
      *
-     * @param id          the ID of the expense
-     * @param userId      the user ID who owns the transaction
-     * @param title       the expense title
-     * @param amount      the amount of money received
-     * @param category    the category of expense
-     * @param date        the date of the transaction
+     * @param id the ID of the expense
+     * @param userId the user ID who owns the transaction
+     * @param title the expense title
+     * @param amount the amount of money received
+     * @param category the category of expense
+     * @param date the date of the transaction
      * @param isRecurring {@code true} if the expense is recurring
      */
     // The Constructor :
-    Expense( String userId, int id, String title,  double amount , String category,String date,boolean isRecurring) {
+    Expense(String userId, int id, String title, double amount, String category, String date, boolean isRecurring) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -65,7 +63,7 @@ public class Expense  implements  ITransaction{
     public void setTitle(String title) {
         if (title == null || title.isEmpty()) {
             System.out.println("Invalid title");
-            return ;
+            return;
         }
         this.title = title;
     }
@@ -90,7 +88,6 @@ public class Expense  implements  ITransaction{
         this.isRecurring = recurring;
     }
 
-
     /**
      * Sets the expense category.
      *
@@ -100,11 +97,10 @@ public class Expense  implements  ITransaction{
     public void setCategory(String category) {
         if (category == null || category.isEmpty()) {
             System.out.println("Invalid category");
-            return ;
+            return;
         }
         this.category = category;
     }
-
 
     /**
      * Returns the ID of the expense.
@@ -136,7 +132,6 @@ public class Expense  implements  ITransaction{
         return this.title;
     }
 
-
     /**
      * Returns the date of the expense.
      *
@@ -156,6 +151,7 @@ public class Expense  implements  ITransaction{
     public double getAmount() {
         return this.amount;
     }
+
     /**
      * Returns the category of the expense.
      *
@@ -183,7 +179,14 @@ public class Expense  implements  ITransaction{
      */
     @Override
     public String getSummary() {
-        return "id : " + this.id + " source : " + this.title + " amount : " + this.amount + " date : " + this.date;
+        return " | id : " + this.id + " | source : "
+                + this.title + " | amount : " + this.amount + " | date : " + this.date + " | Category : "
+                + this.category + " | Recurring : " + this.isRecurring + " |";
     }
-    
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

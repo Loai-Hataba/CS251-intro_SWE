@@ -69,6 +69,11 @@ public class BudgetManager {
                 break;
             }
         }
+        // After removing the budget, we need to update the IDs of the remaining budgets
+        for (int i = 0; i < currenBudgets.size(); i++) {
+            currenBudgets.get(i).setId(i + 1); // Set new ID starting from 1
+        }
+
         // insert the new list into the user record
         return Methods.updateRecordField(UUID, "budget", currenBudgets);
     }

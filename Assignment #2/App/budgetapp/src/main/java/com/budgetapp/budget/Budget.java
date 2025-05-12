@@ -104,6 +104,9 @@ public class Budget {
         this.category = category;
     }
     public String getSummary() {
-        return  "id : " + this.id + " source : " + this.title + " amount : " + this.amount + "begin date : " + this.startDate + "End Date: " + this.endDate;
+        return  " | id : " + this.id + " | source : " + this.title + " | amount : " + this.amount + 
+         " | category : " + this.category + " | begin date : " 
+         + this.startDate + " | End Date: " + this.endDate + " | ";
+        
     }
 }

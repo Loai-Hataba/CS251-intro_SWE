@@ -1,12 +1,10 @@
 package com.budgetapp.transaction;
 
-
 /**
- * Represents an income transaction in the BudgetApp.
- * Implements the {@link ITransaction} interface and defines properties specific to income.
+ * Represents an income transaction in the BudgetApp. Implements the
+ * {@link ITransaction} interface and defines properties specific to income.
  *
- * @author
- * Abdallah Mohamed
+ * @author Abdallah Mohamed
  * @version 2.0
  * @since 2025-05-10
  */
@@ -23,16 +21,16 @@ public class Income implements ITransaction {
     /**
      * Constructs a new {@code Income} object.
      *
-     * @param id          the ID of the income
-     * @param userId      the user ID who owns the transaction
-     * @param source      the income title/source
-     * @param amount      the amount of money received
-     * @param category    the category of income
-     * @param date        the date of the transaction
+     * @param id the ID of the income
+     * @param userId the user ID who owns the transaction
+     * @param source the income title/source
+     * @param amount the amount of money received
+     * @param category the category of income
+     * @param date the date of the transaction
      * @param isRecurring {@code true} if the income is recurring
-
+     *
      */
-    Income(String userId, int id ,String source,double amount,String category,String date ,  boolean isRecurring) {
+    Income(String userId, int id, String source, double amount, String category, String date, boolean isRecurring) {
         this.id = id;
         this.source = source;
         this.date = date;
@@ -163,6 +161,7 @@ public class Income implements ITransaction {
     public String getCategory() {
         return this.category;
     }
+
     /**
      * Checks if the income is recurring.
      *
@@ -180,8 +179,13 @@ public class Income implements ITransaction {
      */
     @Override
     public String getSummary() {
-        return "UUID : " + this.userId + "id : " + this.id + " source : " + this.source + " amount : " + this.amount + " date : " + this.date;
+        return " | id : " + this.id + " | source : " + this.source + " | amount : " + this.amount
+                + " | date : " + this.date + " | category : " + this.category
+                + " | Recurring : " + this.isRecurring + " | ";
     }
 
-
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
 }

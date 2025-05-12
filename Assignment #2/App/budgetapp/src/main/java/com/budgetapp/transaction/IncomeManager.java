@@ -1,16 +1,18 @@
 package com.budgetapp.transaction;
 
-import com.budgetapp.methods.Methods;
 import java.util.ArrayList;
 import java.util.List;
-import com.budgetapp.database.Records;
 
-public class IncomeManager implements  ITransactionManager{
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
+
+public class IncomeManager implements ITransactionManager {
 
     // The Attributes :
-    private static IncomeManager instance ;
+    private static IncomeManager instance;
+
     // The Constructor
-    private IncomeManager(){
+    private IncomeManager() {
 
     }
 
@@ -24,7 +26,7 @@ public class IncomeManager implements  ITransactionManager{
 
     // The interface functions :
     @Override
-    public boolean add (String UUID, String source ,double amount, String category, String date, boolean isRecurring ){
+    public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
 
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
@@ -35,10 +37,12 @@ public class IncomeManager implements  ITransactionManager{
         // Prepare a list to add
         List<Income> newIncomeList = new ArrayList<>();
         int size;
-        if (userRecord.income == null){
+        if (userRecord.income == null) {
             size = 1;
-        } else size = userRecord.income.size() + 1;
-        Income income = new Income(UUID, size ,source, amount, category, date, isRecurring);
+        } else {
+            size = userRecord.income.size() + 1;
+        }
+        Income income = new Income(UUID, size, source, amount, category, date, isRecurring);
         newIncomeList.add(income);
 
         // If the user already has an income list, merge it
@@ -50,10 +54,9 @@ public class IncomeManager implements  ITransactionManager{
         return Methods.updateRecordField(UUID, "income", newIncomeList);
     }
 
-
     //! adjust remaining ids of records
     @Override
-    public boolean remove( String UUID , int id ) {
+    public boolean remove(String UUID, int id) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
@@ -66,7 +69,7 @@ public class IncomeManager implements  ITransactionManager{
             System.out.println("Income list for UUID: " + UUID + " is empty");
             return false;
         }
-        if(id > currentIncomes.size()){
+        if (id > currentIncomes.size()) {
             System.out.println("The entered id is greater than the number of records in the income list");
             return false;
         }
@@ -78,14 +81,17 @@ public class IncomeManager implements  ITransactionManager{
                 break;
             }
         }
+        // After deleting modify the
+        for (int i = 0; i < currentIncomes.size(); i++) {
+            currentIncomes.get(i).setId(i + 1);
+        }
         // insert the new list into the user record
         return Methods.updateRecordField(UUID, "income", currentIncomes);
-        
 
     }
 
     @Override
-    public boolean edit(String UUID , int id , String source ,double amount, String category, String date, boolean isRecurring ) {
+    public boolean edit(String UUID, int id, String source, double amount, String category, String date, boolean isRecurring) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
@@ -98,7 +104,7 @@ public class IncomeManager implements  ITransactionManager{
             System.out.println("Income list for UUID: " + UUID + " is empty");
             return false;
         }
-        if(id > currentIncomes.size()){
+        if (id > currentIncomes.size()) {
             System.out.println("The entered id is greater than the number of records in the income list");
             return false;
         }
@@ -124,15 +130,14 @@ public class IncomeManager implements  ITransactionManager{
             return null;
         }
         List<Income> currentIncomes = userRecord.income;
-        if (currentIncomes == null)
-        {
+        if (currentIncomes == null) {
             List<String> emptyList = new ArrayList<>();
             return emptyList;
         }
         List<String> summaries = new ArrayList<>();
-            for (Income income : currentIncomes) {
-                summaries.add(income.getSummary());
-            }
+        for (Income income : currentIncomes) {
+            summaries.add(income.getSummary());
+        }
         return summaries;
     }
 }
