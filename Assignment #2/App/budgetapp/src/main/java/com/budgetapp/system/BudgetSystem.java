@@ -47,6 +47,12 @@ public class BudgetSystem {
         return addedIncome;
     }
 
+    public boolean editIncome(String source, int incomeId, double amount, String category, String date, int isRecurring){
+        boolean recurring = (isRecurring != 0);
+        boolean editedIncome = IncomeManager.getInstance().edit(currentUUID, incomeId, source, amount, category, date, recurring);
+        return editedIncome;
+    }
+
     public boolean addBudget(String category, float amount){
         // call income manager to add budget in database
         return true;

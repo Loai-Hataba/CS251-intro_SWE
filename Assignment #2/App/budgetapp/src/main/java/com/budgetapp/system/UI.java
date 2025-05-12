@@ -152,6 +152,7 @@ public class UI {
             int choice = Methods.numInput('1', '4');
             switch (choice) {
                 case 1:
+                    System.out.println("Add Income:\n\n");
                     String source = Methods.stringInput("Enter Income Source: ");
                     double amount = Methods.doubleInput("Enter Income amount: ");
                     String category = Methods.stringInput("Enter Income Category: ");
@@ -161,7 +162,16 @@ public class UI {
                     mySystem.addIncome(source, amount, category, date, isRecurring);
                     break;
                 case 2:
-
+                    System.out.println("Edit Income:\n\n");
+                    System.out.println("Enter Income ID: ");
+                    int incomeId = Methods.numInput();
+                    String editSource = Methods.stringInput("Enter Income Source: ");
+                    double editAmount = Methods.doubleInput("Enter Income amount: ");
+                    String editCategory = Methods.stringInput("Enter Income Category: ");
+                    String editDate = Methods.dateInput();
+                    System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                    int editIsRecurring = Methods.numInput('0', '1');
+                    mySystem.editIncome(editSource, incomeId, editAmount, editCategory, editDate, editIsRecurring);
                     break;
                 case 3:
 

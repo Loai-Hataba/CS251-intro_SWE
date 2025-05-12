@@ -35,11 +35,11 @@
       {
         "id": 2,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "kfc",
+        "source": "el beik",
         "date": "05/05/1919",
-        "amount": 15.0,
-        "isRecurring": true,
-        "category": "baba we mama"
+        "amount": 750.0,
+        "isRecurring": false,
+        "category": "koko wawa"
       },
       {
         "id": 3,

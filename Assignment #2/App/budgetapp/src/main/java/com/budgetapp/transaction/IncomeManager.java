@@ -55,33 +55,6 @@ public class IncomeManager implements  ITransactionManager{
     }
 
 
-    //! whats this??
-    // @Override
-    // public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
-    //     Income income = new Income(UUID, source, amount, category, date, isRecurring);
-
-    //     // Get the user record
-    //     Records userRecord = Methods.getRecordById(UUID);
-    //     if (userRecord == null) {
-    //         System.out.println("User record not found for UUID: " + UUID);
-    //         return false;
-    //     }
-
-    //     // Work only with this user's income list
-    //     if (userRecord.income == null) {
-    //         userRecord.income = new ArrayList<>();
-    //     }
-    //     userRecord.income.add(income);
-
-    //     // Now update the field with the new list
-    //     boolean added = Methods.updateRecordField(UUID, "income", userRecord.income);
-    //     return added;
-    // }
-
-
-
-
-
     @Override
     public boolean remove( String UUID , int id ) {
         // Get the user record
