@@ -1,9 +1,11 @@
 package com.budgetapp.system;
 
-import com.budgetapp.methods.Methods;
 import java.util.List;
 
+import com.budgetapp.methods.Methods;
+
 public class UI {
+
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
@@ -16,7 +18,7 @@ public class UI {
         System.out.println("UI object has been created!");
     }
 
-    public void UImanager(){
+    public void UImanager() {
         int start = startMenu();
         switch (start) {
             // sign up
@@ -30,39 +32,62 @@ public class UI {
         }
     }
 
-    public int startMenu(){
-    System.out.println(BLUE + "        __| |____________________________________________________________________________________| |__\r\n" + RESET + //
-                       BLUE + "        __   ____________________________________________________________________________________   __\r\n" + RESET + //
-                       BLUE + "          | |                                                                                    | |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  .______    __    __   _______   _______  _______ .___________.                    " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |   _  \\  |  |  |  | |       \\ /  _____||   ____||           |                    " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |  |_)  | |  |  |  | |  .--.  |  |  __  |  |__   `---|  |----`                    " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |   _  <  |  |  |  | |  |  |  |  | |_ | |   __|      |  |                         " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |  |_)  | |  `--'  | |  '--'  |  |__| | |  |____     |  |                         " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |______/   \\______/  |_______/ \\______| |_______|    |__|                         " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "                                                                                    " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  .___  ___.      ___      .__   __.      ___       _______  _______ .______        " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |   \\/   |     /   \\     |  \\ |  |     /   \\     /  _____||   ____||   _  \\       " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |  \\  /  |    /  ^  \\    |   \\|  |    /  ^  \\   |  |  __  |  |__   |  |_)  |      " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |  |\\/|  |   /  /_\\  \\   |  . `  |   /  /_\\  \\  |  | |_ | |   __|  |      /       " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |  |  |  |  /  _____  \\  |  |\\   |  /  _____  \\ |  |__| | |  |____ |  |\\  \\----.  " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "          | |" + YELLOW + "  |__|  |__| /__/     \\__\\ |__| \\__| /__/     \\__\\ \\______| |_______|| _| `._____|  " + BLUE + "| |  \r\n" + RESET +  //
-                       BLUE + "        __| |____________________________________________________________________________________| |__\r\n" + RESET +  //
-                       BLUE + "        __   ____________________________________________________________________________________   __\r\n" + RESET +  //
-                       BLUE + "          | |                                                                                    | |   " + RESET + //
-                       "\n\n\n\n\n" + //
-                       "                                    What would you like to do today?\n\n" + // 
-                       "1)Sign UP\n" + //
-                       "2)Log in\n" + //
-                       "Choice: ");
+    public int startMenu() {
+        System.out.println(BLUE + "        __| |____________________________________________________________________________________| |__\r\n" + RESET
+                + //
+                BLUE + "        __   ____________________________________________________________________________________   __\r\n" + RESET
+                + //
+                BLUE + "          | |                                                                                    | |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  .______    __    __   _______   _______  _______ .___________.                    " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |   _  \\  |  |  |  | |       \\ /  _____||   ____||           |                    " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |  |_)  | |  |  |  | |  .--.  |  |  __  |  |__   `---|  |----`                    " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |   _  <  |  |  |  | |  |  |  |  | |_ | |   __|      |  |                         " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |  |_)  | |  `--'  | |  '--'  |  |__| | |  |____     |  |                         " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |______/   \\______/  |_______/ \\______| |_______|    |__|                         " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "                                                                                    " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  .___  ___.      ___      .__   __.      ___       _______  _______ .______        " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |   \\/   |     /   \\     |  \\ |  |     /   \\     /  _____||   ____||   _  \\       " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |  \\  /  |    /  ^  \\    |   \\|  |    /  ^  \\   |  |  __  |  |__   |  |_)  |      " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |  |\\/|  |   /  /_\\  \\   |  . `  |   /  /_\\  \\  |  | |_ | |   __|  |      /       " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |  |  |  |  /  _____  \\  |  |\\   |  /  _____  \\ |  |__| | |  |____ |  |\\  \\----.  " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "          | |" + YELLOW + "  |__|  |__| /__/     \\__\\ |__| \\__| /__/     \\__\\ \\______| |_______|| _| `._____|  " + BLUE + "| |  \r\n" + RESET
+                + //
+                BLUE + "        __| |____________________________________________________________________________________| |__\r\n" + RESET
+                + //
+                BLUE + "        __   ____________________________________________________________________________________   __\r\n" + RESET
+                + //
+                BLUE + "          | |                                                                                    | |   " + RESET
+                + //
+                "\n\n\n\n\n"
+                + //
+                "                                    What would you like to do today?\n\n"
+                + // 
+                "1)Sign UP\n"
+                + //
+                "2)Log in\n"
+                + //
+                "Choice: ");
 
         int choice = Methods.numInput('1', '7');
 
         return choice;
     }
 
-    public void displayDashboard(){
-        while(true){
+    public void displayDashboard() {
+        while (true) {
             System.out.println("            Dina Dash board hahaha");
             System.out.println("\n\n1)Income\n2)Expense\n3)Budget\n4)Reminder\n5)Exit");
             int choice = Methods.numInput('1', '5');
@@ -80,7 +105,7 @@ public class UI {
                     displayReminder();
                     break;
                 case 5:
-                System.out.println("Goodbye!!");
+                    System.out.println("Goodbye!!");
                     System.exit(0);
                     break;
                 default:
@@ -90,15 +115,15 @@ public class UI {
 
     }
 
-    public void displaySignup(){
-        while (true){
+    public void displaySignup() {
+        while (true) {
             System.out.println("                            ===================================");
             System.out.println("                            |           SIGN UP MENU          |");
             System.out.println("                            ===================================");
             System.out.println("                            |                                 |");
             System.out.println("                            |  Please enter your credentials  |");
             System.out.println("                             ----------------------------------\n");
-            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+ "\n   * Start with a letter\r\n" +  "   * No spaces\r\n" +  "   * No backslashes (\\)\r\n" +  "   * No forward slashes (/)\r\n" +  "   * Maximum 10 characters");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: " + "\n   * Start with a letter\r\n" + "   * No spaces\r\n" + "   * No backslashes (\\)\r\n" + "   * No forward slashes (/)\r\n" + "   * Maximum 10 characters");
             String password, confirmPassword;
             while (true) {
                 password = Methods.passwordInput("Password: ");
@@ -114,8 +139,8 @@ public class UI {
             String country = Methods.stringInput("Country: ");
             System.out.println("credentials: " + userName + " " + password + " " + phoneNum + " " + email + " " + country);
             boolean register = mySystem.register(userName, password, phoneNum, email, country);
-            if (register)
-            {
+            System.out.println("Register status: " + register);
+            if (register) {
                 System.out.println("signed in...");
                 displayDashboard();
                 // show dashboard
@@ -124,36 +149,34 @@ public class UI {
         }
     }
 
-    public void displayLogin(){
-        while (true){
+    public void displayLogin() {
+        while (true) {
             System.out.println("                            ===================================");
             System.out.println("                            |           LOG IN MENU           |");
             System.out.println("                            ===================================");
             System.out.println("                            |                                 |");
             System.out.println("                            |  Please enter your credentials  |");
             System.out.println("                             ----------------------------------\n");
-            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: "+"\n   * Start with a letter\r\n" + "   * No spaces\r\n" + "   * No backslashes (\\)\r\n" + "   * No forward slashes (/)\r\n" + "   * Maximum 10 characters");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: " + "\n   * Start with a letter\r\n" + "   * No spaces\r\n" + "   * No backslashes (\\)\r\n" + "   * No forward slashes (/)\r\n" + "   * Maximum 10 characters");
             String password = Methods.passwordInput("Password: ");
             boolean login = mySystem.authenticate(userName, password);
             System.out.println("Login status " + login);
-            if(login){
-                    displayDashboard();
-                    break;
-                }
+            if (login) {
+                displayDashboard();
+                break;
             }
+        }
     }
-    
-    public void displayIncome(){
-        while (true){
+
+    public void displayIncome() {
+        while (true) {
             List<String> incomeRecords = mySystem.fetchIncome();
-            if (!incomeRecords.isEmpty())
-            {
+            if (!incomeRecords.isEmpty()) {
                 System.out.println("Income Records: ");
-                for (String record : incomeRecords){
+                for (String record : incomeRecords) {
                     System.out.println(record);
-                } 
-            }
-            else {
+                }
+            } else {
                 System.out.println("No Income Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Income\n2)Edit Income\n3)Delete Income\n4)Dashboard\nChoice: ");
@@ -189,71 +212,67 @@ public class UI {
                     break;
                 case 4:
                     return;
-            }   
+            }
         }
     }
-   
-    public void displayExpense(){
-        while (true){
+
+    public void displayExpense() {
+        while (true) {
             List<String> expenseRecords = mySystem.fetchExpense();
-            if (!expenseRecords.isEmpty())
-            {
+            if (!expenseRecords.isEmpty()) {
                 System.out.println("Expense Records: ");
-                for (String record : expenseRecords){
+                for (String record : expenseRecords) {
                     System.out.println(record);
-                } 
-            }
-            else {
+                }
+            } else {
                 System.out.println("No expense Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Expense\n2)Edit Expense\n3)Delete Expense\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
                 case 1:
-                System.out.println("Add Expense:\n");
-                String source = Methods.stringInput("Enter Expense Source: ");
-                double amount = Methods.doubleInput("Enter Expense amount: ");
-                String category = Methods.stringInput("Enter Expense Category: ");
-                String date = Methods.dateInput();
-                System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
-                int isRecurring = Methods.numInput('0', '1');
-                mySystem.addExpense(source, amount, category, date, isRecurring);
-                break;
+                    System.out.println("Add Expense:\n");
+                    String source = Methods.stringInput("Enter Expense Source: ");
+                    double amount = Methods.doubleInput("Enter Expense amount: ");
+                    String category = Methods.stringInput("Enter Expense Category: ");
+                    String date = Methods.dateInput();
+                    System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                    int isRecurring = Methods.numInput('0', '1');
+                    mySystem.addExpense(source, amount, category, date, isRecurring);
+                    break;
                 case 2:
-                System.out.println("Edit Expense:\n");
-                System.out.println("Enter Expense ID: ");
-                int editExpenseId = Methods.numInput();
-                String editSource = Methods.stringInput("Enter Expense Source: ");
-                double editAmount = Methods.doubleInput("Enter Expense amount: ");
-                String editCategory = Methods.stringInput("Enter Expense Category: ");
-                String editDate = Methods.dateInput();
-                System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
-                int editIsRecurring = Methods.numInput('0', '1');
-                mySystem.editExpense(editSource, editExpenseId, editAmount, editCategory, editDate, editIsRecurring);
-                break;
+                    System.out.println("Edit Expense:\n");
+                    System.out.println("Enter Expense ID: ");
+                    int editExpenseId = Methods.numInput();
+                    String editSource = Methods.stringInput("Enter Expense Source: ");
+                    double editAmount = Methods.doubleInput("Enter Expense amount: ");
+                    String editCategory = Methods.stringInput("Enter Expense Category: ");
+                    String editDate = Methods.dateInput();
+                    System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
+                    int editIsRecurring = Methods.numInput('0', '1');
+                    mySystem.editExpense(editSource, editExpenseId, editAmount, editCategory, editDate, editIsRecurring);
+                    break;
                 case 3:
-                System.out.println("Delete Expense:\n");
-                System.out.println("Enter Expense ID: ");
-                int deleteExpenseId = Methods.numInput();
-                mySystem.deleteExpense(deleteExpenseId);
-                break;
+                    System.out.println("Delete Expense:\n");
+                    System.out.println("Enter Expense ID: ");
+                    int deleteExpenseId = Methods.numInput();
+                    mySystem.deleteExpense(deleteExpenseId);
+                    break;
                 case 4:
-                return;
-            }   
+                    return;
+            }
         }
     }
-    
-    public void displayBudget(){
-        while (true){
+
+    public void displayBudget() {
+        while (true) {
             List<String> budgetRecords = mySystem.fetchBudget();
-            if (!budgetRecords.isEmpty())
-            {
+            if (!budgetRecords.isEmpty()) {
                 System.out.println("Budget Records: ");
-                for (String record : budgetRecords){
+                for (String record : budgetRecords) {
                     System.out.println(record);
-                } 
-            }
-            else {
+                }
+            } else {
                 System.out.println("No Budget Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Budget\n2)Edit Budget\n3)Delete Budget\n4)Dashboard\nChoice: ");
@@ -291,21 +310,19 @@ public class UI {
                     break;
                 case 4:
                     return;
-            }   
+            }
         }
     }
 
-    public void displayReminder(){
-         while (true){
+    public void displayReminder() {
+        while (true) {
             List<String> reminderRecords = mySystem.fetchReminder();
-            if (!reminderRecords.isEmpty())
-            {
+            if (!reminderRecords.isEmpty()) {
                 System.out.println("Reminder Records: ");
-                for (String record : reminderRecords){
+                for (String record : reminderRecords) {
                     System.out.println(record);
-                } 
-            }
-            else {
+                }
+            } else {
                 System.out.println("No Reminder Data yet.\n\n");
             }
             System.out.println("What do you want to do: \n\n1)Add Reminder\n2)Edit Reminder\n3)Delete Reminder\n4)Dashboard\nChoice: ");
@@ -337,11 +354,11 @@ public class UI {
                     break;
                 case 4:
                     return;
-            }   
+            }
         }
     }
 
-    public void showMessage(String message){
+    public void showMessage(String message) {
 
     }
 }
