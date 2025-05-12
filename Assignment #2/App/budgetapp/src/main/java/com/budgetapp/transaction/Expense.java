@@ -5,8 +5,7 @@ package com.budgetapp.transaction;
  * Represents an expense transaction in the BudgetApp.
  * Implements the {@link ITransaction} interface and defines properties specific to expense..
  *
- * @author
- * Abdallah Mohamed
+ * @author Abdallah Mohamed
  * @version 2.0
  * @since 2025-05-10
  */
