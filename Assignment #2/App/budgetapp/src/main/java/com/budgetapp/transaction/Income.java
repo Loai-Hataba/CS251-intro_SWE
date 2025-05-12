@@ -33,7 +33,7 @@ public class Income implements ITransaction {
 
      */
     Income(String userId, int id ,String source,double amount,String category,String date ,  boolean isRecurring) {
-        // this.id = id;
+        this.id = id;
         this.source = source;
         this.date = date;
         this.amount = amount;

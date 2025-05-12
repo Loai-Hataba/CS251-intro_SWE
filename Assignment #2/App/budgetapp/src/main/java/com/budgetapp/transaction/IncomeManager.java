@@ -37,7 +37,11 @@ public class IncomeManager implements  ITransactionManager{
 
         // Prepare a list to add
         List<Income> newIncomeList = new ArrayList<>();
-        Income income = new Income(UUID, userRecord.income.size() + 1 ,source, amount, category, date, isRecurring);
+        int size;
+        if (userRecord.income == null){
+            size = 0;
+        } else size = userRecord.income.size() + 1;
+        Income income = new Income(UUID, size ,source, amount, category, date, isRecurring);
         newIncomeList.add(income);
 
         // If the user already has an income list, merge it
@@ -49,6 +53,30 @@ public class IncomeManager implements  ITransactionManager{
         boolean added = Methods.updateRecordField(UUID, "income", newIncomeList);
         return added;
     }
+
+
+    //! whats this??
+    // @Override
+    // public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
+    //     Income income = new Income(UUID, source, amount, category, date, isRecurring);
+
+    //     // Get the user record
+    //     Records userRecord = Methods.getRecordById(UUID);
+    //     if (userRecord == null) {
+    //         System.out.println("User record not found for UUID: " + UUID);
+    //         return false;
+    //     }
+
+    //     // Work only with this user's income list
+    //     if (userRecord.income == null) {
+    //         userRecord.income = new ArrayList<>();
+    //     }
+    //     userRecord.income.add(income);
+
+    //     // Now update the field with the new list
+    //     boolean added = Methods.updateRecordField(UUID, "income", userRecord.income);
+    //     return added;
+    // }
 
 
 
@@ -129,6 +157,12 @@ public class IncomeManager implements  ITransactionManager{
             return null;
         }
         List<Income> currentIncomes = userRecord.income;
+        if (currentIncomes == null)
+        {
+            System.out.println("test yarab ya abdallah");
+            List<String> emptyList = new ArrayList<>();
+            return emptyList;
+        }
         List<String> summaries = new ArrayList<>();
             for (Income income : currentIncomes) {
                 summaries.add(income.getSummary());

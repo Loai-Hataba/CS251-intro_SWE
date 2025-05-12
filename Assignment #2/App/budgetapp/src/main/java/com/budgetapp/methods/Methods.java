@@ -74,7 +74,7 @@ public class Methods {
         return choice - '0';
     }
 
-
+    //! date validate until 2025
     public static String dateInput() {
         String datePattern = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/([0-9]{4})$";
         String errorMsg = "Invalid date format. Please enter as DD/MM/YYYY.";
@@ -171,21 +171,8 @@ public class Methods {
         try {
             Field field = rec.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
-            Object currentValue = field.get(rec);
-            if (currentValue == null && newValue instanceof java.util.List) {
-                // If the field is a List but not initialized, set it directly
-                field.set(rec, newValue);
-            } else if (currentValue instanceof java.util.List && newValue instanceof java.util.List) {
-                // If both are lists, add all elements
-                @SuppressWarnings("unchecked")
-                java.util.List<Object> currentList = (java.util.List<Object>) currentValue;
-                @SuppressWarnings("unchecked")
-                java.util.List<Object> newList = (java.util.List<Object>) newValue;
-                currentList.addAll(newList);
-            } else {
-                // For all other types, just set the value
-                field.set(rec, newValue);
-            }
+            // For List fields or any other type, always replace the value with newValue
+            field.set(rec, newValue);
             saveRecordsToFile();
             System.out.println("Field '" + fieldName + "' updated for record with id: " + id);
             return true;

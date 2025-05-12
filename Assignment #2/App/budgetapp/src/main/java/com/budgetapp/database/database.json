@@ -24,67 +24,31 @@
     "country": "koko",
     "income": [
       {
-        "id": 0,
-        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "baba",
-        "date": "05/04/2026",
-        "amount": 1475.69,
-        "isRecurring": true,
-        "category": "mama"
-      },
-      {
-        "id": 0,
+        "id": 1,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
         "source": "drugs",
-        "date": "05/06/3025",
-        "amount": 126354.012,
+        "date": "05/05/2025",
+        "amount": 1.50000005E7,
         "isRecurring": true,
-        "category": "passive shyt"
+        "category": "passive income"
       },
       {
-        "id": 0,
+        "id": 2,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "kokoi",
-        "date": "05/05/2026",
-        "amount": 0.5,
-        "isRecurring": false,
-        "category": "kaka"
-      },
-      {
-        "id": 0,
-        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "yarab",
-        "date": "05/08/1567",
-        "amount": 165.0,
-        "isRecurring": false,
-        "category": "testing"
-      },
-      {
-        "id": 0,
-        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "baba",
-        "date": "05/04/2026",
-        "amount": 1475.69,
+        "source": "kfc",
+        "date": "05/05/1919",
+        "amount": 15.0,
         "isRecurring": true,
-        "category": "mama"
+        "category": "baba we mama"
       },
       {
-        "id": 0,
+        "id": 3,
         "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "drugs",
-        "date": "05/06/3025",
-        "amount": 126354.012,
-        "isRecurring": true,
-        "category": "passive shyt"
-      },
-      {
-        "id": 0,
-        "userId": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "source": "kokoi",
-        "date": "05/05/2026",
-        "amount": 0.5,
+        "source": "mac",
+        "date": "05/05/1346",
+        "amount": 698.0,
         "isRecurring": false,
-        "category": "kaka"
+        "category": "burgers"
       }
     ]
   }
