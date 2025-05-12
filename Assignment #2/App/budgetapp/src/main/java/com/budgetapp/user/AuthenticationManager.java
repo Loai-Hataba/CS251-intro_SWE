@@ -2,9 +2,6 @@ package com.budgetapp.user;
 
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
-import com.google.gson.Gson;
-
-import java.io.FileWriter;
 import java.util.Random;
 import java.util.UUID;
 

@@ -1,6 +1,5 @@
 package com.budgetapp.methods;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,7 +16,6 @@ import com.google.gson.Gson;
 public class Methods {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Console console = System.console();
 
     public static float floatInput(String prompt) {
         while (true) {
@@ -121,17 +119,10 @@ public class Methods {
     }
 
     public static String passwordInput(String prompt) {
-        /* console only */
-        // if (console == null) {
-        //     throw new IllegalStateException("Console not available. Please run from a supported terminal.");
-        // }
         String psswrd;
         while (true) {
             System.out.print(prompt);
             psswrd = scanner.nextLine();
-            // console only
-            // char[] password = console.readPassword(prompt);
-            // psswrd = new String(password); 
             if (!isValidPassword(psswrd)) {
                 System.out.println("Password shall contain at least one digit, one uppercase letter, and a minimum length of 6 characters");
             } else {
