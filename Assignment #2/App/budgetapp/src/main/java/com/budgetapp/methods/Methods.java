@@ -1,6 +1,5 @@
 package com.budgetapp.methods;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -25,11 +24,6 @@ public class Methods {
      * Scanner instance for handling console input
      */
     private static final Scanner scanner = new Scanner(System.in);
-
-    /**
-     * Console instance for secure password input
-     */
-    private static final Console console = System.console();
 
     /**
      * Reads and validates a float input from the user.
@@ -186,17 +180,10 @@ public class Methods {
      * @return The validated password
      */
     public static String passwordInput(String prompt) {
-        /* console only */
-        // if (console == null) {
-        //     throw new IllegalStateException("Console not available. Please run from a supported terminal.");
-        // }
         String psswrd;
         while (true) {
             System.out.print(prompt);
             psswrd = scanner.nextLine();
-            // console only
-            // char[] password = console.readPassword(prompt);
-            // psswrd = new String(password); 
             if (!isValidPassword(psswrd)) {
                 System.out.println("Password shall contain at least one digit, one uppercase letter, and a minimum length of 6 characters");
             } else {

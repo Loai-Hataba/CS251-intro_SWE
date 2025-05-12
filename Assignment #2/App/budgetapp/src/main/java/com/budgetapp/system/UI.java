@@ -2,7 +2,6 @@ package com.budgetapp.system;
 
 import com.budgetapp.methods.Methods;
 import java.util.List;
-import java.util.ArrayList;
 
 public class UI {
     public static final String RESET = "\u001B[0m";

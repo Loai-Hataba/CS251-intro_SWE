@@ -20,7 +20,7 @@ public class User {
         this.country = Country;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        bankAccounts = new ArrayList();
+        // bankAccounts = new ArrayList();
     }
     public String getUserId() {
         return userId;
