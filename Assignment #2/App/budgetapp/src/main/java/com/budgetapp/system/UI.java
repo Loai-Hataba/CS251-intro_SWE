@@ -142,6 +142,7 @@ public class UI {
                 }
             }
     }
+    
     public void displayIncome(){
         while (true){
             List<String> incomeRecords = mySystem.fetchIncome();
@@ -191,8 +192,7 @@ public class UI {
             }   
         }
     }
-
-    
+   
     public void displayExpense(){
         while (true){
             List<String> expenseRecords = mySystem.fetchExpense();
@@ -243,7 +243,6 @@ public class UI {
         }
     }
     
-
     public void displayBudget(){
         while (true){
             List<String> budgetRecords = mySystem.fetchBudget();
@@ -295,8 +294,51 @@ public class UI {
             }   
         }
     }
+
     public void displayReminder(){
-        
+         while (true){
+            List<String> reminderRecords = mySystem.fetchReminder();
+            if (!reminderRecords.isEmpty())
+            {
+                System.out.println("Reminder Records: ");
+                for (String record : reminderRecords){
+                    System.out.println(record);
+                } 
+            }
+            else {
+                System.out.println("No Reminder Data yet.\n\n");
+            }
+            System.out.println("What do you want to do: \n\n1)Add Reminder\n2)Edit Reminder\n3)Delete Reminder\n4)Dashboard\nChoice: ");
+            int choice = Methods.numInput('1', '4');
+            switch (choice) {
+                case 1:
+                    System.out.println("Add Reminder:\n");
+                    String title = Methods.stringInput("Enter Reminder Title: ");
+                    String description = Methods.stringInput("Enter Reminder Description: ");
+                    String time = Methods.timeInput();
+                    String date = Methods.dateInput();
+                    mySystem.addReminder(title, description, date, time);
+                    break;
+                case 2:
+                    System.out.println("Edit Reminder:\n");
+                    System.out.println("Enter Reminder ID: ");
+                    int editReminderId = Methods.numInput();
+                    String editTitle = Methods.stringInput("Enter Reminder Title: ");
+                    String editDescription = Methods.stringInput("Enter Reminder Description: ");
+                    String editTime = Methods.timeInput();
+                    String editDate = Methods.dateInput();
+                    mySystem.editReminder(editTitle, editReminderId, editDescription, editDate, editTime);
+                    break;
+                case 3:
+                    System.out.println("Delete Reminder:\n");
+                    System.out.println("Enter Reminder ID: ");
+                    int deleteReminderId = Methods.numInput();
+                    mySystem.deleteReminder(deleteReminderId);
+                    break;
+                case 4:
+                    return;
+            }   
+        }
     }
 
     public void showMessage(String message){

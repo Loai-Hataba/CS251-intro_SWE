@@ -16,9 +16,6 @@ import com.budgetapp.user.User;
  */
 public class Records {
 
-    /**
-     * Unique identifier for the record
-     */
     public String id;
 
     /**

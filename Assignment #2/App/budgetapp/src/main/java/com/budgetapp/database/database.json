@@ -42,24 +42,15 @@
         "category": "po"
       }
     ],
-    "budget": [
+    "budget": [],
+    "reminder": [
       {
         "UUID": "e06cb40f-9987-426c-ae8d-2fe07979a516",
         "id": 1,
-        "title": "1",
-        "startDate": "12/12/2025",
-        "endDate": "12/12/2025",
-        "amount": 12.0,
-        "category": "oop"
-      },
-      {
-        "UUID": "e06cb40f-9987-426c-ae8d-2fe07979a516",
-        "id": 2,
-        "title": "2",
-        "startDate": "12/12/1212",
-        "endDate": "12/12/1212",
-        "amount": 121.0,
-        "category": "po"
+        "title": "kokoko",
+        "date": "05/04/2006",
+        "description": "wawaw",
+        "time": "11:30"
       }
     ],
     "expense": [
