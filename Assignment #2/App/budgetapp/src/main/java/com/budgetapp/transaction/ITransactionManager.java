@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface ITransactionManager {
     boolean add (String UUID, String source ,double amount, String category, String date, boolean isRecurring ) ;
-    boolean remove (int id ) ;
-    boolean edit  (int id ) ;
-    List <String> summary () ;
-    void saveToFile() ;
+    boolean remove (String UUID , int id ) ;
+    boolean edit  (String UUID , int id , String source ,double amount, String category, String date, boolean isRecurring ) ;
+    List <String> summary (String UUID) ;
+    //void saveToFile() ;
     // List<? extends ITransaction> fetch();
 }

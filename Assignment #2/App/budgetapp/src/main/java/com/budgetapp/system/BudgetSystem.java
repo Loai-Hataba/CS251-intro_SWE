@@ -35,7 +35,7 @@ public class BudgetSystem {
     }
 
     public List<String> fetchIncome(){
-        List<String> incomesList = IncomeManager.getInstance().summary();
+        List<String> incomesList = IncomeManager.getInstance().summary(currentUUID);
         return incomesList;
     }
 

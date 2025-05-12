@@ -32,7 +32,7 @@ public class Income implements ITransaction {
      * @param isRecurring {@code true} if the income is recurring
 
      */
-    Income(String userId, String source,double amount,String category,String date ,  boolean isRecurring) {
+    Income(String userId, int id ,String source,double amount,String category,String date ,  boolean isRecurring) {
         // this.id = id;
         this.source = source;
         this.date = date;
@@ -180,7 +180,7 @@ public class Income implements ITransaction {
      */
     @Override
     public String getSummary() {
-        return "id : " + this.id + " source : " + this.source + " amount : " + this.amount + " date : " + this.date;
+        return "UUID : " + this.userId + "id : " + this.id + " source : " + this.source + " amount : " + this.amount + " date : " + this.date;
     }
 
 
