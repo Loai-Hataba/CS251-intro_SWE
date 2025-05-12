@@ -53,6 +53,11 @@ public class BudgetSystem {
         return editedIncome;
     }
 
+    public boolean deleteIncome(int incomeId){
+        boolean deletedIncome = IncomeManager.getInstance().remove(currentUUID, incomeId);
+        return deletedIncome;
+    }
+
     public boolean addBudget(String category, float amount){
         // call income manager to add budget in database
         return true;
