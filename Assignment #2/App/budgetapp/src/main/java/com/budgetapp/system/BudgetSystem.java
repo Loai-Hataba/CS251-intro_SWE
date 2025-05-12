@@ -3,6 +3,7 @@ package com.budgetapp.system;
 import java.util.List;
 
 import com.budgetapp.budget.BudgetManager;
+import com.budgetapp.reminder.ReminderManager;
 import com.budgetapp.transaction.ExpenseManager;
 import com.budgetapp.transaction.IncomeManager;
 import com.budgetapp.user.AuthenticationManager;
@@ -94,8 +95,21 @@ public class BudgetSystem {
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Reminder
-    public boolean addReminder(String reminderName, String date, String time){
-        return true; 
+   public List<String> fetchReminder(){
+        return ReminderManager.getInstance().summary(currentUUID);
     }
+
+     public boolean addReminder(String title, String description, String date, String time){
+        return ReminderManager.getInstance().add(currentUUID, title, description, date, time);
+    }
+
+    public boolean editReminder(String title, int reminderId, String description, String date, String time){
+        return ReminderManager.getInstance().edit(currentUUID, reminderId, title, description, date, time);
+    }
+
+    public boolean deleteReminder(int reminderId){
+        return ReminderManager.getInstance().delete(currentUUID, reminderId);
+    }
+
 
 }

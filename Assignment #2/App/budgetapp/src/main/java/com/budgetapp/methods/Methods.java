@@ -93,6 +93,12 @@ public class Methods {
         return stringInput("Enter date (DD/MM/YYYY): ", datePattern, errorMsg);
     }
 
+    public static String timeInput(){
+        String timePattern = "^([01]\\d|2[0-3]):[0-5]\\d$";
+        String errorMsg = "Invalid Time Format, 24 hour(HH-MM)";
+        return stringInput("Enter Time (Hour:Minute): ", timePattern, errorMsg);
+    }
+
     // private function to validate the entered password
     public static boolean isValidPassword(String password) {
 

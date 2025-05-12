@@ -1,7 +1,5 @@
 package com.budgetapp.reminder;
 
-import java.sql.Time;
-import java.util.Date;
 
 /**
  * Represents a reminder in the Budget App.
@@ -14,9 +12,9 @@ public class Reminder {
     private String UUID;
     private int id ;
     private String title;
-    private Date date;
+    private String date;
     private String description;
-    private Time time;
+    private String time;
 
     /**
      * Constructs a new Reminder with the specified attributes.
@@ -28,7 +26,7 @@ public class Reminder {
      * @param description the description or notes about the reminder
      * @param time        the time the reminder is scheduled for
      */
-    public Reminder(String UUID, int id  ,String title, Date date, String description, Time time) {
+    public Reminder(String UUID, int id  ,String title, String date, String description, String time) {
         this.UUID = UUID;
         this.title = title;
         this.id = id;
@@ -55,12 +53,12 @@ public class Reminder {
     }
 
     /** @return the date of the reminder */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /** @param date the date to set */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -75,19 +73,24 @@ public class Reminder {
     }
 
     /** @return the time of the reminder */
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
     /** @param time the time to set */
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     public int getId() {
         return id;
     }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
     public String getSummary() {
-        return  "id : " + this.id + " title : " + this.title + " Time : " + this.time + " date : " + this.date;
+        return  "id : " + this.id + " title : " + this.title + "Description: " + this.description +  " Time : " + this.time + " date : " + this.date;
     }
 }

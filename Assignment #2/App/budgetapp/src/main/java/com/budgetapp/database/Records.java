@@ -9,7 +9,6 @@ import com.budgetapp.budget.Budget;
 
 public class Records {
 
-
     public String id;
     public String username;
     public String password;
