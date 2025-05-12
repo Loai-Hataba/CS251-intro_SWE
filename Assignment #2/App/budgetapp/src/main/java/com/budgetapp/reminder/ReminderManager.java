@@ -2,13 +2,19 @@ package com.budgetapp.reminder;
 
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
+import com.budgetapp.notification.Observer;
+import com.budgetapp.reminder.Subject;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReminderManager {
+
+public class ReminderManager implements Subject {
     private  static ReminderManager instance ;
     private List<Reminder> newReminders;
 
+    private List<Observer> observers = new ArrayList<>();
+    private String msg;
 
     private ReminderManager() {
         newReminders = new ArrayList<>();
@@ -121,5 +127,14 @@ public class ReminderManager {
             summaries.add(reminder.getSummary());
         }
         return summaries;
+    }
+    public void registerObserver(Observer observer){
+        
+    }
+    public void removeObserver(Observer observer){
+
+    }
+    public void notifyObservers(){
+
     }
 }

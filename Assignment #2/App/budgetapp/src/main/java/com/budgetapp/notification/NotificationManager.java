@@ -5,7 +5,7 @@ import com.budgetapp.methods.Methods;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationManager {
+public class NotificationManager extends Observer {
 
     // Singleton instance
     private static NotificationManager instance;
