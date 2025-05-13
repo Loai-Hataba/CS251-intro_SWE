@@ -179,9 +179,9 @@ public class Income implements ITransaction {
      */
     @Override
     public String getSummary() {
-        return " | id : " + this.id + " | source : " + this.source + " | amount : " + this.amount
+        return "id : " + this.id + " | source : " + this.source + " | amount : " + this.amount
                 + " | date : " + this.date + " | category : " + this.category
-                + " | Recurring : " + this.isRecurring + " | ";
+                + " | Recurring : " + this.isRecurring;
     }
 
     @Override

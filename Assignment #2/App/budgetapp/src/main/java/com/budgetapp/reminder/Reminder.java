@@ -91,6 +91,6 @@ public class Reminder {
         this.id = id;
     }
     public String getSummary() {
-        return  "id : " + this.id + " title : " + this.title + "Description: " + this.description +  " Time : " + this.time + " date : " + this.date;
+        return  "id : " + this.id + " | Title : " + this.title + " | Description: " + this.description +  " | Time : " + this.time + " | Date : " + this.date;
     }
 }

@@ -72,23 +72,21 @@ public class Methods {
     }
 
     /**
-     * Reads and validates a single digit numeric input.
+     * Reads and validates a numeric input.
      *
      * @return The numeric value as an integer
      */
     public static int numInput() {
-        char choice = ' ';
         while (true) {
-            String input = scanner.nextLine();
-            if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
-                choice = input.charAt(0);
+            String input = scanner.nextLine().trim();
+            if (input.matches("\\d+")) {
+                return Integer.parseInt(input);
             } else {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
-            //converting the char into number
-            return choice - '0';
         }
     }
+
 
     /**
      * Reads and validates a numeric input within a specified range.
@@ -157,6 +155,11 @@ public class Methods {
      */
     public static String stringInput(String prompt) {
         return stringInput(prompt, null, null);
+    }
+
+    public static String enterInput(){
+        scanner.nextLine();
+        return "";
     }
 
     /**

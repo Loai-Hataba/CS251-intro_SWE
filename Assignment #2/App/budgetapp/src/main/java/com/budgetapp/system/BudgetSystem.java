@@ -13,13 +13,15 @@ public class BudgetSystem {
     private String currentUUID = "";
 
     public BudgetSystem() {
-        System.out.println("System has been created!");
+    }
+
+    public void clearUUID(){
+        currentUUID = "";
     }
 
     public boolean authenticate(String userName, String password) {
         currentUUID = AuthenticationManager.getInstance().authenticateUser(userName, password);
         if (currentUUID.equals("")) {
-            System.out.println("\nUsername or Password are wrong.");
             return false;
         }
         System.out.println("\nUser " + userName + " has been authenticated");

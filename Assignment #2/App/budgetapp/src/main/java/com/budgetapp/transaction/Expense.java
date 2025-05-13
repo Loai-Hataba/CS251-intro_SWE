@@ -179,9 +179,9 @@ public class Expense implements ITransaction {
      */
     @Override
     public String getSummary() {
-        return " | id : " + this.id + " | source : "
+        return "id : " + this.id + " | source : "
                 + this.title + " | amount : " + this.amount + " | date : " + this.date + " | Category : "
-                + this.category + " | Recurring : " + this.isRecurring + " |";
+                + this.category + " | Recurring : " + this.isRecurring ;
     }
 
     @Override

@@ -59,6 +59,14 @@
     "country": "lok"
   },
   {
+    "id": "805628ce-5a85-4faa-8884-2697ef34cd9c",
+    "username": "koko123",
+    "password": ":;\u003cA?\u003dCAB?BK",
+    "email": "lolo@koko.co",
+    "phoneNumber": "01275397858",
+    "country": "koko"
+  },
+  {
     "id": "e06cb40f-9987-426c-ae8d-2fe07979a516",
     "username": "loai_h",
     "password": "12345B",
@@ -145,7 +153,17 @@
     "email": "lol@koko.com",
     "phoneNumber": "01275397858",
     "country": "zimbabwe",
-    "income": [],
+    "income": [
+      {
+        "id": 1,
+        "userId": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
+        "source": "dododod",
+        "date": "08/08/2005",
+        "amount": 123.56,
+        "isRecurring": false,
+        "category": "baba"
+      }
+    ],
     "budget": [
       {
         "UUID": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",

@@ -27,7 +27,7 @@ public class AuthenticationManager {
     public String authenticateUser(String username, String password) {
         String checkUser = UserManager.getInstance().checkUserCredentials(username, password);
         if (checkUser.equals("")) {
-            System.out.println("Username or Password are wrong.");
+            System.out.println("Username or Password are wrong.\n");
         }
         return checkUser;
     }
