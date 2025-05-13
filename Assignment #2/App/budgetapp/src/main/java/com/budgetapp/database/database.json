@@ -16,6 +16,25 @@
     "country": "kok"
   },
   {
+    "id": "0cc3986f-2a47-4e58-af63-5f5737274f99",
+    "username": "hoda",
+    "password": "\u003c\u003cC\u003c::?-Kl",
+    "email": "hoda@gmail.com",
+    "phoneNumber": "01157756931",
+    "country": "kok",
+    "income": [
+      {
+        "id": 1,
+        "userId": "0cc3986f-2a47-4e58-af63-5f5737274f99",
+        "source": "1",
+        "date": "12/12/1212",
+        "amount": 1.0,
+        "isRecurring": false,
+        "category": "1"
+      }
+    ]
+  },
+  {
     "id": "80cd3674-8c8e-4437-b741-321d4c790e5a",
     "username": "123",
     "password": "123456L",
@@ -85,6 +104,36 @@
         "amount": 12.0,
         "category": "ki",
         "date": "12/12/1999",
+        "isRecurring": false
+      }
+    ]
+  },
+  {
+    "id": "c994a547-4b83-40b8-bf84-0027957fb3c5",
+    "username": "Ahmed22",
+    "password": "\u003c\u003cC\u003c::?-Kl",
+    "email": "ahmed@gmail.com",
+    "phoneNumber": "01157756931",
+    "country": "egypt",
+    "income": [
+      {
+        "id": 1,
+        "userId": "c994a547-4b83-40b8-bf84-0027957fb3c5",
+        "source": "ko",
+        "date": "12/12/1212",
+        "amount": 121.0,
+        "isRecurring": false,
+        "category": "21"
+      }
+    ],
+    "expense": [
+      {
+        "id": 1,
+        "userId": "c994a547-4b83-40b8-bf84-0027957fb3c5",
+        "title": "ok",
+        "amount": 12.0,
+        "category": "ko",
+        "date": "12/12/1212",
         "isRecurring": false
       }
     ]

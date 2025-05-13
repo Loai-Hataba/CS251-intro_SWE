@@ -271,7 +271,7 @@ public class Methods {
             // For List fields or any other type, always replace the value with newValue
             field.set(rec, newValue);
             saveRecordsToFile();
-            System.out.println("Field '" + fieldName + "' updated for record with id: " + id);
+
             return true;
         } catch (NoSuchFieldException | IllegalAccessException e) {
             System.out.println("Failed to update field: " + fieldName);
@@ -327,29 +327,6 @@ public class Methods {
      */
     public static void closeScanner() {
         scanner.close();
-    }
-
-    /**
-     * Retrieves a user record and validates budget requirements.
-     *
-     * @param UUID The user's unique identifier
-     * @param requiresBudget Whether to check for existing budget
-     * @return The user record if found and valid, null otherwise
-     */
-    public static Records getUserRecord(String UUID, boolean requiresBudget) {
-        Records userRecord = Methods.getRecordById(UUID);
-        if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
-            return null;
-        }
-
-        if (requiresBudget) {
-            if (userRecord.budget == null || userRecord.budget.isEmpty()) {
-                System.out.println("Budget list for UUID: " + UUID + " is empty");
-                return null;
-            }
-        }
-        return userRecord;
     }
 
     /**

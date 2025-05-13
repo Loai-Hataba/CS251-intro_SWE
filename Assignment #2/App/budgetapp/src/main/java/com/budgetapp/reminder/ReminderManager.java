@@ -1,22 +1,22 @@
 package com.budgetapp.reminder;
 
-import com.budgetapp.database.Records;
-import com.budgetapp.methods.Methods;
-import com.budgetapp.notification.Observer;
-import com.budgetapp.reminder.Subject;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.budgetapp.database.Records;
+import com.budgetapp.methods.Methods;
+import com.budgetapp.notification.Observer;
 
 public class ReminderManager implements Subject {
-    private  static ReminderManager instance ;
-    private List<Reminder> newReminders;
+
+    private static ReminderManager instance;
+    private List<Reminder> currentReminders;
 
     private List<Observer> observers = new ArrayList<>();
     private String msg;
 
     private ReminderManager() {
-        newReminders = new ArrayList<>();
+        currentReminders = new ArrayList<>();
     }
 
     public static ReminderManager getInstance() {
@@ -26,79 +26,73 @@ public class ReminderManager implements Subject {
         return instance;
     }
 
-    public boolean add(String UUID , String title, String description, String date, String time) {
+    public boolean add(String UUID, String title, String description, String date, String time) {
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        
-        if(userRecord.reminder != null)
-        {
-            newReminders = userRecord.reminder;
-        }
-        else {
-            newReminders = new ArrayList<>();
-        }
-        int size = (newReminders == null) ? 1 : newReminders.size() + 1;
 
-        Reminder reminder = new Reminder(UUID, size ,title, date, description, time);
-        newReminders.add(reminder);
+        if (userRecord.reminder != null) {
+            currentReminders = userRecord.reminder;
+        } else {
+            currentReminders = new ArrayList<>();
+        }
+        int size = (currentReminders == null) ? 1 : currentReminders.size() + 1;
 
-        return Methods.updateRecordField(UUID, "reminder", newReminders);
+        Reminder reminder = new Reminder(UUID, size, title, date, description, time);
+        currentReminders.add(reminder);
+
+        return Methods.updateRecordField(UUID, "reminder", currentReminders);
     }
-    
-    public boolean delete(String UUID , int id  ) {
+
+    public boolean delete(String UUID, int id) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Reminder> currenReminders = userRecord.reminder;
+        currentReminders = userRecord.reminder;
         // Validate the user record
-        if (currenReminders.isEmpty()) {
-            System.out.println("reminder list for UUID: " + UUID + " is empty");
-            return false;
+        if (currentReminders.isEmpty() || currentReminders == null) {
+            System.out.println("Error : Trying to edit an empty reminders list");
         }
-        if(id > currenReminders.size()){
-            System.out.println("The entered id is greater than the number of records in the reminder list");
+        if (id > currentReminders.size()) {
+            System.out.println("Error : The entered id is greater than the number of incomes");
             return false;
         }
 
         // The main logic of deleting :
-        for (Reminder reminder : currenReminders) {
+        for (Reminder reminder : currentReminders) {
             if (reminder.getId() == id) {
-                currenReminders.remove(reminder);
+                currentReminders.remove(reminder);
                 break;
             }
         }
-        for (int i = 0; i < currenReminders.size();i++){
-            currenReminders.get(i).setId(i+1);
+        for (int i = 0; i < currentReminders.size(); i++) {
+            currentReminders.get(i).setId(i + 1);
         }
 
         // insert the new list into the user record
-        return Methods.updateRecordField(UUID, "reminder", currenReminders);
+        return Methods.updateRecordField(UUID, "reminder", currentReminders);
     }
-    
-    
-    public boolean edit(String UUID , int id  ,String title, String description, String date, String time) {
+
+    public boolean edit(String UUID, int id, String title, String description, String date, String time) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        List<Reminder> currentReminders = userRecord.reminder;
+        currentReminders = userRecord.reminder;
         // Validate the user record
-        if (currentReminders.isEmpty()) {
-            System.out.println("reminder list for UUID: " + UUID + " is empty");
+        if (currentReminders.isEmpty() || currentReminders == null) {
+            System.out.println("Error : Trying to edit an empty reminders list");
+        }
+        if (id > currentReminders.size()) {
+            System.out.println("Error : The entered id is greater than the number of incomes");
             return false;
         }
-        if(id > currentReminders.size()){
-            System.out.println("The entered id is greater than the number of records in the reminder list");
-            return false;
-        }
+
         // The main logic of editing :
         for (Reminder reminder : currentReminders) {
             if (reminder.getId() == id) {
@@ -112,7 +106,6 @@ public class ReminderManager implements Subject {
         return Methods.updateRecordField(UUID, "reminder", currentReminders);
     }
 
-
     public List<String> summary(String UUID) {
 
         Records userRecord = Methods.getRecordById(UUID);
@@ -120,8 +113,8 @@ public class ReminderManager implements Subject {
             System.out.println("User record not found for UUID: " + UUID);
             return null;
         }
-        List<Reminder> currentReminders = userRecord.reminder;
-         if (currentReminders == null) {
+        currentReminders = userRecord.reminder;
+        if (currentReminders == null) {
             return new ArrayList<>();
         }
         List<String> summaries = new ArrayList<>();
@@ -130,6 +123,7 @@ public class ReminderManager implements Subject {
         }
         return summaries;
     }
+
     @Override
     public void registerObserver(Observer observer) {
         if (!observers.contains(observer)) {

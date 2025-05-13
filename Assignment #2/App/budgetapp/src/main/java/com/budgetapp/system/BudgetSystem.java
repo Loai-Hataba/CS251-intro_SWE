@@ -18,16 +18,18 @@ public class BudgetSystem {
 
     public boolean authenticate(String userName, String password) {
         currentUUID = AuthenticationManager.getInstance().authenticateUser(userName, password);
-        System.out.println("testing: " + currentUUID);
-        if (currentUUID == "") {
+        if (currentUUID.equals("")) {
+            System.out.println("\nUsername or Password are wrong.");
             return false;
         }
+        System.out.println("\nUser " + userName + " has been authenticated");
         return true;
     }
 
     public boolean register(String userName, String password, String phoneNum, String email, String country) {
         // send to auth manager -> auth manager send otp -> otp tmam -> auth manager send to user manager -> user manager create user in database
         currentUUID = AuthenticationManager.getInstance().registerUser(userName, password, email, phoneNum, country);
+
         if (currentUUID.equals("")) {
             return false;
         }

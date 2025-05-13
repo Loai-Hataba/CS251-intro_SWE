@@ -1,10 +1,5 @@
 package com.budgetapp.notification;
 
-import com.budgetapp.database.Records;
-import com.budgetapp.methods.Methods;
-import java.util.ArrayList;
-import java.util.List;
-
 public class NotificationManager extends Observer {
 
     // Singleton instance
@@ -33,6 +28,7 @@ public class NotificationManager extends Observer {
     }
 
     // Updates the notification based on an event
+    @Override
     public void update(String event) {
         System.out.println("Notification updated due to event: " + event);
         // Add update logic here

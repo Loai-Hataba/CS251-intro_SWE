@@ -55,13 +55,13 @@ public class BudgetManager {
      * @return true if the budget was successfully added, false otherwise
      */
     public boolean add(String UUID, String title, double amount, String category, String startDate, String endDate) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
-        if (userRecord.budget != null){
+        if (userRecord.budget != null) {
             currentBudgets = userRecord.budget;
-        }else {
+        } else {
             currentBudgets = new ArrayList<>();
         }
         int size = (currentBudgets == null) ? 1 : currentBudgets.size() + 1;
@@ -78,14 +78,19 @@ public class BudgetManager {
      * @return true if the budget was successfully removed, false otherwise
      */
     public boolean remove(String UUID, int id) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
 
         currentBudgets = userRecord.budget;
+        if (currentBudgets.isEmpty() || currentBudgets == null) {
+            // Check if the list is empty or null
+            System.out.println("Error : Trying to edit an empty budget list");
+            return false;
+        }
         if (id > currentBudgets.size()) {
-            System.out.println("The entered id is greater than the number of records in the Budget list");
+            System.out.println("Error : The entered id is greater than the number of budgets");
             return false;
         }
 
@@ -112,13 +117,18 @@ public class BudgetManager {
      * @return true if the budget was successfully edited, false otherwise
      */
     public boolean edit(String UUID, int id, String title, double amount, String category, String startDate, String endDate) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
         currentBudgets = userRecord.budget;
+        if (currentBudgets.isEmpty() || currentBudgets == null) {
+            // Check if the list is empty or null
+            System.out.println("Error : Trying to edit an empty budget list");
+            return false;
+        }
         if (id > currentBudgets.size()) {
-            System.out.println("The entered id is greater than the number of records in the Budget list");
+            System.out.println("Error : The entered id is greater than the number of budgets");
             return false;
         }
 
@@ -143,7 +153,7 @@ public class BudgetManager {
      * empty list if no budgets
      */
     public List<String> summary(String UUID) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return null;
         }

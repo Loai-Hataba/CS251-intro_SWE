@@ -56,14 +56,13 @@ public class ExpenseManager implements ITransactionManager {
      */
     @Override
     public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
-            System.out.println("User record not found for UUID: " + UUID);
             return false;
         }
-        if (userRecord.expense != null){
+        if (userRecord.expense != null) {
             currentExpenses = userRecord.expense;
-        }else {
+        } else {
             currentExpenses = new ArrayList<>();
         }
         int size = (currentExpenses == null) ? 1 : currentExpenses.size() + 1;
@@ -81,19 +80,26 @@ public class ExpenseManager implements ITransactionManager {
      */
     @Override
     public boolean remove(String UUID, int id) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
 
         currentExpenses = userRecord.expense;
-        if (id > currentExpenses.size()) {
-            System.out.println("The entered id is greater than the number of records in the expense list");
+        // Check if the expense list is null
+        if (currentExpenses == null || currentExpenses.isEmpty()) {
+            System.out.println("Error : Trying to edit an empty expense list");
             return false;
         }
 
+        // Check if the ID is valid
+        if (id > currentExpenses.size()) {
+            System.out.println("Error : The entered id is greater than the number of expenses");
+            return false;
+        }
         currentExpenses.removeIf(expense -> expense.getId() == id);
 
+        // Reassign IDs to the remaining expenses
         for (int i = 0; i < currentExpenses.size(); i++) {
             currentExpenses.get(i).setId(i + 1);
         }
@@ -115,12 +121,18 @@ public class ExpenseManager implements ITransactionManager {
      */
     @Override
     public boolean edit(String UUID, int id, String source, double amount, String category, String date, boolean isRecurring) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
 
         currentExpenses = userRecord.expense;
+        // Check if the expense list is null
+        if (currentExpenses == null || currentExpenses.isEmpty()) {
+            System.out.println("Error : Trying to edit an empty expense list");
+            return false;
+        }
+
         if (id > currentExpenses.size()) {
             System.out.println("The entered id is greater than the number of records in the expense list");
             return false;
@@ -149,7 +161,7 @@ public class ExpenseManager implements ITransactionManager {
      */
     @Override
     public List<String> summary(String UUID) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return null;
         }

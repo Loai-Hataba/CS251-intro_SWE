@@ -1,12 +1,21 @@
 package com.budgetapp.user;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.UUID;
+
 import com.google.gson.Gson;
-import java.io.*;
-import java.util.* ;
 
 public class SessionManager {
 
-    private static SessionManager instance ;
+    private static SessionManager instance;
 
     private final Gson gson;
 
@@ -26,22 +35,22 @@ public class SessionManager {
                 gson.toJson(sessions, writer); // Write empty array
                 System.out.println("Created users.json");
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
+
     public static SessionManager getInstance() {
         if (instance == null) {
             instance = new SessionManager();
         }
         return instance;
     }
+
     // private function to save the list of sessions in a json file
     private void saveSessionsToFile() {
         try (Writer writer = new FileWriter(SESSIONS_FILE)) {
             gson.toJson(sessions, writer);
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -64,15 +73,14 @@ public class SessionManager {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
         return false; // User ID not found
     }
 
     //!
-    public void createSession(String userId ) {
-        // TODO : adding a validation if the user in the json file
+    public void createSession(String userId) {
+
         // validate the user id & return if user is invalid
         if (!validateUser(userId)) {
             System.out.println("Invalid user.");
@@ -86,11 +94,11 @@ public class SessionManager {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
-        calendar.add(Calendar.HOUR, 3 );  // add 1 hour
+        calendar.add(Calendar.HOUR, 3);  // add 1 hour
 
         Date endDate = calendar.getTime();
 
-        sessions.add(new Session(sessionId, userId , startDate , endDate ));
+        sessions.add(new Session(sessionId, userId, startDate, endDate));
         saveSessionsToFile();
 
         System.out.println("A session  has been created for : " + userId);
@@ -101,7 +109,7 @@ public class SessionManager {
     public void endOutDatedSessions() {
         for (Session session : sessions) {
             if (session.isActive()) {
-               session.checkSessionIfExpired();
+                session.checkSessionIfExpired();
             }
         }
         System.out.println("All outDated sessions now are inactive.");

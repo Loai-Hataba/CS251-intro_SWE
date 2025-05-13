@@ -56,13 +56,13 @@ public class IncomeManager implements ITransactionManager {
      */
     @Override
     public boolean add(String UUID, String source, double amount, String category, String date, boolean isRecurring) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
-        if (userRecord.income != null){
+        if (userRecord.income != null) {
             currentIncomes = userRecord.income;
-        }else {
+        } else {
             currentIncomes = new ArrayList<>();
         }
         int size = (currentIncomes == null) ? 1 : currentIncomes.size() + 1;
@@ -82,14 +82,20 @@ public class IncomeManager implements ITransactionManager {
      */
     @Override
     public boolean remove(String UUID, int id) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
 
         currentIncomes = userRecord.income;
+
+        if (currentIncomes.isEmpty() || currentIncomes == null) {
+            // Check if the list is empty or null
+            System.out.println("Error : Trying to edit an empty income list");
+            return false;
+        }
         if (id > currentIncomes.size()) {
-            System.out.println("The entered id is greater than the number of records in the income list");
+            System.out.println("Error : The entered id is greater than the number of incomes");
             return false;
         }
 
@@ -116,14 +122,21 @@ public class IncomeManager implements ITransactionManager {
      */
     @Override
     public boolean edit(String UUID, int id, String source, double amount, String category, String date, boolean isRecurring) {
-        Records userRecord = Methods.getUserRecord(UUID, true);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return false;
         }
 
         currentIncomes = userRecord.income;
+
+        if (currentIncomes.isEmpty() || currentIncomes == null) {
+            // Check if the list is empty or null
+            System.out.println("Error : Trying to edit an empty income list");
+            return false;
+        }
+
         if (id > currentIncomes.size()) {
-            System.out.println("The entered id is greater than the number of records in the income list");
+            System.out.println("Error : The entered id is greater than the number of incomes");
             return false;
         }
 
@@ -150,7 +163,7 @@ public class IncomeManager implements ITransactionManager {
      */
     @Override
     public List<String> summary(String UUID) {
-        Records userRecord = Methods.getUserRecord(UUID, false);
+        Records userRecord = Methods.getRecordById(UUID);
         if (userRecord == null) {
             return null;
         }

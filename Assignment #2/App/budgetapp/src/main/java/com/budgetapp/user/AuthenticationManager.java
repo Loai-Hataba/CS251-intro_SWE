@@ -55,7 +55,7 @@ public class AuthenticationManager {
             Records rec = new Records(user);
             boolean isDone = Methods.insertRecord(rec);
             if (isDone) {
-                System.out.println("User " + username + " has been registered and has a UUID: " + userId);
+                System.out.println("User " + username + " has been registered");
                 return userId;
             }
             System.out.println("User " + username + " has not been registered");

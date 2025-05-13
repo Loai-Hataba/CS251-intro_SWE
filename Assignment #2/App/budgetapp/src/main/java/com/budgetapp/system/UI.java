@@ -123,7 +123,13 @@ public class UI {
             System.out.println("                            |                                 |");
             System.out.println("                            |  Please enter your credentials  |");
             System.out.println("                             ----------------------------------\n");
-            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", "Username shall have: " + "\n   * Start with a letter\r\n" + "   * No spaces\r\n" + "   * No backslashes (\\)\r\n" + "   * No forward slashes (/)\r\n" + "   * Maximum 10 characters");
+            String userName = Methods.stringInput("Username: ", "^[a-zA-Z][^\\\\/\\s]{0,9}$", """
+                                                                                              Username shall have: 
+                                                                                                 * Start with a letter\r
+                                                                                                 * No spaces\r
+                                                                                                 * No backslashes (\\)\r
+                                                                                                 * No forward slashes (/)\r
+                                                                                                 * Maximum 10 characters""");
             String password, confirmPassword;
             while (true) {
                 password = Methods.passwordInput("Password: ");
@@ -134,14 +140,15 @@ public class UI {
                     System.out.println("Passwords do not match. Please try again.");
                 }
             }
-            String email = Methods.stringInput("Email Address : ", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "Email shall be in the form \"name@domain.com\"");
-            String phoneNum = Methods.stringInput("Phone Number (01...): ", "^01\\d{9}$", "PhoneNumber should start with 01 and be 11 digits long");
+            String email = Methods.stringInput("Email Address : ", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                    "Email shall be in the form \"name@domain.com\"");
+            String phoneNum = Methods.stringInput("Phone Number (01...): ",
+                    "^01\\d{9}$", "PhoneNumber should start with 01 and be 11 digits long");
             String country = Methods.stringInput("Country: ");
-            System.out.println("credentials: " + userName + " " + password + " " + phoneNum + " " + email + " " + country);
             boolean register = mySystem.register(userName, password, phoneNum, email, country);
-            System.out.println("Register status: " + register);
+            System.out.println("\nRegister status: " + register);
             if (register) {
-                System.out.println("signed in...");
+                System.out.println("\nsigned in...");
                 displayDashboard();
                 // show dashboard
                 break;
@@ -171,14 +178,18 @@ public class UI {
     public void displayIncome() {
         while (true) {
             List<String> incomeRecords = mySystem.fetchIncome();
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             if (!incomeRecords.isEmpty()) {
-                System.out.println("Income Records: ");
+
+                System.out.println("Income Records: \n");
                 for (String record : incomeRecords) {
                     System.out.println(record);
                 }
             } else {
-                System.out.println("No Income Data yet.\n\n");
+                System.out.println("\n              No Income Data yet.\n");
             }
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
+
             System.out.println("What do you want to do: \n\n1)Add Income\n2)Edit Income\n3)Delete Income\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
@@ -205,6 +216,7 @@ public class UI {
                     mySystem.editIncome(editSource, editIncomeId, editAmount, editCategory, editDate, editIsRecurring);
                     break;
                 case 3:
+
                     System.out.println("Delete Income:\n");
                     System.out.println("Enter Income ID: ");
                     int deleteIncomeId = Methods.numInput();
@@ -219,14 +231,16 @@ public class UI {
     public void displayExpense() {
         while (true) {
             List<String> expenseRecords = mySystem.fetchExpense();
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             if (!expenseRecords.isEmpty()) {
-                System.out.println("Expense Records: ");
+                System.out.println("Expense Records: \n");
                 for (String record : expenseRecords) {
                     System.out.println(record);
                 }
             } else {
-                System.out.println("No expense Data yet.\n\n");
+                System.out.println("\n              No expense Data yet.\n");
             }
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             System.out.println("What do you want to do: \n\n1)Add Expense\n2)Edit Expense\n3)Delete Expense\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
@@ -267,14 +281,16 @@ public class UI {
     public void displayBudget() {
         while (true) {
             List<String> budgetRecords = mySystem.fetchBudget();
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             if (!budgetRecords.isEmpty()) {
-                System.out.println("Budget Records: ");
+                System.out.println("Budget Records: \n");
                 for (String record : budgetRecords) {
                     System.out.println(record);
                 }
             } else {
-                System.out.println("No Budget Data yet.\n\n");
+                System.out.println("\n              No Budget Data yet.\n");
             }
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             System.out.println("What do you want to do: \n\n1)Add Budget\n2)Edit Budget\n3)Delete Budget\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
@@ -317,14 +333,16 @@ public class UI {
     public void displayReminder() {
         while (true) {
             List<String> reminderRecords = mySystem.fetchReminder();
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             if (!reminderRecords.isEmpty()) {
-                System.out.println("Reminder Records: ");
+                System.out.println("Reminder Records: \n");
                 for (String record : reminderRecords) {
                     System.out.println(record);
                 }
             } else {
-                System.out.println("No Reminder Data yet.\n\n");
+                System.out.println("\n                No Reminder Data yet.\n");
             }
+            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
             System.out.println("What do you want to do: \n\n1)Add Reminder\n2)Edit Reminder\n3)Delete Reminder\n4)Dashboard\nChoice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
