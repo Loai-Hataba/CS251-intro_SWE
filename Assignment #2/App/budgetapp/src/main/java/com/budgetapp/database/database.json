@@ -43,20 +43,21 @@
     "country": "123"
   },
   {
-    "id": "59f28887-7df8-4e62-8fd5-3196169f5ba9",
-    "username": "hoss",
-    "password": "L|y;\u003c\u003d",
-    "email": "hoss@gmail.com",
-    "phoneNumber": "01123456789",
-    "country": "China",
-    "reminder": [
+    "id": "1fbe6981-0695-4859-a9f6-cce1e45c9a9c",
+    "username": "lolo",
+    "password": ":;\u003cA?\u003dCAB?BK",
+    "email": "loa@iioio.co",
+    "phoneNumber": "01275397858",
+    "country": "koko",
+    "income": [
       {
-        "UUID": "59f28887-7df8-4e62-8fd5-3196169f5ba9",
         "id": 1,
-        "title": "balls",
-        "date": "12/12/2025",
-        "description": "cockandballtorture",
-        "time": "12:59"
+        "userId": "1fbe6981-0695-4859-a9f6-cce1e45c9a9c",
+        "source": "koko",
+        "date": "05/05/2050",
+        "amount": 123.0,
+        "isRecurring": true,
+        "category": "123"
       }
     ]
   },
@@ -175,43 +176,43 @@
       {
         "id": 1,
         "userId": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
-        "source": "dododod",
-        "date": "08/08/2005",
-        "amount": 123.56,
-        "isRecurring": false,
-        "category": "baba"
+        "source": "loai",
+        "date": "05/08/2005",
+        "amount": 456.0,
+        "isRecurring": true,
+        "category": "123"
       }
     ],
     "budget": [
       {
         "UUID": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
         "id": 1,
-        "title": "jij",
-        "startDate": "08/08/0808",
-        "endDate": "08/08/0808",
+        "title": "kkkk",
+        "startDate": "08/08/2020",
+        "endDate": "08/08/2020",
         "amount": 123.0,
-        "category": "456"
+        "category": "lplp"
       }
     ],
     "reminder": [
       {
         "UUID": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
         "id": 1,
-        "title": "123",
-        "date": "08/08/0808",
-        "description": "123",
-        "time": "12:12"
+        "title": "321",
+        "date": "05/05/0005",
+        "description": "321",
+        "time": "23:23"
       }
     ],
     "expense": [
       {
         "id": 1,
         "userId": "1ac357f9-f675-4b1d-9eee-d6f8f6fd1f31",
-        "title": "huihiujh",
-        "amount": 456.0,
-        "category": "kok",
-        "date": "08/08/0008",
-        "isRecurring": true
+        "title": "321",
+        "amount": 321.0,
+        "category": "321",
+        "date": "08/08/2006",
+        "isRecurring": false
       }
     ]
   }
