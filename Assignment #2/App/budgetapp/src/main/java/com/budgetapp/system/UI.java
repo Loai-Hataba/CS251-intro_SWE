@@ -197,7 +197,6 @@ public class UI {
                     "^01\\d{9}$", "PhoneNumber should start with 01 and be 11 digits long");
             String country = Methods.stringInput("Country: ");
             boolean register = mySystem.register(userName, password, phoneNum, email, country);
-            System.out.println("\nRegister status: " + register);
             if (register) {
                 displayDashboard();
                 break;

@@ -120,7 +120,7 @@ public class BudgetSystem {
     public boolean addBudget(String source, double amount, String category, String startDate, String endDate) {
         return BudgetManager.getInstance().add(currentUUID, source, amount, category, startDate, endDate);
     }
-
+    
     public boolean editBudget(String source, int budgetId, double amount, String category, String startDate, String endDate) {
         return BudgetManager.getInstance().edit(currentUUID, budgetId, source, amount, category, startDate, endDate);
     }
