@@ -14,8 +14,8 @@ public class Notification {
     private String UUID;
     private int id;
     private String message;
-    private Date date;
-    private Timestamp timestamp;
+    private String date;
+    private String timestamp;
     private boolean isRead;
     private boolean isSent;
 
@@ -30,7 +30,7 @@ public class Notification {
      * @param isRead    whether the notification has been read
      * @param isSent    whether the notification has been sent
      */
-    public Notification(String uuid, int id, String message, Date date, Timestamp timestamp, boolean isRead, boolean isSent) {
+    public Notification(String uuid, int id, String message, String date, String timestamp, boolean isRead, boolean isSent) {
         this.UUID = uuid;
         this.id = id;
         this.message = message;
@@ -61,22 +61,22 @@ public class Notification {
     }
 
     /** @return the creation date of the notification */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     /** @param date the date to set */
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
     /** @return the timestamp of the notification */
-    public Timestamp getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
     /** @param timestamp the timestamp to set */
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 

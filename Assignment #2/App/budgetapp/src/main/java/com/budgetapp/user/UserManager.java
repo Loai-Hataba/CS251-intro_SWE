@@ -4,11 +4,12 @@ import java.util.HashMap;
 
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
+import com.budgetapp.notification.Notification;
 
 /**
  * Using the Singleton design pattern for the UserManager
  */
-public class UserManager {
+public class UserManager extends Observer{
 
     // The only instance of the UserManager object
     private static UserManager instance;
@@ -46,5 +47,4 @@ public class UserManager {
         }
         return instance;
     }
-
 }

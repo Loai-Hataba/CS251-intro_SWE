@@ -3,19 +3,35 @@ package com.budgetapp.system;
 import java.util.List;
 
 import com.budgetapp.budget.BudgetManager;
+import com.budgetapp.reminder.Reminder;
 import com.budgetapp.reminder.ReminderManager;
 import com.budgetapp.transaction.ExpenseManager;
 import com.budgetapp.transaction.IncomeManager;
 import com.budgetapp.user.AuthenticationManager;
+import com.budgetapp.user.CurrentUserObserver;
 
 public class BudgetSystem {
 
     private String currentUUID = "";
+    private CurrentUserObserver currentUserObserver;
+    private UI ui;
 
     public BudgetSystem() {
     }
+    
+    /**
+     * Set the UI instance for this system
+     */
+    public void setUI(UI ui) {
+        this.ui = ui;
+    }
 
     public void clearUUID(){
+        // Unregister the current user observer if one exists
+        if (currentUserObserver != null) {
+            ReminderManager.getInstance().removeObserver(currentUserObserver);
+            currentUserObserver = null;
+        }
         currentUUID = "";
     }
 
@@ -25,6 +41,14 @@ public class BudgetSystem {
             return false;
         }
         System.out.println("\nUser " + userName + " has been authenticated");
+        
+        // Register the current user as an observer for reminders
+        if (currentUserObserver != null) {
+            ReminderManager.getInstance().removeObserver(currentUserObserver);
+        }
+        currentUserObserver = new CurrentUserObserver(currentUUID, ui);
+        ReminderManager.getInstance().registerObserver(currentUserObserver);
+        
         return true;
     }
 
@@ -35,6 +59,14 @@ public class BudgetSystem {
         if (currentUUID.equals("")) {
             return false;
         }
+        
+        // Register the new user as an observer for reminders
+        if (currentUserObserver != null) {
+            ReminderManager.getInstance().removeObserver(currentUserObserver);
+        }
+        currentUserObserver = new CurrentUserObserver(currentUUID, ui);
+        ReminderManager.getInstance().registerObserver(currentUserObserver);
+        
         return true;
     }
 
@@ -106,7 +138,7 @@ public class BudgetSystem {
     public boolean addReminder(String title, String description, String date, String time) {
         return ReminderManager.getInstance().add(currentUUID, title, description, date, time);
     }
-
+    
     public boolean editReminder(String title, int reminderId, String description, String date, String time) {
         return ReminderManager.getInstance().edit(currentUUID, reminderId, title, description, date, time);
     }

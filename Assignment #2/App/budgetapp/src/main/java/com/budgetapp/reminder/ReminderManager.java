@@ -5,7 +5,8 @@ import java.util.List;
 
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
-import com.budgetapp.notification.Observer;
+import com.budgetapp.notification.Notification;
+import com.budgetapp.user.Observer;
 
 public class ReminderManager implements Subject {
 
@@ -13,7 +14,6 @@ public class ReminderManager implements Subject {
     private List<Reminder> currentReminders;
 
     private List<Observer> observers = new ArrayList<>();
-    private String msg;
 
     private ReminderManager() {
         currentReminders = new ArrayList<>();
@@ -41,10 +41,14 @@ public class ReminderManager implements Subject {
 
         Reminder reminder = new Reminder(UUID, size, title, date, description, time);
         currentReminders.add(reminder);
+        
+        Notification notification = new Notification(UUID,size,title +": "+ description, date, time,false, false);
+        //public Notification(String uuid, int id, String message, Date date, Timestamp timestamp, boolean isRead, boolean isSent)
+        // Notify observers about the new reminder
+        notifyObservers(notification);
 
         return Methods.updateRecordField(UUID, "reminder", currentReminders);
     }
-
     public boolean delete(String UUID, int id) {
         // Get the user record
         Records userRecord = Methods.getRecordById(UUID);
@@ -137,9 +141,9 @@ public class ReminderManager implements Subject {
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyObservers(Notification notification) {
         for (Observer observer : observers) {
-            observer.update(msg); // Send the current message
+            observer.update(notification);
         }
     }
 

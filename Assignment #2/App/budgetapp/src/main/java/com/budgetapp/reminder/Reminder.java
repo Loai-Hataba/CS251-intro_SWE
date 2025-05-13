@@ -1,5 +1,6 @@
 package com.budgetapp.reminder;
 
+// import java.time.LocalDateTime;
 
 /**
  * Represents a reminder in the Budget App.
@@ -15,6 +16,7 @@ public class Reminder {
     private String date;
     private String description;
     private String time;
+    // private LocalDateTime reminderAddedTime;
 
     /**
      * Constructs a new Reminder with the specified attributes.
@@ -25,6 +27,7 @@ public class Reminder {
      * @param date        the date the reminder is scheduled for
      * @param description the description or notes about the reminder
      * @param time        the time the reminder is scheduled for
+     * @param reminderAddedTime the time when the reminder was added
      */
     public Reminder(String UUID, int id  ,String title, String date, String description, String time) {
         this.UUID = UUID;
@@ -33,13 +36,13 @@ public class Reminder {
         this.date = date;
         this.description = description;
         this.time = time;
+        // this.reminderAddedTime = LocalDateTime.now();
     }
 
     /** @return the UUID of the reminder */
     public String getUUID() {
         return UUID;
     }
-
 
 
     /** @return the title of the reminder */
@@ -85,6 +88,11 @@ public class Reminder {
     public int getId() {
         return id;
     }
+
+    /** @return the time when the reminder was added*/
+    // public LocalDateTime getReminderAddedTime() {
+    //     return reminderAddedTime;
+    // }
 
     public void setId(int id)
     {

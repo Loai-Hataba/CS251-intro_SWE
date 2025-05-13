@@ -1,6 +1,6 @@
 package com.budgetapp.notification;
 
-public class NotificationManager extends Observer {
+public class NotificationManager {
 
     // Singleton instance
     private static NotificationManager instance;
@@ -25,12 +25,5 @@ public class NotificationManager extends Observer {
         this.msg = message;
         System.out.println("Notification created: " + msg);
         return true;
-    }
-
-    // Updates the notification based on an event
-    @Override
-    public void update(String event) {
-        System.out.println("Notification updated due to event: " + event);
-        // Add update logic here
     }
 }

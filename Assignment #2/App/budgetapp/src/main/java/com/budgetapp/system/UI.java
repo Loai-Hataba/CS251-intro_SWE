@@ -14,7 +14,10 @@ public class UI {
 
     BudgetSystem mySystem = new BudgetSystem();
 
-    public UI(){}
+    public UI(){
+        // Set this UI instance in the BudgetSystem for notifications
+        mySystem.setUI(this);
+    }
 
     public void UImanager() {
         while(true){
@@ -466,15 +469,15 @@ public class UI {
                     System.out.println("Delete Budget\n");
                     System.out.print("Enter Budget ID: ");
                     int deleteBudgetId = Methods.numInput();
-                    while(true){
-                        if (mySystem.deleteIncome(editBudgetId)){
-                            System.out.println("Deleted Budget Successfully...");
-                            break;
-                        } else {
-                            System.out.print("Enter Budget ID: ");
-                            editBudgetId = Methods.numInput();
-                        }
-                    }
+                    // while(true){
+                    //     if (mySystem.deleteIncome(editBudgetId)){
+                    //         System.out.println("Deleted Budget Successfully...");
+                    //         break;
+                    //     } else {
+                    //         System.out.print("Enter Budget ID: ");
+                    //         editBudgetId = Methods.numInput();
+                    //     }
+                    // }
                     wait(3000);
                     break;
                 case 4:
@@ -554,6 +557,7 @@ public class UI {
                     String description = Methods.stringInput("Enter Reminder Description: ");
                     String time = Methods.timeInput();
                     String date = Methods.dateInput();
+                    
                     mySystem.addReminder(title, description, date, time);
                     break;
                 case 2:
@@ -578,7 +582,14 @@ public class UI {
         }
     }
 
-    public void showMessage(String message) {
-
+    public void showMessage(String message, String date) {
+        wait(5000);
+        System.out.println(GREEN + "+---------------------------------------+" + RESET);
+        System.out.println(GREEN + "| NOTIFICATION                          |" + RESET);
+        System.out.println(GREEN + "+---------------------------------------+" + RESET);
+        System.out.println(GREEN + "| " + message + RESET);
+        System.out.println(GREEN + "+---------------------------------------+" + RESET);
+        System.out.println(GREEN + "| Due : " + date + RESET);
+        System.out.println(GREEN + "+---------------------------------------+" + RESET);
     }
 }
