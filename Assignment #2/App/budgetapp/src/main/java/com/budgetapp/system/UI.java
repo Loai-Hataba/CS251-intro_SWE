@@ -370,7 +370,7 @@ public class UI {
                     double editAmount = Methods.doubleInput("Enter Expense amount: ");
                     String editCategory = Methods.stringInput("Enter Expense Category: ");
                     String editDate = Methods.dateInput();
-                    System.out.print("0)One time       1)Recurring\nAnswer: ");
+                    System.out.print("\n0)One time       1)Recurring\nAnswer: ");
                     int editIsRecurring = Methods.numInput('0', '1');
                     mySystem.editExpense(editSource, editExpenseId, editAmount, editCategory, editDate, editIsRecurring);
                     System.out.println("Edited Expense Successfully...");
@@ -394,73 +394,48 @@ public class UI {
                 case 4:
                     return;
             }
-            // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // List<String> expenseRecords = mySystem.fetchExpense();
-            // System.out.println("\n-----------------------------------------------------------------------------------------------------------");
-            // if (!expenseRecords.isEmpty()) {
-            //     System.out.println("Expense Records: \n");
-            //     for (String record : expenseRecords) {
-            //         System.out.println(record);
-            //     }
-            // } else {
-            //     System.out.println("\n              No expense Data yet.\n");
-            // }
-            // System.out.println("\n-----------------------------------------------------------------------------------------------------------");
-            // System.out.println("What do you want to do: \n\n1)Add Expense\n2)Edit Expense\n3)Delete Expense\n4)Dashboard\nChoice: ");
-            // int choice = Methods.numInput('1', '4');
-            // switch (choice) {
-            //     case 1:
-            //         System.out.println("Add Expense:\n");
-            //         String source = Methods.stringInput("Enter Expense Source: ");
-            //         double amount = Methods.doubleInput("Enter Expense amount: ");
-            //         String category = Methods.stringInput("Enter Expense Category: ");
-            //         String date = Methods.dateInput();
-            //         System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
-            //         int isRecurring = Methods.numInput('0', '1');
-            //         mySystem.addExpense(source, amount, category, date, isRecurring);
-            //         break;
-            //     case 2:
-            //         System.out.println("Edit Expense:\n");
-            //         System.out.println("Enter Expense ID: ");
-            //         int editExpenseId = Methods.numInput();
-            //         String editSource = Methods.stringInput("Enter Expense Source: ");
-            //         double editAmount = Methods.doubleInput("Enter Expense amount: ");
-            //         String editCategory = Methods.stringInput("Enter Expense Category: ");
-            //         String editDate = Methods.dateInput();
-            //         System.out.println("Is it Recurring: \n0)No\n1)Yes\nAnswer: ");
-            //         int editIsRecurring = Methods.numInput('0', '1');
-            //         mySystem.editExpense(editSource, editExpenseId, editAmount, editCategory, editDate, editIsRecurring);
-            //         break;
-            //     case 3:
-            //         System.out.println("Delete Expense:\n");
-            //         System.out.println("Enter Expense ID: ");
-            //         int deleteExpenseId = Methods.numInput();
-            //         mySystem.deleteExpense(deleteExpenseId);
-            //         break;
-            //     case 4:
-            //         return;
-            // }
         }
     }
 
     public void displayBudget() {
         while (true) {
+            clearScreen();
             List<String> budgetRecords = mySystem.fetchBudget();
-            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
+            System.out.println("\n\n\n                                                   Fetching Data...");
+            wait(2000);
+            clearScreen();
+            System.out.println("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════");
             if (!budgetRecords.isEmpty()) {
-                System.out.println("Budget Records: \n");
-                for (String record : budgetRecords) {
+
+                System.out.println("                                                    \nBudget Records: \n");
+                for (String record :budgetRecords) {
                     System.out.println(record);
                 }
             } else {
-                System.out.println("\n              No Budget Data yet.\n");
+                System.out.println("\n                                              \nNo Budget Data yet.\n");
             }
-            System.out.println("\n-----------------------------------------------------------------------------------------------------------");
-            System.out.println("What do you want to do: \n\n1)Add Budget\n2)Edit Budget\n3)Delete Budget\n4)Dashboard\nChoice: ");
+            System.out.println("\n═══════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            System.out.println("                        "+ BLUE +" ╔════════════════════════════════════════════════════════════╗");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ║                           "+ YELLOW +"    Budget"+ BLUE +"                       ║");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ╠════════════════════════════════════════════════════════════╣");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ║                      "+ YELLOW +"(1) Add Budget"+ BLUE +"                        ║");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ║                      "+ YELLOW +"(2) Edit Budget"+ BLUE +"                       ║");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ║                      "+ YELLOW +"(3) Delete Budget"+ BLUE +"                     ║");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ║                      "+ YELLOW +"(4) Go back to Dashboard"+ BLUE +"              ║");
+            System.out.println("                        "+ BLUE +" ║                                                            ║");
+            System.out.println("                        "+ BLUE +" ╚════════════════════════════════════════════════════════════╝" + YELLOW);
+            System.out.print("\n                        Choice: ");
             int choice = Methods.numInput('1', '4');
             switch (choice) {
                 case 1:
-                    System.out.println("Add Budget:\n");
+                    System.out.print("Add Budget\n");
                     String source = Methods.stringInput("Enter Budget Source: ");
                     double amount = Methods.doubleInput("Enter Budget amount: ");
                     String category = Methods.stringInput("Enter Budget Category: ");
@@ -469,10 +444,12 @@ public class UI {
                     System.out.print("End Date\n");
                     String endDate = Methods.dateInput();
                     mySystem.addBudget(source, amount, category, startDate, endDate);
+                    System.out.println("Added Budget Successfully...");
+                    wait(3000);
                     break;
                 case 2:
-                    System.out.println("Edit Budget:\n");
-                    System.out.println("Enter Budget ID: ");
+                    System.out.println("Edit Budget\n");
+                    System.out.print("Enter Budget ID: ");
                     int editBudgetId = Methods.numInput();
                     String editSource = Methods.stringInput("Enter Budget Source: ");
                     double editAmount = Methods.doubleInput("Enter Budget amount: ");
@@ -482,16 +459,76 @@ public class UI {
                     System.out.print("End Date\n");
                     String editEndDate = Methods.dateInput();
                     mySystem.editBudget(editSource, editBudgetId, editAmount, editCategory, editStartDate, editEndDate);
+                    System.out.println("Edited Budget Successfully...");
+                    wait(3000);
                     break;
                 case 3:
-                    System.out.println("Delete Budget:\n");
-                    System.out.println("Enter Budget ID: ");
+                    System.out.println("Delete Budget\n");
+                    System.out.print("Enter Budget ID: ");
                     int deleteBudgetId = Methods.numInput();
-                    mySystem.deleteBudget(deleteBudgetId);
+                    while(true){
+                        if (mySystem.deleteIncome(editBudgetId)){
+                            System.out.println("Deleted Budget Successfully...");
+                            break;
+                        } else {
+                            System.out.print("Enter Budget ID: ");
+                            editBudgetId = Methods.numInput();
+                        }
+                    }
+                    wait(3000);
                     break;
                 case 4:
                     return;
             }
+
+            // //////////////////////////////////////////////////////////////////////////////////////////////////
+            // List<String> budgetRecords = mySystem.fetchBudget();
+            // System.out.println("\n-----------------------------------------------------------------------------------------------------------");
+            // if (!budgetRecords.isEmpty()) {
+            //     System.out.println("Budget Records: \n");
+            //     for (String record : budgetRecords) {
+            //         System.out.println(record);
+            //     }
+            // } else {
+            //     System.out.println("\n              No Budget Data yet.\n");
+            // }
+            // System.out.println("\n-----------------------------------------------------------------------------------------------------------");
+            // System.out.println("What do you want to do: \n\n1)Add Budget\n2)Edit Budget\n3)Delete Budget\n4)Dashboard\nChoice: ");
+            // int choice = Methods.numInput('1', '4');
+            // switch (choice) {
+            //     case 1:
+            //         System.out.println("Add Budget:\n");
+            //         String source = Methods.stringInput("Enter Budget Source: ");
+            //         double amount = Methods.doubleInput("Enter Budget amount: ");
+            //         String category = Methods.stringInput("Enter Budget Category: ");
+            //         System.out.print("Start Date\n");
+            //         String startDate = Methods.dateInput();
+            //         System.out.print("End Date\n");
+            //         String endDate = Methods.dateInput();
+            //         mySystem.addBudget(source, amount, category, startDate, endDate);
+            //         break;
+            //     case 2:
+            //         System.out.println("Edit Budget:\n");
+            //         System.out.println("Enter Budget ID: ");
+            //         int editBudgetId = Methods.numInput();
+            //         String editSource = Methods.stringInput("Enter Budget Source: ");
+            //         double editAmount = Methods.doubleInput("Enter Budget amount: ");
+            //         String editCategory = Methods.stringInput("Enter Budget Category: ");
+            //         System.out.print("Start Date\n");
+            //         String editStartDate = Methods.dateInput();
+            //         System.out.print("End Date\n");
+            //         String editEndDate = Methods.dateInput();
+            //         mySystem.editBudget(editSource, editBudgetId, editAmount, editCategory, editStartDate, editEndDate);
+            //         break;
+            //     case 3:
+            //         System.out.println("Delete Budget:\n");
+            //         System.out.println("Enter Budget ID: ");
+            //         int deleteBudgetId = Methods.numInput();
+            //         mySystem.deleteBudget(deleteBudgetId);
+            //         break;
+            //     case 4:
+            //         return;
+            // }
         }
     }
 
