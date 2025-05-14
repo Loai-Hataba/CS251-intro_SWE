@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.budgetapp"},{"l":"com.budgetapp.budget"},{"l":"com.budgetapp.database"},{"l":"com.budgetapp.methods"},{"l":"com.budgetapp.notification"},{"l":"com.budgetapp.reminder"},{"l":"com.budgetapp.system"},{"l":"com.budgetapp.transaction"},{"l":"com.budgetapp.user"}];updateSearchResults();

@@ -1,0 +1,115 @@
+----------------------------------------------IMPLement---------------------------------
+
+
+-6 stories (1-5)+7
+-------------------
+
+1- sign-up
+2- log-in
+3- INcome Tracking
+4- Budgeting
+5- Remiders
+7- Expense Tracking (on its own)
+
+
+---------------------------------------how?????---------Sequence-------------------------
+
+			Package Classes A- SignUp/LogIn
+
+1-User			//Abdo
+
+2-UI			//Loai
+
+3-System		//Loai
+
+4- Auth Man		//Hoss
+
+5- User Man		//Abdo
+
+5- Not Man (Not In Login cuh)	//Hoss	
+
+7- Json Filesss 	//Abdo
+
+
+---------------------------------------how?????---------Sequence-------------------------
+
+			Package Classes B- Tracking Income
+
+6- Income man  //Hoss
+
+
+-------------------------------
+
+			Package Classes C- Budgeting& Anal
+
+6- Budget man //Hoss
+
+-------------------------------
+
+			Package Classes D- Reminders
+
+6- Reminders Man //Abdo
+
+-------------------------------
+
+
+			Package Classes E- Expense Tracking
+
+6- Expenses Man //Loai
+
+-------------------------------
+
+
+
+
+responsibilities of classes:
+
+1- Authentication manager
+
+	* (in case of log in) authenticate user -> send credentials for user manager to check
+
+	* (in case of sign up) send credentials to user manager to insert in json database 
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Userid		| user name		| password	|	email	|	phone number	|	country		| income []		| budget [] 	| reminder []	| expenses []  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+json format:
+
+[
+	{
+		id,
+		username,
+		password,
+		email,
+		phone number,
+		country
+		income {
+			source,
+			amount
+		},
+		budget {
+			category,
+			amount
+		},
+		reminder {
+			reminder name,
+			date,
+			time
+		},
+		expnese {
+			category,
+			amount,
+			date
+		}
+	}
+]
+
+
+
