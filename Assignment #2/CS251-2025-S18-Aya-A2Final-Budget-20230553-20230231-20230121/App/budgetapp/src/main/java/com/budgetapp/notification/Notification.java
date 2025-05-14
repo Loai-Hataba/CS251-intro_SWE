@@ -1,8 +1,5 @@
 package com.budgetapp.notification;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 /**
  * Represents a notification in the Budget App system.
  *   @author Abdallah Mohamed
