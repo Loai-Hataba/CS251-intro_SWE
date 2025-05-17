@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import com.budgetapp.database.Records;
 import com.budgetapp.methods.Methods;
-import com.budgetapp.notification.Notification;
+// import com.budgetapp.notification.Notification;
 
 /**
  * Using the Singleton design pattern for the UserManager
